@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "module": "commonjs",
+    "outDir": "./dist",
+    "removeComments": true,
+    "sourceMap": true,
+    "target": "es2017",
+    "paths": {
+      "#lib": [
+        "lib"
+      ],
+      "#lib/*": [
+        "lib/*"
+      ],
+      "#apps": [
+        "apps"
+      ],
+      "#apps/*": [
+        "apps/*"
+      ],
+      "#server": [
+        "apps/server/src"
+      ],
+      "#server/*": [
+        "apps/server/src/*"
+      ],
+      "#dependencyResolver": [
+        "apps/dependencyResolver/src"
+      ],
+      "#dependencyResolver/*": [
+        "apps/dependencyResolver/src/*"
+      ],
+      "#components": [
+        "components"
+      ],
+      "#components/*": [
+        "components/*"
+      ],
+      "#web": [
+        "apps/web/src"
+      ],
+      "#web/*": [
+        "apps/web/src/*"
+      ]
+    }
+  }
+}

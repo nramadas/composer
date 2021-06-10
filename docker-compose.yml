@@ -1,0 +1,41 @@
+version: '3.1'
+services:
+  redis:
+    container_name: boilerplate-redis
+    image: 'redis'
+    ports: ['6379:6379']
+  db:
+    container_name: boilerplate-db
+    env_file:
+      - ./.env.local
+    image: 'postgres'
+    ports: ['5432:5432']
+    restart: always
+  authn-migrate:
+    command: './authn migrate'
+    container_name: boilerplate-authn-migrate
+    env_file:
+      - ./.env.local
+    image: 'keratin/authn-server:1.10.4'
+    depends_on:
+      - redis
+      - db
+  authn:
+    container_name: boilerplate-authn
+    env_file:
+      - ./.env.local
+    image: 'keratin/authn-server:1.10.4'
+    ports: ['3001:3000']
+    depends_on:
+      - authn-migrate
+      - redis
+      - db
+  # rabbit:
+  #   container_name: boilerplate-rabbit
+  #   env_file:
+  #     - ./.env.local
+  #   image: 'rabbitmq'
+  #   ports: ['5672:5672', '15672:15672']
+  #   volumes:
+  #       - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+  #       - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq

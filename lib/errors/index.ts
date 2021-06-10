@@ -1,0 +1,16 @@
+export enum ErrorType {
+  AlreadyAssigned = 'ALREADY_ASSIGNED',
+  AlreadyTaken = 'ALREADY_TAKEN',
+  CouldNotDelete = 'COULD_NOT_DELETE',
+  DoesNotExist = 'DOES_NOT_EXIST',
+  DoesNotMatch = 'DOES_NOT_MATCH',
+  Expired = 'EXPIRED',
+  FailedFileParse = 'FAILED_FILE_PARSE',
+  FailedUpload = 'FAILED_UPLOAD',
+  FileTypeNotAllowed = 'FILE_TYPE_NOT_ALLOWED',
+  Insecure = 'INSECURE',
+  InvalidFormat = 'INVALID_FORMAT',
+  Required = 'REQUIRED',
+  SomethingElse = 'SOMETHING_ELSE',
+  Unauthorized = 'UNAUTHORIZED',
+}

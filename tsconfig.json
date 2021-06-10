@@ -1,0 +1,80 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "lib": [
+      "dom",
+      "esnext",
+      "esnext.asynciterable"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "paths": {
+      "#lib": [
+        "../lib"
+      ],
+      "#lib/*": [
+        "../lib/*"
+      ],
+      "#apps": [
+        "../apps"
+      ],
+      "#apps/*": [
+        "../apps/*"
+      ],
+      "#server": [
+        "../apps/server/src"
+      ],
+      "#server/*": [
+        "../apps/server/src/*"
+      ],
+      "#dependencyResolver": [
+        "../apps/dependencyResolver/src"
+      ],
+      "#dependencyResolver/*": [
+        "../apps/dependencyResolver/src/*"
+      ],
+      "#components": [
+        "../components"
+      ],
+      "#components/*": [
+        "../components/*"
+      ],
+      "#web": [
+        "../apps/web/src"
+      ],
+      "#web/*": [
+        "../apps/web/src/*"
+      ]
+    },
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es2018"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "styled.d.ts",
+    "./extraTypes.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.web.tsx",
+    "**/*.native.tsx",
+    "**/*.android.tsx",
+    "**/*.ios.tsx",
+    "**/*.service.ts",
+    "**/*.controller.ts",
+    "**/*.module.ts"
+  ]
+}
