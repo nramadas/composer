@@ -1,0 +1,28 @@
+.container {
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: var(--color-secondary);
+  fill: var(--color-secondary);
+  cursor: pointer;
+  outline: none;
+  padding: 6px;
+  transition: color 0.15s, background-color 0.15s;
+
+  &:hover,
+  &:focus,
+  &:hover &:focus {
+    color: var(--color-primaryFocused);
+  }
+
+  &:active {
+    color: var(--color-primaryPressed);
+  }
+
+  &:disabled,
+  &[disabled] {
+    color: var(--color-primaryFaded);
+    cursor: not-allowed;
+  }
+}

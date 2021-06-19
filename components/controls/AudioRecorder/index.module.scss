@@ -1,0 +1,49 @@
+$buttonSmall: 40px;
+$buttonLarge: 60px;
+
+.container {
+  backdrop-filter: var(--style-backdrop-filter);
+  background: var(--style-background);
+  border-radius: 20px;
+  max-width: 360px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.content {
+  position: relative;
+  height: 400px;
+}
+
+.processingCover {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  z-index: 20;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.tracks {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  z-index: 10;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.visuals {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+
+  &.visible {
+    opacity: 1;
+  }
+}

@@ -1,6 +1,7 @@
 import {
   darken,
   lighten,
+  mix,
   readableColor,
   parseToRgb,
   transparentize,
@@ -10,6 +11,7 @@ interface ThemeInputs {
   background: string;
   backgroundDark: string;
   primary: string;
+  secondary: string;
 }
 
 export interface Theme {
@@ -32,9 +34,21 @@ export interface Theme {
   'elevation-8': string;
   'elevation-9': string;
   primary: string;
+  primaryDisabled: string;
+  primaryHovered: string;
+  primaryFocused: string;
+  primaryPressed: string;
   primaryRGB: string;
+  secondary: string;
+  secondaryDisabled: string;
+  secondaryHovered: string;
+  secondaryFocused: string;
+  secondaryPressed: string;
+  secondaryRGB: string;
   onBackground: string;
+  onBackgroundFaded: string;
   onPrimary: string;
+  recording: string;
 }
 
 interface Colors {
@@ -49,6 +63,7 @@ function rgbStr(hexColor: string) {
 
 export function createColors(inputs: ThemeInputs): Colors {
   const darkPrimary = darken(0.08, inputs.primary);
+  const darkSecondary = darken(0.08, inputs.secondary);
 
   return {
     light: {
@@ -71,9 +86,25 @@ export function createColors(inputs: ThemeInputs): Colors {
       'elevation-8': lighten(0.15, inputs.background),
       'elevation-9': lighten(0.16, inputs.background),
       primary: inputs.primary,
+      primaryDisabled: mix(0.5, inputs.background, inputs.primary),
+      primaryHovered: lighten(0.08, inputs.primary),
+      primaryFocused: lighten(0.24, inputs.primary),
+      primaryPressed: lighten(0.2, inputs.primary),
       primaryRGB: rgbStr(inputs.primary),
+      secondary: inputs.secondary,
+      secondaryDisabled: mix(0.5, inputs.background, inputs.secondary),
+      secondaryHovered: lighten(0.08, inputs.secondary),
+      secondaryFocused: lighten(0.24, inputs.secondary),
+      secondaryPressed: lighten(0.2, inputs.secondary),
+      secondaryRGB: rgbStr(inputs.secondary),
       onBackground: readableColor(inputs.background),
+      onBackgroundFaded: mix(
+        0.5,
+        inputs.background,
+        readableColor(inputs.background),
+      ),
       onPrimary: readableColor(inputs.primary),
+      recording: '#FF5520',
     },
     dark: {
       background: inputs.backgroundDark,
@@ -95,9 +126,25 @@ export function createColors(inputs: ThemeInputs): Colors {
       'elevation-8': lighten(0.15, inputs.backgroundDark),
       'elevation-9': lighten(0.16, inputs.backgroundDark),
       primary: darkPrimary,
+      primaryDisabled: mix(0.5, inputs.backgroundDark, darkPrimary),
+      primaryHovered: lighten(0.08, darkPrimary),
+      primaryFocused: lighten(0.24, darkPrimary),
+      primaryPressed: lighten(0.2, darkPrimary),
       primaryRGB: rgbStr(darkPrimary),
+      secondary: darkSecondary,
+      secondaryDisabled: mix(0.5, inputs.backgroundDark, darkSecondary),
+      secondaryHovered: lighten(0.08, darkSecondary),
+      secondaryFocused: lighten(0.24, darkSecondary),
+      secondaryPressed: lighten(0.2, darkSecondary),
+      secondaryRGB: rgbStr(darkSecondary),
       onBackground: readableColor(inputs.backgroundDark),
+      onBackgroundFaded: mix(
+        0.5,
+        inputs.backgroundDark,
+        readableColor(inputs.backgroundDark),
+      ),
       onPrimary: readableColor(darkPrimary),
+      recording: '#FF5520',
     },
   };
 }
@@ -105,5 +152,6 @@ export function createColors(inputs: ThemeInputs): Colors {
 export const DEFAULT = createColors({
   background: '#ffffff',
   backgroundDark: '#121212',
-  primary: '#ffab00',
+  primary: '#6c5b7b',
+  secondary: darken(0.2, '#ffffff'),
 });

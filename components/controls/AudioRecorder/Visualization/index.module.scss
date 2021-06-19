@@ -1,0 +1,71 @@
+$infoCircleSize: 80px;
+$amplitudeSize: $infoCircleSize + 50px;
+
+.amplitude {
+  background-color: transparent;
+  border-radius: $amplitudeSize;
+  border: 2px solid white;
+  height: $amplitudeSize;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform-origin: top left;
+  transform: translateX(-50%) translateY(-50%);
+  transition: opacity 0.1s;
+  width: $amplitudeSize;
+}
+
+.container {
+  background-color: transparent;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.freqBar {
+  background-color: var(--color-primary);
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform-origin: top;
+  width: 2px;
+}
+
+.freqContainer {
+  border-radius: 6 * $infoCircleSize;
+  height: 6 * $infoCircleSize;
+  left: 50%;
+  mask-image: radial-gradient(transparent $infoCircleSize, rgba(0, 0, 0, 1) $infoCircleSize + 50px);
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 6 * $infoCircleSize;
+}
+
+.infoCircle {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: $infoCircleSize;
+  justify-content: center;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: $infoCircleSize;
+}
+
+.timeElapsed {
+  color: var(--color-onBackground);
+  font-size: 32px;
+  margin: 4px 0;
+}
+
+.recorderState {
+  color: var(--color-onBackground);
+  font-size: 18px;
+  height: 18px;
+  opacity: 0.5;
+}

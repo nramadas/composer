@@ -66,6 +66,7 @@
   ],
   "include": [
     "styled.d.ts",
+    "dom-mediacapture-record",
     "./extraTypes.d.ts",
     "**/*.ts",
     "**/*.tsx",

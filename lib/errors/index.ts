@@ -1,6 +1,7 @@
 export enum ErrorType {
   AlreadyAssigned = 'ALREADY_ASSIGNED',
   AlreadyTaken = 'ALREADY_TAKEN',
+  BrowserNotSupported = 'BROWSER_NOT_SUPPORTED',
   CouldNotDelete = 'COULD_NOT_DELETE',
   DoesNotExist = 'DOES_NOT_EXIST',
   DoesNotMatch = 'DOES_NOT_MATCH',

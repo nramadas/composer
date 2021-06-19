@@ -1,0 +1,10 @@
+.container {
+  bottom: 0;
+  left: 0;
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  overflow-y: auto;
+  padding: 24px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

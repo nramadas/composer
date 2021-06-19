@@ -1,0 +1,99 @@
+$mainSize: 76px;
+$secondarySize: 0.6 * $mainSize;
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 24px;
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 192px;
+}
+
+.mainButton {
+  height: $mainSize;
+  width: $mainSize;
+}
+
+.mainIcon {
+  fill: var(--color-onBackground);
+  height: 0.6 * $mainSize;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  transition: opacity 0.15s;
+  width: 0.6 * $mainSize;
+}
+
+.micIcon {
+  opacity: 1;
+}
+
+.pauseIcon {
+  opacity: 0;
+}
+
+.playIcon {
+  opacity: 0;
+}
+
+.recordButton {
+  transition: background-color 0.15s, box-shadow 0.15s;
+
+  &.playing,
+  &.recording {
+    .micIcon {
+      opacity: 0;
+    }
+
+    .pauseIcon {
+      opacity: 1;
+    }
+
+    .playIcon {
+      opacity: 0;
+    }
+  }
+
+  &.playbackEnabled {
+    .micIcon {
+      opacity: 0;
+    }
+
+    .pauseIcon {
+      opacity: 0;
+    }
+
+    .playIcon {
+      opacity: 1;
+    }
+  }
+
+  &.recording {
+    background-color: var(--color-recording);
+    box-shadow: var(--halo-recording);
+  }
+}
+
+.secondaryButton {
+  height: $secondarySize;
+  width: $secondarySize;
+}
+
+.secondaryIcon {
+  fill: var(--color-onBackground);
+  height: 0.4 * $secondarySize;
+  width: 0.4 * $secondarySize;
+}
+
+.spacer {
+  width: $secondarySize;
+}

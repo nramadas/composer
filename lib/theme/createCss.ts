@@ -17,7 +17,7 @@ export function createCss() {
         ${printCssVars(createCssShadowVars())}
         ${printCssVars(createCssColorVarsFromTheme(DEFAULT_COLORS.light))}
         --style-background: var(--color-background);
-        --style-background-filter: none;
+        --style-backdrop-filter: none;
         background-color: var(--color-canvas);
         font-family: var(--font-body);
       }
@@ -31,7 +31,7 @@ export function createCss() {
       @supports (backdrop-filter: blur(10px)) {
         html {
           --style-background: var(--color-backgroundTransparent);
-          --style-background-filter: blur(20px);
+          --style-backdrop-filter: blur(20px);
         }
       }
     </style>

@@ -1,0 +1,118 @@
+$gradient-opacity: 0.1;
+
+.container {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: none;
+  border: 2px solid rgba(255,255,255,0.2);
+  box-shadow: -4px -2px 16px rgba(195, 200, 205, 0.07), 4px 4px 18px rgba(0, 0, 0, 0.44);
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 115px;
+  outline: none;
+  overflow: hidden;
+  padding: 8px 12px;
+  position: relative;
+  text-align: left;
+  transition: background-color 0.15s, border-color 0.15s, height 0.15s;
+  width: 100%;
+
+  &:hover,
+  &.expanded {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  &.expanded {
+    border-color: var(--color-primaryHovered);
+    height: 147px;
+  }
+
+  & ~ & {
+    margin-top: 8px;
+  }
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 10;
+}
+
+.layer {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.layer1 {
+  background: linear-gradient(to bottom right, rgb(255, 255, 255, $gradient-opacity) -6.95%, rgba(0, 0, 0, $gradient-opacity) 91.44%);
+  opacity: 1;
+  transition: opacity 0.15s;
+  z-index: 2;
+}
+
+.layer2 {
+  background: rgba(0, 0, 0, $gradient-opacity);
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 3;
+}
+
+.playback {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: width 0.25s;
+}
+
+.title {
+  align-items: center;
+  color: var(--color-onBackground);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.waveformContainer {
+  height: 60px;
+  overflow: hidden;
+  padding: 8px;
+  position: relative;
+}
+
+.waveform {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  height: 50%;
+}
+
+.waveSegment {
+  position: relative;
+  width: 1%;
+
+  & ~ & {
+    margin-left: -1px;
+  }
+}
+
+.waveUp {
+  border: 1px solid var(--color-onBackgroundFaded);
+  border-bottom: transparent;
+}
+
+.waveDown {
+  border: 1px solid var(--color-onBackgroundFaded);
+  border-top: transparent;
+  transform: translateY(100%);
+  transform-origin: top;
+}

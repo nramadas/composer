@@ -16,6 +16,7 @@ export function createCssShadowVars() {
   return {
     '--font-body':
       "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+    '--halo-recording': '0px 0px 6px #C40004, 0px 5px 40px #D71900',
     '--shadow-elevation-0': 'none',
     '--shadow-elevation-1':
       '0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.20)',
