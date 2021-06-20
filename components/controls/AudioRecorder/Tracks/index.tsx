@@ -8,6 +8,7 @@ interface Props {
   className?: string;
   expanded?: TrackModel;
   playbackState?: PlaybackState;
+  selected?: TrackModel;
   tracks: TrackModel[];
   onExpand?(track: TrackModel | undefined): void;
   onSelect?(track: TrackModel): void;
@@ -26,6 +27,7 @@ export function Tracks(props: Props) {
               ? props.playbackState
               : PlaybackState.Inactive
           }
+          selected={props.selected?.name === track.name}
           track={track}
           onExpand={() => {
             if (props.expanded?.name === track.name) {

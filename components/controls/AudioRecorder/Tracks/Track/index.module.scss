@@ -27,6 +27,14 @@ $gradient-opacity: 0.1;
     height: 147px;
   }
 
+  &.selected {
+    background-color: rgba(var(--color-primaryRGB), 0.5);
+
+    button {
+      color: var(--color-primaryFocused);
+    }
+  }
+
   & ~ & {
     margin-top: 8px;
   }
@@ -97,11 +105,15 @@ $gradient-opacity: 0.1;
 }
 
 .waveSegment {
+  box-sizing: border-box;
+  flex-grow: 0;
+  flex-shrink: 0;
   position: relative;
-  width: 1%;
+  width: 4px;
 
   & ~ & {
     margin-left: -1px;
+    width: 5px;
   }
 }
 

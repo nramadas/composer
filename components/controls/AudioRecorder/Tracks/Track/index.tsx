@@ -27,6 +27,7 @@ interface Props {
   className?: string;
   expanded?: boolean;
   playbackState?: PlaybackState;
+  selected?: boolean;
   track: TrackModel;
   onExpand?(): void;
   onSelect?(): void;
@@ -75,6 +76,7 @@ export function Track(props: Props) {
     <div
       className={cx(props.className, styles.container, {
         [styles.expanded]: !!props.expanded,
+        [styles.selected]: !!props.selected,
       })}
       onClick={e => {
         e.nativeEvent.stopImmediatePropagation();
@@ -115,7 +117,10 @@ export function Track(props: Props) {
         <SmallEmpty
           onClick={e => {
             e.nativeEvent.stopImmediatePropagation();
-            props.onSelect?.();
+            e.stopPropagation();
+            if (props.expanded) {
+              props.onSelect?.();
+            }
           }}
         >
           use this track

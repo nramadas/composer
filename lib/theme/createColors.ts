@@ -23,6 +23,7 @@ export interface Theme {
   brandHalo: string;
   canvas: string;
   canvasRGB: string;
+  disabled: string;
   'elevation-0': string;
   'elevation-1': string;
   'elevation-2': string;
@@ -33,6 +34,10 @@ export interface Theme {
   'elevation-7': string;
   'elevation-8': string;
   'elevation-9': string;
+  error: string;
+  field: string;
+  fieldError: string;
+  fieldFocused: string;
   primary: string;
   primaryDisabled: string;
   primaryHovered: string;
@@ -47,6 +52,7 @@ export interface Theme {
   secondaryRGB: string;
   onBackground: string;
   onBackgroundFaded: string;
+  onDisabled: string;
   onPrimary: string;
   recording: string;
 }
@@ -64,6 +70,8 @@ function rgbStr(hexColor: string) {
 export function createColors(inputs: ThemeInputs): Colors {
   const darkPrimary = darken(0.08, inputs.primary);
   const darkSecondary = darken(0.08, inputs.secondary);
+  const disabled = darken(0.24, inputs.background);
+  const darkDisabled = lighten(0.24, inputs.backgroundDark);
 
   return {
     light: {
@@ -75,6 +83,7 @@ export function createColors(inputs: ThemeInputs): Colors {
       brandHalo: '#448AFF',
       canvas: '#E3EDF7',
       canvasRGB: rgbStr('#E3EDF7'),
+      disabled,
       'elevation-0': inputs.background,
       'elevation-1': lighten(0.05, inputs.background),
       'elevation-2': lighten(0.07, inputs.background),
@@ -85,6 +94,10 @@ export function createColors(inputs: ThemeInputs): Colors {
       'elevation-7': lighten(0.14, inputs.background),
       'elevation-8': lighten(0.15, inputs.background),
       'elevation-9': lighten(0.16, inputs.background),
+      error: '#b00020',
+      field: darken(0.05, inputs.background),
+      fieldError: lighten(0.25, '#b00020'),
+      fieldFocused: darken(0.12, inputs.background),
       primary: inputs.primary,
       primaryDisabled: mix(0.5, inputs.background, inputs.primary),
       primaryHovered: lighten(0.08, inputs.primary),
@@ -103,6 +116,7 @@ export function createColors(inputs: ThemeInputs): Colors {
         inputs.background,
         readableColor(inputs.background),
       ),
+      onDisabled: readableColor(disabled),
       onPrimary: readableColor(inputs.primary),
       recording: '#FF5520',
     },
@@ -115,6 +129,7 @@ export function createColors(inputs: ThemeInputs): Colors {
       brandHalo: '#FFD600',
       canvas: '#212121',
       canvasRGB: rgbStr('#212121'),
+      disabled: darkDisabled,
       'elevation-0': inputs.backgroundDark,
       'elevation-1': lighten(0.05, inputs.backgroundDark),
       'elevation-2': lighten(0.07, inputs.backgroundDark),
@@ -125,6 +140,10 @@ export function createColors(inputs: ThemeInputs): Colors {
       'elevation-7': lighten(0.14, inputs.backgroundDark),
       'elevation-8': lighten(0.15, inputs.backgroundDark),
       'elevation-9': lighten(0.16, inputs.backgroundDark),
+      error: '#b00020',
+      field: lighten(0.05, inputs.backgroundDark),
+      fieldError: darken(0.25, '#b00020'),
+      fieldFocused: lighten(0.12, inputs.backgroundDark),
       primary: darkPrimary,
       primaryDisabled: mix(0.5, inputs.backgroundDark, darkPrimary),
       primaryHovered: lighten(0.08, darkPrimary),
@@ -143,6 +162,7 @@ export function createColors(inputs: ThemeInputs): Colors {
         inputs.backgroundDark,
         readableColor(inputs.backgroundDark),
       ),
+      onDisabled: readableColor(darkDisabled),
       onPrimary: readableColor(darkPrimary),
       recording: '#FF5520',
     },

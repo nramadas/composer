@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AudioRecorder } from '#components/controls/AudioRecorder';
+import { AudioFeedItemCreation } from '#components/forms/AudioFeedItemCreation';
 
 export default function Home() {
   return (
@@ -15,7 +15,7 @@ export default function Home() {
         justifyContent: 'center',
       }}
     >
-      <AudioRecorder />
+      <AudioFeedItemCreation />
     </div>
   );
 }

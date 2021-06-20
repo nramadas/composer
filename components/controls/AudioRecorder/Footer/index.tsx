@@ -30,7 +30,7 @@ export function Footer(props: Props) {
     (props.recorderState === RecorderState.Inactive && !props.playing);
 
   return (
-    <div className={cx(styles.container, props.className)}>
+    <footer className={cx(styles.container, props.className)}>
       <div className={styles.content}>
         <Circular
           className={styles.secondaryButton}
@@ -91,6 +91,6 @@ export function Footer(props: Props) {
         </Circular>
         <div className={styles.spacer} />
       </div>
-    </div>
+    </footer>
   );
 }

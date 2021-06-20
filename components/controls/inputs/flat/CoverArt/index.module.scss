@@ -1,0 +1,63 @@
+.addIcon {
+  fill: var(--color-secondary);
+  height: 54px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  transition: fill 0.15s;
+  width: 54px;
+}
+
+.container {
+  background-color: var(--color-field);
+  border-radius: 4px;
+  border: 1px solid var(--color-fieldFocused);
+  overflow: hidden;
+  padding-top: 66%;
+  position: relative;
+}
+
+.dragArea {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  &.dragActive,
+  &:hover {
+    .addIcon {
+      fill: var(--color-primary);
+    }
+  }
+}
+
+.imagePreview {
+  background-position: center;
+  background-size: cover;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.trashIcon {
+  bottom: 12px;
+  cursor: pointer;
+  fill: var(--color-onBackground);
+  filter: var(--drop-shadow-elevation-5);
+  height: 24px;
+  position: absolute;
+  right: 12px;
+  stroke: var(--color-background);
+  transition: fill 0.15s, stroke 0.15s;
+  width: 24px;
+
+  &:hover {
+    fill: var(--color-error);
+    stroke: transparent;
+  }
+}

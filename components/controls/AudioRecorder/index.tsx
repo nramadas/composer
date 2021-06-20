@@ -17,6 +17,8 @@ import { Visualization } from './Visualization';
 
 interface Props {
   className?: string;
+  header?: React.ReactNode;
+  preserveSelection?: boolean;
   onRecordingCreated?(recording: File): void;
 }
 
@@ -32,7 +34,7 @@ export function AudioRecorder(props: Props) {
     async (blob: Blob) => {
       try {
         const [waveform, duration] = await Promise.all([
-          getAudioBlobWaveformData(blob),
+          getAudioBlobWaveformData(blob, 67),
           getAudioBlobDuration(blob),
         ]);
 
@@ -62,7 +64,11 @@ export function AudioRecorder(props: Props) {
       }
     }
 
-    if (typeof window !== undefined && expandedTrack) {
+    if (
+      typeof window !== undefined &&
+      expandedTrack &&
+      !props.preserveSelection
+    ) {
       document.body.addEventListener('click', closeExpandedTack);
     }
 
@@ -71,7 +77,7 @@ export function AudioRecorder(props: Props) {
         document.body.removeEventListener('click', closeExpandedTack);
       }
     };
-  }, [expandedTrack, setExpandedTrack]);
+  }, [expandedTrack, props.preserveSelection, setExpandedTrack]);
 
   const {
     amplitude,
@@ -91,7 +97,8 @@ export function AudioRecorder(props: Props) {
   const displayVisualizations = !displayTrackList && !processing;
 
   return (
-    <div className={cx(props.className, styles.container)}>
+    <article className={cx(props.className, styles.container)}>
+      {props.header && <header>{props.header}</header>}
       <div className={styles.content}>
         <Tracks
           className={cx(styles.tracks, {
@@ -99,6 +106,7 @@ export function AudioRecorder(props: Props) {
           })}
           expanded={expandedTrack}
           playbackState={playbackState}
+          selected={props.preserveSelection ? expandedTrack : undefined}
           tracks={tracks}
           onExpand={track => {
             setExpandedTrack(track);
@@ -123,9 +131,10 @@ export function AudioRecorder(props: Props) {
             [styles.visible]: processing,
           })}
         />
+        {props.preserveSelection && <div className={styles.contentCover} />}
       </div>
       <Footer
-        disabled={!!error || processing}
+        disabled={!!error || processing || props.preserveSelection}
         playing={playbackState === PlaybackState.Playing}
         playbackEnabled={!!expandedTrack}
         recorderState={recorderState}
@@ -154,6 +163,6 @@ export function AudioRecorder(props: Props) {
           }
         }}
       />
-    </div>
+    </article>
   );
 }

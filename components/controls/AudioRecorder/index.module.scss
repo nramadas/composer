@@ -2,17 +2,31 @@ $buttonSmall: 40px;
 $buttonLarge: 60px;
 
 .container {
-  backdrop-filter: var(--style-backdrop-filter);
-  background: var(--style-background);
+  background: var(--color-elevation-4);
   border-radius: 20px;
   max-width: 360px;
-  overflow: hidden;
   width: 100%;
+}
+
+@supports (backdrop-filter: blur(10px)) {
+  .container {
+    backdrop-filter: var(--style-backdrop-filter);
+    background: var(--style-background);
+  }
 }
 
 .content {
   position: relative;
   height: 400px;
+}
+
+.contentCover {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 30;
 }
 
 .processingCover {
