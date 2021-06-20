@@ -108,6 +108,7 @@ export function AudioRecorder(props: Props) {
           playbackState={playbackState}
           selected={props.preserveSelection ? expandedTrack : undefined}
           tracks={tracks}
+          visible={displayTrackList}
           onExpand={track => {
             setExpandedTrack(track);
             setPlaybackState(PlaybackState.Inactive);
@@ -125,6 +126,7 @@ export function AudioRecorder(props: Props) {
           frequencies={freqFreqDomain}
           recorderState={recorderState}
           timeElapsed={timeElapsed}
+          visible={displayVisualizations}
         />
         <ProcessingCover
           className={cx(styles.processingCover, {

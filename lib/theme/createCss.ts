@@ -28,7 +28,7 @@ export function createCss() {
         }
       }
 
-      @supports (backdrop-filter: blur(10px)) {
+      @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
         html {
           --style-background: var(--color-backgroundTransparent);
           --style-backdrop-filter: blur(20px);

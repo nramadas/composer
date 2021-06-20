@@ -134,7 +134,7 @@ export function createRecorder() {
 
         const mediaRecorder = new RecordRTC(rawStream, {
           disableLogs: true,
-          mimeType: 'audio/webm;codecs=pcm',
+          mimeType: 'audio/webm',
           timeSlice: TIME_SLICE,
           ondataavailable: data => {
             if (data.size > 0) {

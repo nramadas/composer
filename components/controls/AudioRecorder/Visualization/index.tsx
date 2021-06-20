@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import React from 'react';
+import React, { memo } from 'react';
 
 import { RecorderState } from '#lib/hooks/useWebAudioCapture';
 import { msToElapsedTimeStr } from '#lib/msToElapseTime';
@@ -12,9 +12,10 @@ interface Props {
   frequencies: number[];
   recorderState: RecorderState;
   timeElapsed: number;
+  visible?: boolean;
 }
 
-export function Visualization(props: Props) {
+export const Visualization = memo(function Visualization(props: Props) {
   const angleAmount = props.frequencies.length
     ? 760 / props.frequencies.length
     : 0;
@@ -34,8 +35,8 @@ export function Visualization(props: Props) {
         className={styles.amplitude}
         style={{
           opacity: props.amplitude ? 0.25 + props.amplitude : 0,
-          height: `${120 + props.amplitude * 200}px`,
-          width: `${120 + props.amplitude * 200}px`,
+          height: `${140 + props.amplitude * 100}px`,
+          width: `${140 + props.amplitude * 100}px`,
         }}
       />
       <div className={styles.freqContainer}>
@@ -52,4 +53,10 @@ export function Visualization(props: Props) {
       </div>
     </div>
   );
-}
+}, (prevProps, nextProps) => {
+  if (prevProps.visible === false && nextProps.visible === false) {
+    return true;
+  }
+
+  return false;
+})
