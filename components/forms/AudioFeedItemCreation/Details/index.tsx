@@ -30,7 +30,10 @@ export function Details(props: Props) {
         <div className={styles.addTitleCaption}>
           <Body1>(Optional) Add a cover image</Body1>
         </div>
-        <CoverArt onChange={props.onCoverArtChange} />
+        <CoverArt
+          className={styles.coverArt}
+          onChange={props.onCoverArtChange}
+        />
       </div>
     </div>
   );
