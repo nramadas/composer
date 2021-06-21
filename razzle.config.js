@@ -1,7 +1,17 @@
 const path = require('path');
 
 module.exports = {
-  modifyWebpackConfig({ env, webpackConfig }) {
+  modifyWebpackConfig({ webpackConfig }) {
+    const typescriptLoader = webpackConfig.module.rules[0];
+
+    webpackConfig.module.rules.unshift({
+      test: /\.worker\.(js|ts)$/,
+      use: [
+        ...typescriptLoader.use,
+        { loader: 'worker-loader', options: { inline: true } },
+      ],
+    });
+
     webpackConfig.module.rules.forEach(rule => {
       if ('include' in rule && Array.isArray(rule.include)) {
         rule.include = rule.include.map(loc => {

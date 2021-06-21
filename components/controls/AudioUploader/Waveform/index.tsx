@@ -1,6 +1,7 @@
 import cx from 'classnames';
 import React, { useEffect, useState } from 'react';
 
+import { Body2 } from '#components/typography/Body2';
 import { getAudioBlobWaveformData } from '#lib/getAudioBlobWaveformData';
 
 import styles from './index.module.scss';
@@ -13,11 +14,16 @@ interface Props {
 }
 
 export function Waveform(props: Props) {
+  const [processing, setProcessing] = useState(false);
   const [waveform, setWaveform] = useState<number[]>([]);
 
   useEffect(() => {
     if (props.file) {
-      getAudioBlobWaveformData(props.file, 90).then(setWaveform);
+      setProcessing(true);
+      getAudioBlobWaveformData(props.file, 90).then(waveform => {
+        setWaveform(waveform);
+        setProcessing(false);
+      });
     } else {
       setWaveform([]);
     }
@@ -37,20 +43,24 @@ export function Waveform(props: Props) {
         }
       }}
     >
-      <div className={styles.waveform}>
-        {waveform.map((segment, i) => (
-          <div
-            className={cx(styles.waveSegment, {
-              [styles.waveUp]: i % 2 === 0,
-              [styles.waveDown]: i % 2 === 1,
-            })}
-            key={i}
-            style={{
-              height: `${segment * 100}%`,
-            }}
-          />
-        ))}
-      </div>
+      {processing ? (
+        <Body2>processing waveform...</Body2>
+      ) : (
+        <div className={styles.waveform}>
+          {waveform.map((segment, i) => (
+            <div
+              className={cx(styles.waveSegment, {
+                [styles.waveUp]: i % 2 === 0,
+                [styles.waveDown]: i % 2 === 1,
+              })}
+              key={i}
+              style={{
+                height: `${segment * 100}%`,
+              }}
+            />
+          ))}
+        </div>
+      )}
       <div
         className={styles.playback}
         style={{ width: `${props.playbackPercentage}%` }}

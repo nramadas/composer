@@ -1,15 +1,25 @@
 import { audioBlobToAudioBuffer } from '#lib/audioBlobToAudioBuffer';
 
+import ComputeWorker from './compute.worker.ts';
+
+interface Reply {
+  data: {
+    waveform: number[];
+  };
+}
+
 export async function getAudioBlobWaveformData(blob: Blob, samples = 100) {
+  const worker = new ComputeWorker();
   const audioBuffer = await audioBlobToAudioBuffer(blob);
   const rawChannel = audioBuffer.getChannelData(0);
-  const blockSize = Math.floor(rawChannel.length / samples);
-  const sampledData = Array.from({ length: samples }).map((_, i) => {
-    return Array.from({ length: blockSize }).reduce((acc: number, _, j) => {
-      const blockStart = i * blockSize;
-      return acc + Math.abs(rawChannel[blockStart + j]);
-    }, 0);
+
+  return new Promise<number[]>((res, rej) => {
+    worker.onmessage = (reply: Reply) => {
+      res(reply.data.waveform);
+    };
+
+    worker.onerror = e => rej(e);
+
+    worker.postMessage({ rawChannel, samples });
   });
-  const multiplier = Math.pow(Math.max(...sampledData), -1);
-  return sampledData.map(n => n * multiplier);
 }
