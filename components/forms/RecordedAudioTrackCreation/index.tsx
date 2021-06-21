@@ -1,12 +1,13 @@
 import cx from 'classnames';
 import React, { useState } from 'react';
 
-import { AudioUploader } from '#components/controls/AudioUploader';
+import { AudioRecorder } from '#components/controls/AudioRecorder';
 import { Filled } from '#components/controls/buttons/flat/Filled';
-import { Details } from '#components/forms/RecordedAudioFeedItemCreation/Details';
+import { ArrowLeft } from '#components/icons/ArrowLeft';
 import { Close } from '#components/icons/Close';
 import { Body2 } from '#components/typography/Body2';
 
+import { Details } from './Details';
 import styles from './index.module.scss';
 
 interface Props {
@@ -14,9 +15,8 @@ interface Props {
   onClose?(): void;
 }
 
-export function UploadedAudioFeedItemCreation(props: Props) {
+export function RecordedAudioTrackCreation(props: Props) {
   const [audioFile, setAudioFile] = useState<File | null>(null);
-  const [showSlideOut, setShowSlideOut] = useState(false);
   const [showSlideOutCorners, setShowSlideOutCorners] = useState(false);
   const [title, setTitle] = useState('');
   const [coverArt, setCoverArt] = useState<File | null>(null);
@@ -24,32 +24,42 @@ export function UploadedAudioFeedItemCreation(props: Props) {
   return (
     <div
       className={cx(styles.container, props.className, {
-        [styles.slideOutOpen]: showSlideOut,
+        [styles.slideOutOpen]: !!audioFile,
         [styles.slideOutCornersVisible]: showSlideOutCorners,
       })}
     >
       <div className={styles.content}>
-        <AudioUploader
-          className={styles.uploader}
+        <AudioRecorder
+          className={styles.recorder}
           header={
-            <div className={styles.uploaderHeader}>
-              <Body2>Step 1: Upload</Body2>
-              {!showSlideOut && (
-                <Close className={styles.closeIcon} onClick={props.onClose} />
+            <div className={styles.recorderHeader}>
+              <Body2>Step 1: Record</Body2>
+              {!audioFile && (
+                <Close
+                  className={styles.closeIcon}
+                  onClick={() => props.onClose?.()}
+                />
               )}
             </div>
           }
-          onChange={file => {
-            setAudioFile(file);
+          preserveSelection={!!audioFile}
+          onRecordingCreated={file => {
             setShowSlideOutCorners(true);
             // not ideal, but onTansitionEnd does not seem to work
-            setTimeout(() => setShowSlideOut(true), 50);
+            setTimeout(() => setAudioFile(file), 50);
           }}
         />
         <article className={styles.slideOut}>
           <header className={styles.slideOutHeader}>
             <Body2>Step 2: Add Details</Body2>
-            <Close className={styles.closeIcon} onClick={props.onClose} />
+            <ArrowLeft
+              className={styles.backIcon}
+              onClick={() => {
+                setAudioFile(null);
+                // not ideal, but onTansitionEnd does not seem to work
+                setTimeout(() => setShowSlideOutCorners(false), 375);
+              }}
+            />
           </header>
           <Details onCoverArtChange={setCoverArt} onTitleChange={setTitle} />
           <footer className={styles.controls}>

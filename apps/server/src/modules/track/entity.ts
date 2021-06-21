@@ -4,21 +4,21 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  OneToOne,
+  ManyToOne,
   PrimaryColumn,
-  Unique,
   UpdateDateColumn,
 } from 'typeorm';
 import { ulid } from 'ulid';
 
-import { Data, User as UserModel } from '#lib/models/User';
+import { Track as TrackModel, Data } from '#lib/models/Track';
+import { Channel } from '#server/modules/channel/entity';
 import { PersonaContributor } from '#server/modules/personaContributor/entity';
+import { Playlist } from '#server/modules/playlist/entity';
 
 @Entity()
-@Unique(['authId', 'email'])
-export class User {
+export class Track {
   @PrimaryColumn('varchar')
-  id!: UserModel['id'];
+  id!: TrackModel['id'];
 
   @BeforeInsert()
   setId() {
@@ -26,17 +26,26 @@ export class User {
   }
 
   @Column()
-  authId!: string;
+  channelId!: Channel['id'];
+
+  @Column()
+  creatorId!: PersonaContributor['id'];
 
   @Column({ type: 'jsonb' })
   data!: Partial<Data>;
 
   @Column()
-  email!: string;
+  playlistId!: Playlist['id'];
 
   // relations
-  @OneToOne('PersonaContributor', 'belongsTo', { nullable: true })
-  contributorPersona?: PersonaContributor;
+  @ManyToOne('Channel', 'tracks')
+  channel!: Channel;
+
+  @ManyToOne('PersonaContributor', 'tracks')
+  creator!: PersonaContributor;
+
+  @ManyToOne('Playlist', 'tracks')
+  playlist!: Playlist;
 
   // metadata
   @CreateDateColumn()
