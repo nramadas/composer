@@ -1,0 +1,133 @@
+$slideOutWidth: 420px;
+$uploaderWidth: 360px;
+
+.container {
+  border-radius: 20px;
+  box-shadow: var(--shadow-elevation-3);
+  position: relative;
+  transition: width .5s;
+  width: $uploaderWidth;
+
+  &.slideOutCornersVisible {
+    .uploader {
+      &::before {
+        box-shadow: 20px -20px 0 0 var(--color-background);
+      }
+
+      &::after {
+        box-shadow: 20px 20px 0 0 var(--color-background);
+      }
+    }
+  }
+
+  &.slideOutOpen {
+    width: $uploaderWidth + $slideOutWidth;
+
+    .uploaderHeader {
+      color: var(--color-secondaryDisabled);
+    }
+
+    .slideOut {
+      > * {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.content {
+  overflow: hidden;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding: 14px 24px;
+}
+
+.closeIcon {
+  box-sizing: border-box;
+  cursor: pointer;
+  fill: var(--color-secondary);
+  height: 22px;
+  padding: 4px;
+  transition: fill 0.15s;
+  width: 22px;
+
+  &:hover {
+    fill: var(--color-primary);
+  }
+}
+
+.uploader {
+  position: relative;
+
+  &::before {
+    background: transparent;
+    border-radius: 20px;
+    box-shadow: 0 0 0 0 var(--color-background);
+    content: ' ';
+    height: 40px;
+    pointer-events: none;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    transition: box-shadow 0.25s;
+    width: 40px;
+  }
+
+  &::after {
+    background: transparent;
+    border-radius: 20px;
+    bottom: 0px;
+    box-shadow: 0 0 0 0 var(--color-background);
+    content: ' ';
+    height: 40px;
+    pointer-events: none;
+    position: absolute;
+    right: 0px;
+    transition: box-shadow 0.25s;
+    width: 40px;
+  }
+}
+
+.uploaderHeader {
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--color-secondary);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 58px;
+  padding: 18px 24px;
+  transition: color 0.15s;
+}
+
+.slideOut {
+  background-color: var(--color-background);
+  border-radius: 0 20px 20px 0;
+  bottom: 0;
+  left: $uploaderWidth;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  > * {
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+}
+
+.slideOutHeader {
+  align-items: center;
+  color: var(--color-secondary);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 18px 24px;
+  white-space: nowrap;
+}

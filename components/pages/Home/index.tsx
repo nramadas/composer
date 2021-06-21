@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { AudioUploader } from '#components/controls/AudioUploader';
-// import { AudioFeedItemCreation } from '#components/forms/AudioFeedItemCreation';
+import { UploadedAudioFeedItemCreation } from '#components/forms/UploadedAudioFeedItemCreation';
+// import { RecordedAudioFeedItemCreation } from '#components/forms/RecordedAudioFeedItemCreation';
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
         justifyContent: 'center',
       }}
     >
-      <AudioUploader />
+      <UploadedAudioFeedItemCreation />
     </div>
   );
 }

@@ -1,10 +1,24 @@
 import cx from 'classnames';
+import clamp from 'lodash/clamp';
 import React, { useEffect, useState } from 'react';
 
 import { Body2 } from '#components/typography/Body2';
 import { getAudioBlobWaveformData } from '#lib/getAudioBlobWaveformData';
 
 import styles from './index.module.scss';
+
+function computeSeekPosition(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const x = rect.x;
+  const width = rect.width;
+  const mouseX = e.clientX;
+  const adjustedX = clamp(mouseX - x, 0, width);
+  if (adjustedX >= 0 && adjustedX <= width) {
+    return adjustedX / width;
+  } else {
+    return null;
+  }
+}
 
 interface Props {
   className?: string;
@@ -14,6 +28,7 @@ interface Props {
 }
 
 export function Waveform(props: Props) {
+  const [isDragging, setIsDragging] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [waveform, setWaveform] = useState<number[]>([]);
 
@@ -32,19 +47,29 @@ export function Waveform(props: Props) {
   return (
     <div
       className={cx(props.className, styles.container)}
-      onClick={e => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const x = rect.x;
-        const width = rect.width;
-        const mouseX = e.clientX;
-        const adjustedX = mouseX - x;
-        if (adjustedX >= 0 && adjustedX <= width) {
-          props.onSeekTo?.(adjustedX / width);
+      onMouseDown={e => {
+        const seekPos = computeSeekPosition(e);
+        if (typeof seekPos === 'number') {
+          props.onSeekTo?.(seekPos);
         }
+        setIsDragging(true);
+      }}
+      onMouseMove={e => {
+        if (isDragging) {
+          const seekPos = computeSeekPosition(e);
+          if (typeof seekPos === 'number') {
+            props.onSeekTo?.(seekPos);
+          } else {
+            setIsDragging(false);
+          }
+        }
+      }}
+      onMouseUp={() => {
+        setIsDragging(false);
       }}
     >
       {processing ? (
-        <Body2>processing waveform...</Body2>
+        <Body2 className={styles.processing}>processing waveform...</Body2>
       ) : (
         <div className={styles.waveform}>
           {waveform.map((segment, i) => (

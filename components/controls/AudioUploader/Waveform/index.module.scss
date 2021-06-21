@@ -21,6 +21,10 @@
   top: 0;
 }
 
+.processing {
+  pointer-events: none;
+}
+
 .waveform {
   align-items: flex-end;
   display: flex;

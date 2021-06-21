@@ -1,4 +1,5 @@
 import { audioBlobToAudioBuffer } from '#lib/audioBlobToAudioBuffer';
+import { withLowPriority } from '#lib/withLowPriority';
 
 import ComputeWorker from './compute.worker.ts';
 
@@ -10,8 +11,8 @@ interface Reply {
 
 export async function getAudioBlobWaveformData(blob: Blob, samples = 100) {
   const worker = new ComputeWorker();
-  const audioBuffer = await audioBlobToAudioBuffer(blob);
-  const rawChannel = audioBuffer.getChannelData(0);
+  const audioBuffer = await withLowPriority(() => audioBlobToAudioBuffer(blob));
+  const rawChannel = await withLowPriority(() => audioBuffer.getChannelData(0));
 
   return new Promise<number[]>((res, rej) => {
     worker.onmessage = (reply: Reply) => {

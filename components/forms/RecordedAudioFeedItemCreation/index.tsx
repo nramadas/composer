@@ -15,7 +15,7 @@ interface Props {
   onClose?(): void;
 }
 
-export function AudioFeedItemCreation(props: Props) {
+export function RecordedAudioFeedItemCreation(props: Props) {
   const [audioFile, setAudioFile] = useState<File | null>(null);
   const [showSlideOutCorners, setShowSlideOutCorners] = useState(false);
   const [title, setTitle] = useState('');
