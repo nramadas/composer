@@ -46,8 +46,7 @@ export function createRecorder() {
 
     if (
       typeof context.createMediaStreamSource === undefined ||
-      typeof context.createMediaStreamDestination === undefined ||
-      typeof context.createScriptProcessor === undefined
+      typeof context.createMediaStreamDestination === undefined
     ) {
       return rej(new Error(ErrorType.BrowserNotSupported));
     }
@@ -68,6 +67,7 @@ export function createRecorder() {
         let currentLength = 0;
         let currentTimestamp: number | undefined = undefined;
         let recorderState = RecorderState.Inactive;
+        let timer: number | undefined = undefined;
 
         const metaData = raw.pipe(
           map(() => {
@@ -88,9 +88,14 @@ export function createRecorder() {
             const freqTimeDomain: number[] = [];
 
             if (recorderState === RecorderState.Recording) {
-              for (const freq of timeDomain) {
-                freqTimeDomain.push(freq / 256);
-              }
+              let curSum = 0;
+              timeDomain.forEach((freq, i) => {
+                curSum += freq / 256;
+                if (i % NUM_FREQ_COLLAPSE === NUM_FREQ_COLLAPSE - 1) {
+                  freqTimeDomain.push(curSum / NUM_FREQ_COLLAPSE);
+                  curSum = 0;
+                }
+              });
             }
 
             // calculate frequencies over the frequency domain
@@ -135,18 +140,12 @@ export function createRecorder() {
         const mediaRecorder = new RecordRTC(rawStream, {
           disableLogs: true,
           mimeType: 'audio/webm',
-          timeSlice: TIME_SLICE,
-          ondataavailable: data => {
-            if (data.size > 0) {
-              raw.next();
-            }
-          },
         });
 
         const start = () => {
           recorderState = RecorderState.Recording;
           mediaRecorder.startRecording();
-          raw.next();
+          timer = setInterval(() => raw.next(), TIME_SLICE);
         };
 
         const stop = () => {
@@ -154,6 +153,7 @@ export function createRecorder() {
           currentTimestamp = undefined;
           currentLength = 0;
           mediaRecorder.stopRecording(() => {
+            clearInterval(timer);
             raw.next();
             recordings.next(mediaRecorder.getBlob());
             mediaRecorder.reset();
@@ -164,13 +164,14 @@ export function createRecorder() {
           mediaRecorder.pauseRecording();
           recorderState = RecorderState.Paused;
           currentTimestamp = undefined;
+          clearInterval(timer);
           raw.next();
         };
 
         const resume = () => {
           recorderState = RecorderState.Recording;
           mediaRecorder.resumeRecording();
-          raw.next();
+          timer = setInterval(() => raw.next(), TIME_SLICE);
         };
 
         return res({

@@ -1,0 +1,51 @@
+.container {
+  background: var(--color-elevation-4);
+  border-radius: 20px;
+  max-width: 360px;
+  width: 100%;
+}
+
+@supports (backdrop-filter: blur(10px)) {
+  .container {
+    backdrop-filter: var(--style-backdrop-filter);
+    background: var(--style-background);
+  }
+}
+
+.content {
+  position: relative;
+  height: 400px;
+}
+
+.upload {
+  opacity: 0;
+  transition: opacity 0.25s;
+  z-index: -1;
+
+  &.visible {
+    opacity: 1;
+    z-index: 10;
+  }
+}
+
+.visuals {
+  opacity: 0;
+  transition: opacity 0.25s;
+  z-index: -1;
+
+  &.visible {
+    opacity: 1;
+    z-index: 10;
+  }
+}
+
+.waveform {
+  opacity: 0;
+  transition: opacity 0.25s;
+  z-index: -1;
+
+  &.visible {
+    opacity: 1;
+    z-index: 20;
+  }
+}

@@ -1,6 +1,7 @@
 import cx from 'classnames';
 import React, { useCallback, useEffect, useState } from 'react';
 
+import { AudioVisualizationCircle } from '#components/eyecandy/AudioVisualizationCircle';
 import { audioBlobToFile } from '#lib/audioBlobToFile';
 import { getAudioBlobDuration } from '#lib/getAudioBlobDuration';
 import { getAudioBlobWaveformData } from '#lib/getAudioBlobWaveformData';
@@ -13,7 +14,6 @@ import { Footer } from './Footer';
 import styles from './index.module.scss';
 import { ProcessingCover } from './ProcessingCover';
 import { PlaybackState, Tracks, TrackModel } from './Tracks';
-import { Visualization } from './Visualization';
 
 interface Props {
   className?: string;
@@ -118,13 +118,13 @@ export function AudioRecorder(props: Props) {
           }
           onSetPlaybackState={setPlaybackState}
         />
-        <Visualization
+        <AudioVisualizationCircle
           amplitude={amplitude}
           className={cx(styles.visuals, {
             [styles.visible]: displayVisualizations,
           })}
           frequencies={freqFreqDomain}
-          recorderState={recorderState}
+          paused={recorderState === RecorderState.Paused}
           timeElapsed={timeElapsed}
           visible={displayVisualizations}
         />

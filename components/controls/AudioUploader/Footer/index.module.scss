@@ -1,0 +1,65 @@
+$mainSize: 76px;
+$secondarySize: 0.6 * $mainSize;
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 24px;
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 192px;
+}
+
+.mainButton {
+  height: $mainSize;
+  width: $mainSize;
+}
+
+.mainIcon {
+  fill: var(--color-onBackground);
+  height: 0.6 * $mainSize;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  transition: opacity 0.15s;
+  width: 0.6 * $mainSize;
+}
+
+.pauseIcon {
+  opacity: 0;
+}
+
+.playButton {
+  &.playing {
+    .pauseIcon {
+      opacity: 1;
+    }
+
+    .playIcon {
+      opacity: 0;
+    }
+  }
+}
+
+.playIcon {
+  opacity: 1;
+}
+
+.secondaryButton {
+  height: $secondarySize;
+  width: $secondarySize;
+}
+
+.secondaryIcon {
+  fill: var(--color-onBackground);
+  height: 0.4 * $secondarySize;
+  width: 0.4 * $secondarySize;
+}

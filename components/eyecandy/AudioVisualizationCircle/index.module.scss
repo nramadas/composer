@@ -11,7 +11,7 @@ $amplitudeSize: $infoCircleSize + 50px;
   top: 50%;
   transform-origin: top left;
   transform: translateX(-50%) translateY(-50%);
-  transition: height 0.1s, width 0.1s, opacity 0.1s;
+  transition: opacity 0.1s;
   width: $amplitudeSize;
 }
 
@@ -22,7 +22,6 @@ $amplitudeSize: $infoCircleSize + 50px;
   position: absolute;
   right: 0;
   top: 0;
-  transform: translate3d(0,0,0);
 }
 
 .freqBar {
@@ -31,7 +30,6 @@ $amplitudeSize: $infoCircleSize + 50px;
   position: absolute;
   top: 50%;
   transform-origin: top;
-  transition: height 0.2s;
   width: 2px;
 }
 
@@ -70,19 +68,4 @@ $amplitudeSize: $infoCircleSize + 50px;
   font-size: 18px;
   height: 18px;
   opacity: 0.5;
-}
-
-// remove the extra transitions used to make firefox feels smoother
-@supports (backdrop-filter: blur(10px)) {
-  .amplitude {
-    transition: opacity 0.1s;
-  }
-
-  .container {
-    transform: none;
-  }
-
-  .freqBar {
-    transition: none;
-  }
 }
