@@ -14,6 +14,8 @@ import { GqlContextModule } from '#server/modules/gqlContext';
 import { GqlContextService } from '#server/modules/gqlContext/service';
 import { PermissionModule } from '#server/modules/permission';
 import { PermissionService } from '#server/modules/permission/service';
+import { StagedTrackModule } from '#server/modules/stagedTrack';
+import { TrackModule } from '#server/modules/track';
 import { UserModule } from '#server/modules/user';
 
 import { AppController } from './controller';
@@ -51,6 +53,8 @@ import { AppService } from './service';
     }),
     AuthnModule,
     FileUploadModule,
+    StagedTrackModule,
+    TrackModule,
     UserModule,
   ],
   controllers: [AppController],

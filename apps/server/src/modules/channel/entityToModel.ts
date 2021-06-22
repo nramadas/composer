@@ -9,8 +9,9 @@ export function entityToModel(dbModel: ChannelDbModel): ChannelModel {
 
   return {
     createdById: dbModel.createdById,
-    id: dbModel.id,
     created: dbModel.created,
+    id: dbModel.id,
+    isDefault: !!dbModel.isDefaultOfId,
     ...data,
   };
 }

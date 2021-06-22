@@ -4,25 +4,21 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  JoinColumn,
   ManyToOne,
-  OneToMany,
-  OneToOne,
   PrimaryColumn,
-  Unique,
   UpdateDateColumn,
 } from 'typeorm';
 import { ulid } from 'ulid';
 
-import { Playlist as PlaylistModel, Data } from '#lib/models/Playlist';
+import { StagedTrack as StagedTrackModel, Data } from '#lib/models/StagedTrack';
 import { Channel } from '#server/modules/channel/entity';
-import { Track } from '#server/modules/track/entity';
+import { PersonaContributor } from '#server/modules/personaContributor/entity';
+import { Playlist } from '#server/modules/playlist/entity';
 
 @Entity()
-@Unique(['isDefaultInId'])
-export class Playlist {
+export class StagedTrack {
   @PrimaryColumn('varchar')
-  id!: PlaylistModel['id'];
+  id!: StagedTrackModel['id'];
 
   @BeforeInsert()
   setId() {
@@ -32,22 +28,24 @@ export class Playlist {
   @Column()
   channelId!: Channel['id'];
 
+  @Column()
+  creatorId!: PersonaContributor['id'];
+
   @Column({ type: 'jsonb' })
   data!: Partial<Data>;
 
-  @Column({ nullable: true })
-  isDefaultInId?: Channel['id'];
+  @Column()
+  playlistId!: Playlist['id'];
 
   // relations
-  @ManyToOne('Channel', 'playlists')
+  @ManyToOne('Channel', 'tracks')
   channel!: Channel;
 
-  @OneToOne('Channel', 'defaultPlaylist', { nullable: true })
-  @JoinColumn()
-  isDefaultIn?: Channel;
+  @ManyToOne('PersonaContributor', 'tracks')
+  creator!: PersonaContributor;
 
-  @OneToMany('Track', 'playlist')
-  tracks!: Track[];
+  @ManyToOne('Playlist', 'tracks')
+  playlist!: Playlist;
 
   // metadata
   @CreateDateColumn()

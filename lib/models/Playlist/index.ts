@@ -13,5 +13,5 @@ export interface Playlist extends Data {
   channelId: Channel['id'];
   created: Date;
   isDefault: boolean;
-  id: NominalID<'contributor persona'>;
+  id: NominalID<'playlist'>;
 }

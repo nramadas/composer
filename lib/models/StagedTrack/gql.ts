@@ -6,10 +6,10 @@ import { Playlist } from '#lib/models/Playlist/gql';
 import { UploadedAudio } from '#lib/models/UploadedAudio/gql';
 import { UploadedImage } from '#lib/models/UploadedImage/gql';
 
-import { Track as TrackModel } from './index';
+import { StagedTrack as StagedTrackModel } from './index';
 
-@ObjectType({ description: 'A Track' })
-export class Track implements TrackModel {
+@ObjectType({ description: 'A StagedTrack' })
+export class StagedTrack implements StagedTrackModel {
   @Field(type => UploadedAudio, { description: 'The audio file' })
   audio!: UploadedAudio;
 
@@ -29,16 +29,11 @@ export class Track implements TrackModel {
   creatorId!: PersonaContributor['id'];
 
   @Field(type => ID, { description: 'Track ID' })
-  id!: TrackModel['id'];
+  id!: StagedTrackModel['id'];
 
-  @Field({ description: 'The ID of the playlist the track is in' })
+  @Field(type => ID, { description: 'The ID of the playlist the track is in' })
   playlistId!: Playlist['id'];
 
   @Field({ description: "The track's title" })
   title!: string;
-
-  @Field(type => [Number], {
-    description: 'A waveform representation of the audio track',
-  })
-  waveform!: number[];
 }

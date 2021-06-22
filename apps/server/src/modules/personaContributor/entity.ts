@@ -48,6 +48,9 @@ export class PersonaContributor {
   @OneToMany('Channel', 'createdBy')
   createdChannels!: Channel[];
 
+  @OneToOne('Channel', 'isDefaultOf', { nullable: true })
+  defaultChannel?: Channel;
+
   @OneToMany('Track', 'creator')
   tracks!: Track[];
 

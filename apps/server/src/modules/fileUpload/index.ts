@@ -6,6 +6,6 @@ import { FileUploadService } from './service';
 @Module({
   imports: [],
   providers: [FileUploadMutation, FileUploadService],
-  exports: [],
+  exports: [FileUploadService],
 })
 export class FileUploadModule {}

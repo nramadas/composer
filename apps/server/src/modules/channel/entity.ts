@@ -12,6 +12,7 @@ import {
   OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
+  Unique,
 } from 'typeorm';
 import { ulid } from 'ulid';
 
@@ -21,6 +22,7 @@ import { Playlist } from '#server/modules/playlist/entity';
 import { Track } from '#server/modules/track/entity';
 
 @Entity()
+@Unique(['isDefaultOfId'])
 export class Channel {
   @PrimaryColumn('varchar')
   id!: ChannelModel['id'];
@@ -36,8 +38,8 @@ export class Channel {
   @Column({ type: 'jsonb' })
   data!: Partial<Data>;
 
-  @Column()
-  defaultPlaylistId!: Playlist['id'];
+  @Column({ nullable: true })
+  isDefaultOfId?: PersonaContributor['id'];
 
   // relations
   @ManyToMany('PersonaContributor', 'contributesTo')
@@ -47,9 +49,12 @@ export class Channel {
   @ManyToOne('PersonaContributor', 'createdChannels')
   createdBy!: PersonaContributor;
 
-  @OneToOne('Playlist', 'isDefaultIn')
+  @OneToOne('Playlist', 'isDefaultIn', { nullable: true })
+  defaultPlaylist?: Playlist;
+
+  @OneToOne('PersonaContributor', 'defaultChannel')
   @JoinColumn()
-  defaultPlaylist!: Playlist;
+  isDefaultOf?: PersonaContributor;
 
   @OneToMany('Playlist', 'channel')
   playlists!: Playlist[];

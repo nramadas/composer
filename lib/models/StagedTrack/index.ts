@@ -10,7 +10,6 @@ export interface Data {
   audio: UploadedAudio;
   coverArt?: UploadedImage;
   title: string;
-  waveform: number[];
 }
 
 export const DEFAULT_DATA: Data = {
@@ -20,13 +19,12 @@ export const DEFAULT_DATA: Data = {
     mimeType: AudioMimeType.Ogg,
   },
   title: '',
-  waveform: [],
 };
 
-export interface Track extends Data {
+export interface StagedTrack extends Data {
   channelId: Channel['id'];
   created: Date;
   creatorId: PersonaContributor['id'];
-  id: NominalID<'track'>;
+  id: NominalID<'staged track'>;
   playlistId: Playlist['id'];
 }
