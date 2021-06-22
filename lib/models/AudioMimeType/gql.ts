@@ -6,14 +6,20 @@ registerEnumType(AudioMimeType, {
   name: 'AudioMimeType',
   description: 'audio mime types',
   valuesConfig: {
+    Aac: {
+      description: '.aac',
+    },
     Flac: {
       description: '.flac',
     },
-    Mp3: {
-      description: '.mp3',
+    Mpeg: {
+      description: '.mp3, .mpeg',
     },
     Ogg: {
       description: '.ogg',
+    },
+    Opus: {
+      description: '.???',
     },
   },
 });

@@ -4,12 +4,16 @@ import { VideoMimeType } from '#lib/models/VideoMimeType';
 
 export const audioExtToMimeType = (ext: string) => {
   switch (ext) {
+    case 'aac':
+      return AudioMimeType.Aac;
     case 'flac':
       return AudioMimeType.Flac;
     case 'mp3':
-      return AudioMimeType.Mp3;
+      return AudioMimeType.Mpeg;
     case 'ogg':
       return AudioMimeType.Ogg;
+    case 'opus':
+      return AudioMimeType.Opus;
     default:
       return null;
   }

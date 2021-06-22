@@ -1,5 +1,7 @@
 export enum AudioMimeType {
+  Aac = 'Aac',
   Flac = 'Flac',
-  Mp3 = 'Mp3',
+  Mpeg = 'Mpeg',
   Ogg = 'Ogg',
+  Opus = 'Opus',
 }

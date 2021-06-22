@@ -38,7 +38,13 @@ export function CoverArt(props: Props) {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: ['image/jpeg', 'image/png'],
+    accept: [
+      'image/apng',
+      'image/gif',
+      'image/jpeg',
+      'image/png',
+      'image/webp',
+    ],
     maxFiles: 1,
   });
 
