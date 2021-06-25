@@ -16,7 +16,7 @@ export function createCss() {
       html {
         ${printCssVars(createCssShadowVars())}
         ${printCssVars(createCssColorVarsFromTheme(DEFAULT_COLORS.light))}
-        --style-background: var(--color-background);
+        --style-background: var(--color-elevation-3);
         --style-backdrop-filter: none;
         background-color: var(--color-canvas);
         font-family: var(--font-body);

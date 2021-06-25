@@ -8,6 +8,7 @@ import 'normalize.css';
 import { AuthTokenProvider } from '#components/providers/AuthToken';
 import { URQLProvider } from '#components/providers/Urql';
 import { TokenRefresher } from '#components/utilities/TokenRefresher';
+import { PageRoute } from '#lib/constants/Route';
 import { AuthToken } from '#lib/models/AuthToken';
 
 import styles from './index.module.scss';
@@ -54,7 +55,12 @@ export function App(props: Props) {
       >
         <Switch location={backgroundLocation || location}>
           {pageRoutes.map(route => (
-            <Route exact key={route} component={pages[route]} path={route} />
+            <Route
+              exact={route === PageRoute.Home}
+              key={route}
+              component={pages[route]}
+              path={route}
+            />
           ))}
           <Route path="*" component={Page404} />
         </Switch>

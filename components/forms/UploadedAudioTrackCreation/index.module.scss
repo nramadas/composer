@@ -3,7 +3,6 @@ $uploaderWidth: 360px;
 
 .container {
   border-radius: 20px;
-  box-shadow: var(--shadow-elevation-3);
   position: relative;
   transition: width .5s;
   width: $uploaderWidth;
