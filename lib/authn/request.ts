@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 import { encode } from '#lib/base64';
 
 const headers = () => ({

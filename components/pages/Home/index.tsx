@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { UploadedAudioTrackCreation } from '#components/forms/UploadedAudioTrackCreation';
-// import { RecordedAudioTrackCreation } from '#components/forms/RecordedAudioTrackCreation';
+import { OverlayLink } from '#components/controls/OverlayLink';
+import { OverlayRoute } from '#lib/constants/Route';
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
         justifyContent: 'center',
       }}
     >
-      <UploadedAudioTrackCreation />
+      <OverlayLink to={OverlayRoute.Authentication}>test</OverlayLink>
     </div>
   );
 }

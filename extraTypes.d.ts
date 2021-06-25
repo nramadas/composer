@@ -11,6 +11,12 @@ declare module '*.worker.ts' {
   export default CustomWorker;
 }
 
+declare module '*.gql' {
+  import { DocumentNode } from 'graphql';
+  const content: DocumentNode;
+  export default content;
+}
+
 interface IdleDeadline {
   timeRemaining(): DOMHighResTimeStamp;
   readonly didTimeout: boolean;

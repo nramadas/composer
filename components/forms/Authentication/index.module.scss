@@ -1,0 +1,107 @@
+$width: 340px;
+
+.container {
+  height: 395px;
+  overflow: hidden;
+  padding: 20px 0;
+  position: relative;
+  width: $width;
+
+  &.showLogin {
+    .content {
+      left: -$width;
+    }
+
+    .login {
+      opacity: 1;
+    }
+
+    .signup {
+      opacity: 0;
+    }
+
+    .loginHeader {
+      opacity: 1;
+    }
+
+    .signupHeader {
+      opacity: 0;
+    }
+
+    .switchLogin {
+      opacity: 0;
+      z-index: 0;
+    }
+
+    .switchSignup {
+      opacity: 1;
+      z-index: 1;
+    }
+  }
+}
+
+.content {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 20;
+  transition: left 0.25s;
+  width: 100%;
+}
+
+.login,
+.signup {
+  box-sizing: border-box;
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding: 75px 20px 0;
+  transition: opacity 0.25s;
+  width: $width;
+}
+
+.login {
+  opacity: 0;
+}
+
+.signup {
+  opacity: 1;
+}
+
+.loginHeader,
+.signupHeader {
+  color: var(--color-secondary);
+  position: absolute;
+  transition: opacity 0.25s;
+  width: 200px;
+}
+
+.loginHeader {
+  left: $width + 20px;
+  opacity: 0;
+}
+
+.signupHeader {
+  left: 20px;
+  opacity: 1;
+}
+
+.switchLogin,
+.switchSignup {
+  bottom: 12px;
+  position: absolute;
+  right: 14px;
+  transition: opacity 0.25s;
+}
+
+.switchLogin {
+  opacity: 1;
+  z-index: 1;
+}
+
+.switchSignup {
+  opacity: 0;
+  z-index: 0;
+}

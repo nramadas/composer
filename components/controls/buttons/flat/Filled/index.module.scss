@@ -37,5 +37,6 @@
     border-color: var(--color-disabled);
     color: var(--color-onDisabled);
     cursor: not-allowed;
+    pointer-events: none;
   }
 }

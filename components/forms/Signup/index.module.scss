@@ -1,0 +1,20 @@
+.error {
+  color: var(--color-error);
+  height: 36px;
+  margin-top: 8px;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.inputContainer {
+  height: 74px;
+}

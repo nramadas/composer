@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useEventCallback } from 'rxjs-hooks';
 import { debounceTime, mergeMap } from 'rxjs/operators';
 
@@ -28,12 +28,18 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 export function InputWithValidation(props: Props) {
   const { onValidate, ...rest } = props;
 
+  const validator = useRef(onValidate);
+
+  useEffect(() => {
+    validator.current = onValidate;
+  }, [onValidate]);
+
   const [validationCallback, error] = useEventCallback<string, string>(
     event =>
       event.pipe(
         debounceTime(150),
         mergeMap(event => {
-          const result = onValidate ? onValidate(event) : '';
+          const result = validator.current ? validator.current(event) : '';
           return result instanceof Promise ? result : Promise.resolve(result);
         }),
       ),

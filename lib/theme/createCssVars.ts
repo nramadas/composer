@@ -38,6 +38,8 @@ export function createCssShadowVars() {
       '0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.20)',
     '--shadow-elevation-10':
       '0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.20)',
+    '--shadow-raised-effect':
+      '-4px -2px 16px rgba(195, 200, 205, 0.07), 4px 4px 18px rgba(0, 0, 0, 0.44)',
     '--drop-shadow-elevation-1':
       'drop-shadow(0 1px 1px rgba(0,0,0,0.14)) drop-shadow(0 2px 1px rgba(0,0,0,0.12)) drop-shadow(0 1px 3px rgba(0,0,0,0.20))',
     '--drop-shadow-elevation-2':

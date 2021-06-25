@@ -1,0 +1,23 @@
+.container {
+  backdrop-filter: var(--style-backdrop-filter);
+  background: var(--style-background);
+  border-radius: 20px;
+  box-shadow: var(--shadow-elevation-3);
+  overflow: hidden;
+  position: relative;
+}
+
+.closeIcon {
+  cursor: pointer;
+  fill: var(--color-secondary);
+  padding: 8px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  transition: fill 0.15s;
+  width: 16px;
+
+  &:hover {
+    fill: var(--color-primary);
+  }
+}

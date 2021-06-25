@@ -39,3 +39,6 @@ ADMIN_USERS=
 
 # Rabbit
 RABBIT_URI=amqp://localhost:5672
+
+# Web Client
+RAZZLE_GQL_ENDPOINT=${APP_URL}/graphql

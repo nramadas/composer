@@ -1,0 +1,5 @@
+mutation ($refreshToken: ID!) {
+  refreshSession(refreshToken: $refreshToken) {
+    session
+  }
+}

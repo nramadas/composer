@@ -1,4 +1,6 @@
+import { Nominal } from '#lib/type/nominal';
+
 export interface AuthToken {
-  refresh: string;
-  session: string;
+  refresh: Nominal<string, 'refresh token'>;
+  session: Nominal<string, 'session token'>;
 }

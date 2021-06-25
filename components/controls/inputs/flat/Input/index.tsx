@@ -42,7 +42,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
           className={cx(styles.input, rest.className)}
           placeholder="&nbsp;"
           ref={ref}
-          type="text"
         />
         <div className={styles.label}>{label}</div>
         {icon &&
