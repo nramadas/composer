@@ -1,0 +1,29 @@
+$navWidth: 80px;
+
+.container {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.content {
+  background-color: var(--color-canvas);
+  bottom: 0;
+  left: $navWidth;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.nav {
+  background-color: var(--color-elevation-2);
+  bottom: 0;
+  box-shadow: var(--shadow-elevation-4);
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: $navWidth;
+  z-index: 1;
+}

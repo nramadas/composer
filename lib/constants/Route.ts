@@ -4,6 +4,7 @@ export enum OverlayRoute {
 
 export enum PageRoute {
   Authentication = '/auth',
+  Compose = '/compose',
   Feed = '/user/:name',
   Home = '/',
 }

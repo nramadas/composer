@@ -8,6 +8,10 @@ export const pages = {
     loader: () => import('#components/pages/Authentication'),
     loading: () => <div />,
   }),
+  [PageRoute.Compose]: Loadable({
+    loader: () => import('#components/pages/Compose'),
+    loading: () => <div />,
+  }),
   [PageRoute.Home]: Loadable({
     loader: () => import('#components/pages/Home'),
     loading: () => <div />,
