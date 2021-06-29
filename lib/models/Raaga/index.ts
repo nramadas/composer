@@ -118,5 +118,5 @@ export enum JanyaRaaga {
   Revati = 'Revati',
   Shreemani = 'Shreemani',
   Shreemati = 'Shreemati',
-  Svadhya = 'Svadhya,',
+  Svadhya = 'Svadhya',
 }
