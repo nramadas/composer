@@ -110,4 +110,13 @@ export enum JanyaRaaga {
   SuddhaMukhaari = 'SuddhaMukhaari',
   Tatillatika = 'Tatillatika',
   Vaageeshwari = 'Vaageeshwari',
+
+  // From 'Rathnāngi'
+  Phenadhyuti = 'Phenadhyuti',
+  Ganamukhaari = 'Ganamukhaari',
+  Ratnavaraali = 'Ratnavaraali',
+  Revati = 'Revati',
+  Shreemani = 'Shreemani',
+  Shreemati = 'Shreemati',
+  Svadhya = 'Svadhya,',
 }
