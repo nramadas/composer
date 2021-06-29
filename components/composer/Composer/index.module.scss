@@ -29,7 +29,7 @@ $controlsHeight: 200px;
 
   @supports ((-webkit-backdrop-filter: blur(20px)) or (backdrop-filter: blur(20px))) {
     .controls {
-      background-color: transparent;
+      background-color: rgba(var(--color-canvasRGB), 0.7);
     }
   }
 }
