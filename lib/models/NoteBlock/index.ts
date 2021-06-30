@@ -12,6 +12,7 @@ export enum BlockType {
 
 interface ContinuationBlock {
   type: BlockType.Continuation;
+  key: string;
   length: 1 | 2;
 }
 
@@ -28,21 +29,25 @@ interface MultipleChildNote {
 
 interface MultipleBlock {
   type: BlockType.Multiple;
+  key: string;
   children: (MultipleChildNote | null)[];
 }
 
 interface ShrutiBlock {
   type: BlockType.Shruti;
+  key: string;
   shruti: Shruti;
   sthayi: Sthayi;
 }
 
 interface SkipBlock {
   type: BlockType.Skip;
+  key: string;
 }
 
 interface UndefinedBlock {
   type: BlockType.Undefined;
+  key: string;
 }
 
 export type NoteBlock =

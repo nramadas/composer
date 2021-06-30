@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Block } from '#components/composer/Block';
 import { Row } from '#components/composer/Row';
 import { avartanLength } from '#lib/avartanLength';
+import { useBlockState } from '#lib/hooks/useBlockState';
 import { Swara } from '#lib/models/Swara';
 import { Taala } from '#lib/models/Taala';
 import { swaraToNoteBlocks } from '#lib/swaraToNoteBlocks';
@@ -16,7 +17,15 @@ interface Props {
 }
 
 export function Editor(props: Props) {
+  const {
+    highlightStartIndex,
+    highlightEndIndex,
+    selectionIndex,
+    endHighlight,
+    select,
+  } = useBlockState();
   const [swara, setSwara] = useState<Swara[]>([]);
+
   const avartan = taalaToAvartan(Taala.MisraChapu);
   const rowSize = avartanLength(avartan);
   const noteBlocks = swaraToNoteBlocks(swara, rowSize);
