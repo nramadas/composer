@@ -4,9 +4,9 @@ import { Taala } from '#lib/models/Taala';
 
 export interface Composition {
   composer?: string;
-  raaga?: MelakartaRaaga | JanyaRaaga | 'RaagaMaalikaa';
+  raaga: MelakartaRaaga | JanyaRaaga | 'RaagaMaalikaa';
   swara: Swara[];
-  taala?: Taala;
+  taala: Taala;
   title?: string;
   transcriber?: string;
 }

@@ -1,3 +1,7 @@
+export enum ModalRoute {
+  PickRaaga = 'PickRaaga',
+}
+
 export enum OverlayRoute {
   Authentication = '/auth',
 }

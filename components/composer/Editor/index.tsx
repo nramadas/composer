@@ -1,12 +1,10 @@
 import cx from 'classnames';
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Block } from '#components/composer/Block';
 import { Row } from '#components/composer/Row';
 import { avartanLength } from '#lib/avartanLength';
-import { useBlockState } from '#lib/hooks/useBlockState';
-import { Swara } from '#lib/models/Swara';
-import { Taala } from '#lib/models/Taala';
+import { useSelector } from '#lib/hooks/useSelector';
 import { swaraToNoteBlocks } from '#lib/swaraToNoteBlocks';
 import { taalaToAvartan } from '#lib/taalaToAvartan';
 
@@ -17,16 +15,10 @@ interface Props {
 }
 
 export function Editor(props: Props) {
-  const {
-    highlightStartIndex,
-    highlightEndIndex,
-    selectionIndex,
-    endHighlight,
-    select,
-  } = useBlockState();
-  const [swara, setSwara] = useState<Swara[]>([]);
-
-  const avartan = taalaToAvartan(Taala.MisraChapu);
+  const { avartan, swara } = useSelector(state => ({
+    avartan: taalaToAvartan(state.composition.taala),
+    swara: state.composition.swara,
+  }));
   const rowSize = avartanLength(avartan);
   const noteBlocks = swaraToNoteBlocks(swara, rowSize);
 
