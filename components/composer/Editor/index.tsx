@@ -1,12 +1,10 @@
 import cx from 'classnames';
-import React from 'react';
+import React, { memo } from 'react';
 
 import { Block } from '#components/composer/Block';
 import { Row } from '#components/composer/Row';
-import { avartanLength } from '#lib/avartanLength';
+import { useEditorKeyboardInput } from '#lib/hooks/useEditorKeyboardInput';
 import { useSelector } from '#lib/hooks/useSelector';
-import { swaraToNoteBlocks } from '#lib/swaraToNoteBlocks';
-import { taalaToAvartan } from '#lib/taalaToAvartan';
 
 import styles from './index.module.scss';
 
@@ -14,25 +12,25 @@ interface Props {
   className?: string;
 }
 
-export function Editor(props: Props) {
-  const { avartan, swara } = useSelector(state => ({
-    avartan: taalaToAvartan(state.composition.taala),
-    swara: state.composition.swara,
-  }));
-  const rowSize = avartanLength(avartan);
-  const noteBlocks = swaraToNoteBlocks(swara, rowSize);
+export const Editor = memo(
+  function Editor(props: Props) {
+    useEditorKeyboardInput();
 
-  console.log(noteBlocks, rowSize);
+    const { blocks } = useSelector(state => ({
+      blocks: state.composition.blocks,
+    }));
 
-  return (
-    <div className={cx(styles.container, props.className)}>
-      {noteBlocks.map((blocks, i) => (
-        <Row avartan={avartan} className={styles.row} key={i}>
-          {blocks.map(block => (
-            <Block block={block} key={i} />
-          ))}
-        </Row>
-      ))}
-    </div>
-  );
-}
+    return (
+      <div className={cx(styles.container, props.className)}>
+        {blocks.map((row, i) => (
+          <Row className={styles.row} key={i}>
+            {row.map(blockKey => (
+              <Block referenceKey={blockKey} key={blockKey} />
+            ))}
+          </Row>
+        ))}
+      </div>
+    );
+  },
+  () => true,
+);

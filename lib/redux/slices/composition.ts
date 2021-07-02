@@ -1,20 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import produce, { applyPatches, Patch, produceWithPatches } from 'immer';
 
+import { avartanLength } from '#lib/avartanLength';
+import { createBlank } from '#lib/document/createBlank';
+import { groupBlocksByAvartan } from '#lib/groupBlocksByAvartan';
+import { Block } from '#lib/models/Block';
 import { Composition as BaseComposition } from '#lib/models/Composition';
-import { NoteBlock } from '#lib/models/NoteBlock';
+import { Document } from '#lib/models/Document';
 import { MelakartaRaaga } from '#lib/models/Raaga';
-import { Swara as BaseSwara } from '#lib/models/Swara';
 import { Taala } from '#lib/models/Taala';
-
-interface Swara extends BaseSwara {
-  key: string;
-  blocks: NoteBlock[];
-}
-
-interface Composition extends BaseComposition {
-  swara: Swara[];
-}
+import { taalaToAvartan } from '#lib/taalaToAvartan';
 
 interface PatchState {
   cursor: number;
@@ -24,19 +19,35 @@ interface PatchState {
   }[];
 }
 
-interface CompositionState extends Composition {
+interface CompositionState extends Omit<BaseComposition, 'swara'> {
+  blocks: Block['key'][][];
+  cursorPosition: Block['key'];
+  document: Document;
   history: PatchState;
+  hovered?: Block['key'];
 }
 
+const INITIAL_TAALA = Taala.TriputaChatusra;
+const INITIAL_AVARTAN = taalaToAvartan(INITIAL_TAALA);
+const INITIAL_ROW_SIZE = avartanLength(INITIAL_AVARTAN);
+const INITIAL_DOCUMENT = createBlank(INITIAL_ROW_SIZE);
+
 const INITIAL_STATE: CompositionState = {
+  blocks: groupBlocksByAvartan(
+    INITIAL_DOCUMENT,
+    INITIAL_ROW_SIZE,
+    INITIAL_ROW_SIZE * 2,
+  ),
   composer: undefined,
+  cursorPosition: INITIAL_DOCUMENT.head,
+  document: INITIAL_DOCUMENT,
   history: {
     cursor: 0,
     stack: [],
   },
+  hovered: undefined,
   raaga: MelakartaRaaga.Mayamalavagowla,
-  swara: [],
-  taala: Taala.TriputaChatusra,
+  taala: INITIAL_TAALA,
   title: undefined,
   transcriber: undefined,
 };
@@ -64,6 +75,23 @@ export const composition = createSlice({
   name: 'composition',
   initialState: INITIAL_STATE,
   reducers: {
+    cursorNext(state) {
+      const block = state.document.allBlocks[state.cursorPosition];
+
+      if (block.next) {
+        state.cursorPosition = block.next;
+      }
+    },
+    cursorPrev(state) {
+      const block = state.document.allBlocks[state.cursorPosition];
+
+      if (block.prev) {
+        state.cursorPosition = block.prev;
+      }
+    },
+    cursorSet(state, action: PayloadAction<string>) {
+      state.cursorPosition = action.payload;
+    },
     redo(state) {
       if (state.history.cursor === state.history.stack.length) {
         return;
@@ -81,30 +109,40 @@ export const composition = createSlice({
         draft.history.cursor++;
       });
     },
-    setComposer(state, action: PayloadAction<Composition['composer']>) {
+    setComposer(state, action: PayloadAction<CompositionState['composer']>) {
       return modify(state, draft => {
         draft.composer = action.payload;
       });
     },
-    setRaaga(state, action: PayloadAction<Composition['raaga']>) {
+    setRaaga(state, action: PayloadAction<CompositionState['raaga']>) {
       return modify(state, draft => {
         draft.raaga = action.payload;
       });
     },
-    setTaala(state, action: PayloadAction<Composition['taala']>) {
+    setTaala(state, action: PayloadAction<CompositionState['taala']>) {
       return modify(state, draft => {
         draft.taala = action.payload;
       });
     },
-    setTitle(state, action: PayloadAction<Composition['title']>) {
+    setTitle(state, action: PayloadAction<CompositionState['title']>) {
       return modify(state, draft => {
         draft.title = action.payload;
       });
     },
-    setTranscriber(state, action: PayloadAction<Composition['transcriber']>) {
+    setTranscriber(
+      state,
+      action: PayloadAction<CompositionState['transcriber']>,
+    ) {
       return modify(state, draft => {
         draft.transcriber = action.payload;
       });
+    },
+    toggleHovered(state, action: PayloadAction<CompositionState['hovered']>) {
+      if (state.hovered === action.payload) {
+        state.hovered = undefined;
+      } else {
+        state.hovered = action.payload;
+      }
     },
     undo(state) {
       if (state.history.cursor === 0) {

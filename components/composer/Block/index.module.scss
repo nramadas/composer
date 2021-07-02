@@ -1,26 +1,40 @@
 $size: 60px;
 
 .container {
-  align-items: center;
   background-color: transparent;
-  border: none;
-  border-radius: 4px;
+  border: 2px solid transparent;
+  box-sizing: border-box;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
+  display: block;
   height: $size;
-  justify-content: center;
   min-width: $size;
   outline: none;
-  transition: background-color 0.15s;
+  padding: 0;
 
-  &:hover {
-    background-color: var(--color-field);
+  &.hovered {
+    .content {
+      background-color: var(--color-field);
+    }
 
     .emptyBlockIcon {
       fill: var(--color-secondary);
     }
   }
+
+  &.withCursor {
+    border-bottom-color: var(--color-secondary);
+  }
+}
+
+.content {
+  align-items: center;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  transition: background-color 0.15s;
+  width: 100%;
 }
 
 .emptyBlockIcon {
