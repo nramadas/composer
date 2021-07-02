@@ -1,0 +1,10 @@
+.container {
+  align-items: center;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: max-content 1fr;
+}
+
+.label {
+  color: var(--color-secondary);
+}

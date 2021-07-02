@@ -1,0 +1,14 @@
+.input {
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  color: var(--color-secondary);
+  outline: none;
+
+  &:empty:before{
+    color: var(--color-field);
+    content: attr(placeholder);
+    display: block; /* For Firefox */
+    pointer-events: none;
+  }
+}

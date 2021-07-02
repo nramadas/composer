@@ -10,6 +10,7 @@ $size: 60px;
   min-width: $size;
   outline: none;
   padding: 0;
+  transition: border-color 0.25s;
 
   &.hovered {
     .content {

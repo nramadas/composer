@@ -1,4 +1,4 @@
-$controlsHeight: 200px;
+$controlsHeight: 80px;
 
 .container {
   height: 100%;
@@ -36,7 +36,10 @@ $controlsHeight: 200px;
 
 .editor {
   box-shadow: var(--shadow-elevation-3);
+  box-sizing: border-box;
+  flex-grow: 0;
   flex-shrink: 0;
+  width: 100%;
 }
 
 .editorWrapper {
@@ -46,7 +49,7 @@ $controlsHeight: 200px;
   flex-direction: column;
   left: 0;
   overflow-y: auto;
-  padding-top: $controlsHeight + 40px;
+  padding: $controlsHeight + 40px 40px 0;
   position: absolute;
   right: 0;
   top: 0;

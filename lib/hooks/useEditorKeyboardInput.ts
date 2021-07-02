@@ -8,8 +8,21 @@ export function useEditorKeyboardInput() {
 
   useEffect(() => {
     function captureKeyPress(e: KeyboardEvent) {
-      if (e.shiftKey) {
-      } else if (e.ctrlKey) {
+      if (document.activeElement !== document.body) {
+        e.preventDefault();
+      }
+
+      const isCmd = e.ctrlKey || e.metaKey;
+
+      if (e.shiftKey && isCmd) {
+        if (e.key === 'z') {
+          return dispatch(composerActions.redo());
+        }
+      } else if (e.shiftKey) {
+      } else if (isCmd) {
+        if (e.key === 'z') {
+          return dispatch(composerActions.undo());
+        }
       } else {
         switch (e.key) {
           case 'ArrowLeft': {

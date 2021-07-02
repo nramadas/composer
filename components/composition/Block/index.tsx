@@ -26,10 +26,6 @@ export const Block = memo(
       [props.referenceKey],
     );
 
-    if (withCursor) {
-      console.log(block);
-    }
-
     return (
       <button
         className={cx(props.className, styles.container, {

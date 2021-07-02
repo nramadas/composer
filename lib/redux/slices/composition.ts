@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import produce, { applyPatches, Patch, produceWithPatches } from 'immer';
+import produce, {
+  applyPatches,
+  Patch,
+  produceWithPatches,
+  original,
+} from 'immer';
 
 import { avartanLength } from '#lib/avartanLength';
 import { createBlank } from '#lib/document/createBlank';
@@ -38,7 +43,7 @@ const INITIAL_STATE: CompositionState = {
     INITIAL_ROW_SIZE,
     INITIAL_ROW_SIZE * 2,
   ),
-  composer: undefined,
+  composer: '',
   cursorPosition: INITIAL_DOCUMENT.head,
   document: INITIAL_DOCUMENT,
   history: {
@@ -48,8 +53,8 @@ const INITIAL_STATE: CompositionState = {
   hovered: undefined,
   raaga: MelakartaRaaga.Mayamalavagowla,
   taala: INITIAL_TAALA,
-  title: undefined,
-  transcriber: undefined,
+  title: '',
+  transcriber: '',
 };
 
 function modify(
@@ -103,7 +108,16 @@ export const composition = createSlice({
         return;
       }
 
-      const nextState = applyPatches<CompositionState>(state, patches.patches);
+      const originalState = original(state);
+
+      if (!originalState) {
+        return;
+      }
+
+      const nextState = applyPatches<CompositionState>(
+        originalState,
+        patches.patches,
+      );
 
       return produce(nextState, draft => {
         draft.history.cursor++;
@@ -149,14 +163,20 @@ export const composition = createSlice({
         return;
       }
 
-      const patches = state.history.stack[state.history.cursor];
+      const patches = state.history.stack[state.history.cursor - 1];
 
       if (!patches) {
         return;
       }
 
+      const originalState = original(state);
+
+      if (!originalState) {
+        return;
+      }
+
       const nextState = applyPatches<CompositionState>(
-        state,
+        originalState,
         patches.inversePatches,
       );
 
