@@ -4,6 +4,7 @@ import React from 'react';
 import { Composer } from '#components/composition/Composer';
 import { Raaga } from '#components/composition/Raaga';
 import { Scale } from '#components/composition/Scale';
+import { Taala } from '#components/composition/Taala';
 import { Body1 } from '#components/typography/Body1';
 import { useSelector } from '#lib/hooks/useSelector';
 
@@ -38,6 +39,10 @@ export function Metadata(props: Props) {
           <Scale className={styles.scale} raaga={raaga} style="av" />
         </>
       )}
+      <div className={styles.label}>
+        <Body1>Tāla: </Body1>
+      </div>
+      <Taala />
     </div>
   );
 }

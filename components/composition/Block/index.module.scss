@@ -2,15 +2,15 @@ $size: 60px;
 
 .container {
   background-color: transparent;
-  border: 2px solid transparent;
   box-sizing: border-box;
+  border: none;
   cursor: pointer;
   display: block;
   height: $size;
   min-width: $size;
   outline: none;
   padding: 0;
-  transition: border-color 0.25s;
+  position: relative;
 
   &.hovered {
     .content {
@@ -20,10 +20,6 @@ $size: 60px;
     .emptyBlockIcon {
       fill: var(--color-secondary);
     }
-  }
-
-  &.withCursor {
-    border-bottom-color: var(--color-onBackground);
   }
 }
 
@@ -38,9 +34,45 @@ $size: 60px;
   width: 100%;
 }
 
+.cursor {
+  background-color: var(--color-primary);
+  bottom: 0;
+  height: 2px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
 .emptyBlockIcon {
   fill: var(--color-secondaryDisabled);
   height: 0.8 * $size;
   transition: fill 0.15s;
   width: 0.8 * $size;
+}
+
+.over1 {
+  background-color: var(--color-onBackground);
+  height: 2px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.over2 {
+  background-color: var(--color-onBackground);
+  height: 2px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: -4px;
+}
+
+.over3 {
+  background-color: var(--color-onBackground);
+  height: 2px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: -6px;
 }

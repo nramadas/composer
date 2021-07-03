@@ -1,0 +1,76 @@
+import { SuladiSaptaTaala } from '#lib/models/Taala';
+
+export function suladiSaptaTaalaToEnglish(taala: SuladiSaptaTaala) {
+  switch (taala) {
+    case SuladiSaptaTaala.DhruvaTisra:
+      return 'Dhruva-tisra';
+    case SuladiSaptaTaala.DhruvaChatusra:
+      return 'Dhruva-chatusra';
+    case SuladiSaptaTaala.DhruvaKhanda:
+      return 'Dhruva-khanda';
+    case SuladiSaptaTaala.DhruvaMisra:
+      return 'Dhruva-misra';
+    case SuladiSaptaTaala.DhruvaSankeerna:
+      return 'Dhruva-sankeerna';
+    case SuladiSaptaTaala.MatyaTisra:
+      return 'Matya-tisra';
+    case SuladiSaptaTaala.MatyaChatusra:
+      return 'Matya-chatusra';
+    case SuladiSaptaTaala.MatyaKhanda:
+      return 'Matya-khanda';
+    case SuladiSaptaTaala.MatyaMisra:
+      return 'Matya-misra';
+    case SuladiSaptaTaala.MatyaSankeerna:
+      return 'Matya-sankeerna';
+    case SuladiSaptaTaala.RupakaTisra:
+      return 'Rupaka-tisra';
+    case SuladiSaptaTaala.RupakaChatusra:
+      return 'Rupaka-chatusra';
+    case SuladiSaptaTaala.RupakaKhanda:
+      return 'Rupaka-khanda';
+    case SuladiSaptaTaala.RupakaMisra:
+      return 'Rupaka-misra';
+    case SuladiSaptaTaala.RupakaSankeerna:
+      return 'Rupaka-sankeerna';
+    case SuladiSaptaTaala.JhampaTisra:
+      return 'Jhampa-tisra';
+    case SuladiSaptaTaala.JhampaChatusra:
+      return 'Jhampa-chatusra';
+    case SuladiSaptaTaala.JhampaKhanda:
+      return 'Jhampa-khanda';
+    case SuladiSaptaTaala.JhampaMisra:
+      return 'Jhampa-misra';
+    case SuladiSaptaTaala.JhampaSankeerna:
+      return 'Jhampa-sankeerna';
+    case SuladiSaptaTaala.TriputaTisra:
+      return 'Triputa-tisra';
+    case SuladiSaptaTaala.TriputaChatusra:
+      return 'Triputa-chatusra';
+    case SuladiSaptaTaala.TriputaKhanda:
+      return 'Triputa-khanda';
+    case SuladiSaptaTaala.TriputaMisra:
+      return 'Triputa-misra';
+    case SuladiSaptaTaala.TriputaSankeerna:
+      return 'Triputa-sankeerna';
+    case SuladiSaptaTaala.AtaTisra:
+      return 'Ata-tisra';
+    case SuladiSaptaTaala.AtaChatusra:
+      return 'Ata-chatusra';
+    case SuladiSaptaTaala.AtaKhanda:
+      return 'Ata-khanda';
+    case SuladiSaptaTaala.AtaMisra:
+      return 'Ata-misra';
+    case SuladiSaptaTaala.AtaSankeerna:
+      return 'Ata-sankeerna';
+    case SuladiSaptaTaala.EkaTisra:
+      return 'Eka-tisra';
+    case SuladiSaptaTaala.EkaChatusra:
+      return 'Eka-chatusra';
+    case SuladiSaptaTaala.EkaKhanda:
+      return 'Eka-khanda';
+    case SuladiSaptaTaala.EkaMisra:
+      return 'Eka-misra';
+    case SuladiSaptaTaala.EkaSankeerna:
+      return 'Eka-sankeerna';
+  }
+}

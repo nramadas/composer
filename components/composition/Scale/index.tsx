@@ -19,10 +19,11 @@ export function Scale(props: Props) {
 
   return (
     <div className={cx(styles.container, props.className)}>
-      {notes.map(note => (
+      {notes.map((note, i) => (
         <Note
           includeSemitone
           className={styles.note}
+          key={i}
           shruti={note.shruti}
           sthayi={note.sthayi}
         />

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { PickRaaga as PickRaagaForm } from '#components/composition/PickRaaga';
+import { PickTaala as PickTaalaForm } from '#components/composition/PickTaala';
 import { Close } from '#components/icons/Close';
 
 import styles from './index.module.scss';
@@ -11,12 +11,12 @@ interface Props {
 }
 
 export default memo(
-  function PickRaaga(props: Props) {
+  function PickTaala(props: Props) {
     const history = useHistory();
 
     return (
       <div className={styles.container}>
-        <PickRaagaForm />
+        <PickTaalaForm />
         <Close
           className={styles.closeIcon}
           onClick={() => {

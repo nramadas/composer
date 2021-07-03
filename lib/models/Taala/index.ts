@@ -1,4 +1,4 @@
-export enum Taala {
+export enum SuladiSaptaTaala {
   DhruvaTisra = 'DhruvaTisra',
   DhruvaChatusra = 'DhruvaChatusra',
   DhruvaKhanda = 'DhruvaKhanda',
@@ -34,6 +34,9 @@ export enum Taala {
   EkaKhanda = 'EkaKhanda',
   EkaMisra = 'EkaMisra',
   EkaSankeerna = 'EkaSankeerna',
+}
+
+export enum ChapuTaala {
   MisraChapu = 'MisraChapu',
   VilomaChapu = 'VilomaChapu',
   KhandaChapu = 'KhandaChapu',

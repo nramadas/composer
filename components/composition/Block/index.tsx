@@ -4,7 +4,7 @@ import React, { memo } from 'react';
 import { EmptyBlock } from '#components/icons/EmptyBlock';
 import { useDispatch } from '#lib/hooks/useDispatch';
 import { useSelector } from '#lib/hooks/useSelector';
-import { Block as BlockModel } from '#lib/models/Block';
+import { Block as BlockModel, BlockType } from '#lib/models/Block';
 import { composerActions } from '#lib/redux/actions';
 
 import styles from './index.module.scss';
@@ -21,7 +21,9 @@ export const Block = memo(
       state => ({
         block: state.composition.document.allBlocks[props.referenceKey],
         hovered: state.composition.hovered === props.referenceKey,
-        withCursor: state.composition.cursorPosition === props.referenceKey,
+        withCursor: state.composition.cursorPosition.includes(
+          props.referenceKey,
+        ),
       }),
       [props.referenceKey],
     );
@@ -30,8 +32,8 @@ export const Block = memo(
       <button
         className={cx(props.className, styles.container, {
           [styles.hovered]: hovered,
-          [styles.withCursor]: withCursor,
         })}
+        onClick={() => dispatch(composerActions.cursorSet(props.referenceKey))}
         onMouseEnter={() =>
           dispatch(composerActions.toggleHovered(props.referenceKey))
         }
@@ -42,6 +44,23 @@ export const Block = memo(
         <div className={styles.content}>
           <EmptyBlock className={styles.emptyBlockIcon} />
         </div>
+        {withCursor && <div className={styles.cursor} />}
+        {(block.type === BlockType.Note ||
+          block.type === BlockType.Undefined) &&
+          (block.style === 2 || block.style === 3 ? (
+            <div className={styles.over1} />
+          ) : block.style === 4 || block.style === 6 ? (
+            <>
+              <div className={styles.over1} />
+              <div className={styles.over2} />
+            </>
+          ) : block.style === 8 || block.style === 12 ? (
+            <>
+              <div className={styles.over1} />
+              <div className={styles.over2} />
+              <div className={styles.over3} />
+            </>
+          ) : undefined)}
       </button>
     );
   },

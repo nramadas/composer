@@ -1,3 +1,10 @@
+.anga {
+  align-items: center;
+  border-right: 3px solid var(--color-secondaryDisabled);
+  display: flex;
+  flex-direction: row;
+}
+
 .container {
   align-items: center;
   display: flex;
@@ -8,11 +15,10 @@
 
 .content {
   align-items: center;
-  border-right: 3px solid var(--color-secondaryDisabled);
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  padding-right: 2px;
   position: relative;
   height: 100%;
 }
@@ -20,6 +26,6 @@
 .divider {
   align-self: stretch;
   border-left: 3px solid var(--color-secondaryDisabled);
-  margin-left: 2px;
+  margin-left: 3px;
   padding-right: 2px;
 }

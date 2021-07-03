@@ -28,11 +28,7 @@ export const Editor = memo(
         <Metadata />
         <div className={styles.blocks}>
           {blocks.map((row, i) => (
-            <Row className={styles.row} key={i}>
-              {row.map(blockKey => (
-                <Block referenceKey={blockKey} key={blockKey} />
-              ))}
-            </Row>
+            <Row blocks={row} className={styles.row} key={i} />
           ))}
         </div>
       </div>

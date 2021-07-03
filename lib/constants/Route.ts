@@ -1,5 +1,6 @@
 export enum ModalRoute {
   PickRaaga = 'PickRaaga',
+  PickTaala = 'PickTaala',
 }
 
 export enum OverlayRoute {

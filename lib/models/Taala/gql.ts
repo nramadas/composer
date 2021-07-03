@@ -1,10 +1,32 @@
 import { registerEnumType } from 'type-graphql';
 
-import { Taala } from './index';
+import { ChapuTaala, SuladiSaptaTaala } from './index';
 
-registerEnumType(Taala, {
-  name: 'Taala',
-  description: 'Pitches',
+registerEnumType(ChapuTaala, {
+  name: 'ChapuTaala',
+  description: 'Chaput taalas',
+  valuesConfig: {
+    MisraChapu: {
+      description: '3 + 4',
+    },
+    VilomaChapu: {
+      description: '4 + 3',
+    },
+    KhandaChapu: {
+      description: '2 + 3',
+    },
+    TisraChapu: {
+      description: '3',
+    },
+    SankeernaChapu: {
+      description: '4 + 5',
+    },
+  },
+});
+
+registerEnumType(SuladiSaptaTaala, {
+  name: 'SuladiSaptaTaala',
+  description: 'Suladi sapta taalas',
   valuesConfig: {
     DhruvaTisra: {
       description: '3 + 2 + 3 + 3',
@@ -111,22 +133,7 @@ registerEnumType(Taala, {
     EkaSankeerna: {
       description: '9',
     },
-    MisraChapu: {
-      description: '3 + 4',
-    },
-    VilomaChapu: {
-      description: '4 + 3',
-    },
-    KhandaChapu: {
-      description: '2 + 3',
-    },
-    TisraChapu: {
-      description: '3',
-    },
-    SankeernaChapu: {
-      description: '4 + 5',
-    },
   },
 });
 
-export { Taala };
+export { ChapuTaala, SuladiSaptaTaala };

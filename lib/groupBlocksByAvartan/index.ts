@@ -4,7 +4,7 @@ import { blockList } from '#lib/document/blockList';
 import { Block, BlockType } from '#lib/models/Block';
 import { Document } from '#lib/models/Document';
 
-function beatLength(block: Block) {
+export function beatLength(block: Block) {
   switch (block.type) {
     case BlockType.Continue:
     case BlockType.Skip: {
@@ -17,7 +17,7 @@ function beatLength(block: Block) {
   }
 }
 
-function* createRows(document: Document, groupBy: number, minSize?: number) {
+function* createRows(document: Document, groupBy: number) {
   let currentSize = 0;
   let totalSize = 0;
   let currentRow: Block['key'][] = [];
@@ -38,12 +38,18 @@ function* createRows(document: Document, groupBy: number, minSize?: number) {
     currentRow.push(block.key);
   }
 
-  if (lastBlock && minSize && totalSize < minSize) {
+  let size = 2 * groupBy;
+
+  if (totalSize + groupBy > size) {
+    size = (Math.floor(size / totalSize) + 2) * groupBy;
+  }
+
+  if (lastBlock && totalSize < size) {
     let prev = Object.assign({}, lastBlock);
     document.allBlocks[prev.key] = prev;
     currentRow[currentRow.length - 1] = prev.key;
 
-    while (totalSize < minSize) {
+    while (totalSize < size) {
       const newBlock: Block = {
         key: ulid(),
         next: '',
@@ -75,10 +81,6 @@ function* createRows(document: Document, groupBy: number, minSize?: number) {
   }
 }
 
-export function groupBlocksByAvartan(
-  document: Document,
-  groupBy: number,
-  minSize?: number,
-) {
-  return Array.from(createRows(document, groupBy, minSize));
+export function groupBlocksByAvartan(document: Document, groupBy: number) {
+  return Array.from(createRows(document, groupBy));
 }

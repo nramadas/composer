@@ -13,7 +13,7 @@ import { Block } from '#lib/models/Block';
 import { Composition as BaseComposition } from '#lib/models/Composition';
 import { Document } from '#lib/models/Document';
 import { MelakartaRaaga } from '#lib/models/Raaga';
-import { Taala } from '#lib/models/Taala';
+import { SuladiSaptaTaala } from '#lib/models/Taala';
 import { taalaToAvartan } from '#lib/taalaToAvartan';
 
 interface PatchState {
@@ -26,26 +26,22 @@ interface PatchState {
 
 interface CompositionState extends Omit<BaseComposition, 'swara'> {
   blocks: Block['key'][][];
-  cursorPosition: Block['key'];
+  cursorPosition: Block['key'][];
   document: Document;
   history: PatchState;
   hovered?: Block['key'];
   useDikshitarNames: boolean;
 }
 
-const INITIAL_TAALA = Taala.TriputaChatusra;
+const INITIAL_TAALA = SuladiSaptaTaala.TriputaChatusra;
 const INITIAL_AVARTAN = taalaToAvartan(INITIAL_TAALA);
 const INITIAL_ROW_SIZE = avartanLength(INITIAL_AVARTAN);
 const INITIAL_DOCUMENT = createBlank(INITIAL_ROW_SIZE);
 
 const INITIAL_STATE: CompositionState = {
-  blocks: groupBlocksByAvartan(
-    INITIAL_DOCUMENT,
-    INITIAL_ROW_SIZE,
-    INITIAL_ROW_SIZE * 2,
-  ),
+  blocks: groupBlocksByAvartan(INITIAL_DOCUMENT, INITIAL_ROW_SIZE),
   composer: '',
-  cursorPosition: INITIAL_DOCUMENT.head,
+  cursorPosition: [INITIAL_DOCUMENT.head],
   document: INITIAL_DOCUMENT,
   history: {
     cursor: 0,
@@ -82,22 +78,44 @@ export const composition = createSlice({
   name: 'composition',
   initialState: INITIAL_STATE,
   reducers: {
-    cursorNext(state) {
-      const block = state.document.allBlocks[state.cursorPosition];
+    cursorExtend(state) {
+      const last = state.cursorPosition[state.cursorPosition.length - 1];
+      const block = state.document.allBlocks[last];
 
       if (block.next) {
-        state.cursorPosition = block.next;
+        state.cursorPosition = state.cursorPosition.concat(block.next);
+      }
+    },
+    cursorReduce(state) {
+      if (state.cursorPosition.length > 1) {
+        state.cursorPosition = state.cursorPosition.slice(
+          0,
+          state.cursorPosition.length - 1,
+        );
+      }
+    },
+    cursorNext(state) {
+      const last = state.cursorPosition[state.cursorPosition.length - 1];
+      const block = state.document.allBlocks[last];
+
+      if (block.next) {
+        state.cursorPosition = [block.next];
+      } else if (state.cursorPosition.length > 1) {
+        state.cursorPosition = [block.key];
       }
     },
     cursorPrev(state) {
-      const block = state.document.allBlocks[state.cursorPosition];
+      const first = state.cursorPosition[0];
+      const block = state.document.allBlocks[first];
 
       if (block.prev) {
-        state.cursorPosition = block.prev;
+        state.cursorPosition = [block.prev];
+      } else if (state.cursorPosition.length > 1) {
+        state.cursorPosition = [block.key];
       }
     },
     cursorSet(state, action: PayloadAction<string>) {
-      state.cursorPosition = action.payload;
+      state.cursorPosition = [action.payload];
     },
     redo(state) {
       if (state.history.cursor === state.history.stack.length) {
@@ -137,7 +155,11 @@ export const composition = createSlice({
     },
     setTaala(state, action: PayloadAction<CompositionState['taala']>) {
       return modify(state, draft => {
+        const avartan = taalaToAvartan(action.payload);
+        const rowSize = avartanLength(avartan);
+
         draft.taala = action.payload;
+        draft.blocks = groupBlocksByAvartan(draft.document, rowSize);
       });
     },
     setTitle(state, action: PayloadAction<CompositionState['title']>) {

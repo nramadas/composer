@@ -1,0 +1,77 @@
+.container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  padding: 20px;
+  position: relative;
+}
+
+.header {
+  color: var(--color-onBackground);
+}
+
+.grid {
+  display: grid;
+  gap: 4px;
+  grid-template-columns: repeat(5, 180px);
+}
+
+.taalas {
+  flex-grow: 0;
+  margin-top: 40px;
+  overflow-y: auto;
+}
+
+.taalaNameContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sectionHeader {
+  background-color: var(--color-elevation-3);
+  color: var(--color-primary);
+  display: block;
+  padding: 8px 0;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.selectIcon {
+  fill: var(--color-primary);
+  height: 16px;
+  margin-left: 8px;
+  width: 16px;
+}
+
+.selectTaala {
+  background-color: transparent;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  color: var(--color-onBackground);
+  cursor: pointer;
+  outline: none;
+  padding: 8px;
+  text-align: left;
+  transition: background-color 0.15s, border-color 0.15s;
+
+  &:hover,
+  &:focus {
+    background-color: var(--color-field);
+  }
+
+  &.selected {
+    border-color: var(--color-primary);
+  }
+}
+
+.symbols {
+  font-size: 0.8rem;
+  margin-top: 8px;
+  opacity: 0.7;
+}

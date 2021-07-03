@@ -8,4 +8,8 @@ export const modals = {
     loader: () => import('#components/modals/PickRaaga'),
     loading: () => <div />,
   }),
+  [ModalRoute.PickTaala]: Loadable({
+    loader: () => import('#components/modals/PickTaala'),
+    loading: () => <div />,
+  }),
 };

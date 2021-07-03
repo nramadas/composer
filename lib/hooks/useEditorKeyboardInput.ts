@@ -19,6 +19,14 @@ export function useEditorKeyboardInput() {
           return dispatch(composerActions.redo());
         }
       } else if (e.shiftKey) {
+        switch (e.key) {
+          case 'ArrowLeft': {
+            return dispatch(composerActions.cursorReduce());
+          }
+          case 'ArrowRight': {
+            return dispatch(composerActions.cursorExtend());
+          }
+        }
       } else if (isCmd) {
         if (e.key === 'z') {
           return dispatch(composerActions.undo());

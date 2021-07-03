@@ -24,7 +24,7 @@ interface NoteBlock extends MetaData {
   type: BlockType.Note;
   shruti: Shruti;
   sthayi: Sthayi;
-  style: 1 | 2 | 3 | 4 | 6 | 12;
+  style: 1 | 2 | 3 | 4 | 6 | 8 | 12;
 }
 
 interface SkipBlock extends MetaData {
@@ -33,7 +33,7 @@ interface SkipBlock extends MetaData {
 
 interface UndefinedBlock extends MetaData {
   type: BlockType.Undefined;
-  style: 1 | 2 | 3 | 4 | 6 | 12;
+  style: 1 | 2 | 3 | 4 | 6 | 8 | 12;
 }
 
 export type Block = ContinueBlock | NoteBlock | SkipBlock | UndefinedBlock;

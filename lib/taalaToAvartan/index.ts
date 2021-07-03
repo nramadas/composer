@@ -1,87 +1,87 @@
 import { Anga } from '#lib/models/Anga';
-import { Taala } from '#lib/models/Taala';
+import { ChapuTaala, SuladiSaptaTaala } from '#lib/models/Taala';
 
-export function taalaToAvartan(taala: Taala) {
+export function taalaToAvartan(taala: ChapuTaala | SuladiSaptaTaala) {
   switch (taala) {
-    case Taala.AtaChatusra:
+    case SuladiSaptaTaala.AtaChatusra:
       return [Anga.A4, Anga.A4, Anga.A2, Anga.A2];
-    case Taala.AtaKhanda:
+    case SuladiSaptaTaala.AtaKhanda:
       return [Anga.A5, Anga.A5, Anga.A2, Anga.A2];
-    case Taala.AtaMisra:
+    case SuladiSaptaTaala.AtaMisra:
       return [Anga.A7, Anga.A7, Anga.A2, Anga.A2];
-    case Taala.AtaSankeerna:
+    case SuladiSaptaTaala.AtaSankeerna:
       return [Anga.A9, Anga.A9, Anga.A2, Anga.A2];
-    case Taala.AtaTisra:
+    case SuladiSaptaTaala.AtaTisra:
       return [Anga.A3, Anga.A3, Anga.A2, Anga.A2];
-    case Taala.DhruvaChatusra:
+    case SuladiSaptaTaala.DhruvaChatusra:
       return [Anga.A4, Anga.A2, Anga.A4, Anga.A4];
-    case Taala.DhruvaKhanda:
+    case SuladiSaptaTaala.DhruvaKhanda:
       return [Anga.A5, Anga.A2, Anga.A5, Anga.A5];
-    case Taala.DhruvaMisra:
+    case SuladiSaptaTaala.DhruvaMisra:
       return [Anga.A7, Anga.A2, Anga.A7, Anga.A7];
-    case Taala.DhruvaSankeerna:
+    case SuladiSaptaTaala.DhruvaSankeerna:
       return [Anga.A9, Anga.A2, Anga.A9, Anga.A9];
-    case Taala.DhruvaTisra:
+    case SuladiSaptaTaala.DhruvaTisra:
       return [Anga.A3, Anga.A2, Anga.A3, Anga.A3];
-    case Taala.EkaChatusra:
+    case SuladiSaptaTaala.EkaChatusra:
       return [Anga.A4];
-    case Taala.EkaKhanda:
+    case SuladiSaptaTaala.EkaKhanda:
       return [Anga.A5];
-    case Taala.EkaMisra:
+    case SuladiSaptaTaala.EkaMisra:
       return [Anga.A7];
-    case Taala.EkaSankeerna:
+    case SuladiSaptaTaala.EkaSankeerna:
       return [Anga.A9];
-    case Taala.EkaTisra:
+    case SuladiSaptaTaala.EkaTisra:
       return [Anga.A3];
-    case Taala.JhampaChatusra:
+    case SuladiSaptaTaala.JhampaChatusra:
       return [Anga.A4, Anga.A1, Anga.A2];
-    case Taala.JhampaKhanda:
+    case SuladiSaptaTaala.JhampaKhanda:
       return [Anga.A5, Anga.A1, Anga.A2];
-    case Taala.JhampaMisra:
+    case SuladiSaptaTaala.JhampaMisra:
       return [Anga.A7, Anga.A1, Anga.A2];
-    case Taala.JhampaSankeerna:
+    case SuladiSaptaTaala.JhampaSankeerna:
       return [Anga.A9, Anga.A1, Anga.A2];
-    case Taala.JhampaTisra:
+    case SuladiSaptaTaala.JhampaTisra:
       return [Anga.A3, Anga.A1, Anga.A2];
-    case Taala.KhandaChapu:
-      return [Anga.A2, Anga.A3];
-    case Taala.MatyaChatusra:
+    case SuladiSaptaTaala.MatyaChatusra:
       return [Anga.A4, Anga.A2, Anga.A4];
-    case Taala.MatyaKhanda:
+    case SuladiSaptaTaala.MatyaKhanda:
       return [Anga.A5, Anga.A2, Anga.A5];
-    case Taala.MatyaMisra:
+    case SuladiSaptaTaala.MatyaMisra:
       return [Anga.A7, Anga.A2, Anga.A7];
-    case Taala.MatyaSankeerna:
+    case SuladiSaptaTaala.MatyaSankeerna:
       return [Anga.A9, Anga.A2, Anga.A9];
-    case Taala.MatyaTisra:
+    case SuladiSaptaTaala.MatyaTisra:
       return [Anga.A3, Anga.A2, Anga.A3];
-    case Taala.MisraChapu:
-      return [Anga.A3, Anga.A4];
-    case Taala.RupakaChatusra:
+    case SuladiSaptaTaala.RupakaChatusra:
       return [Anga.A2, Anga.A4];
-    case Taala.RupakaKhanda:
+    case SuladiSaptaTaala.RupakaKhanda:
       return [Anga.A2, Anga.A5];
-    case Taala.RupakaMisra:
+    case SuladiSaptaTaala.RupakaMisra:
       return [Anga.A2, Anga.A7];
-    case Taala.RupakaSankeerna:
+    case SuladiSaptaTaala.RupakaSankeerna:
       return [Anga.A2, Anga.A9];
-    case Taala.RupakaTisra:
+    case SuladiSaptaTaala.RupakaTisra:
       return [Anga.A2, Anga.A3];
-    case Taala.SankeernaChapu:
-      return [Anga.A4, Anga.A5];
-    case Taala.TisraChapu:
-      return [Anga.A3];
-    case Taala.TriputaChatusra:
+    case SuladiSaptaTaala.TriputaChatusra:
       return [Anga.A4, Anga.A2, Anga.A2];
-    case Taala.TriputaKhanda:
+    case SuladiSaptaTaala.TriputaKhanda:
       return [Anga.A5, Anga.A2, Anga.A2];
-    case Taala.TriputaMisra:
+    case SuladiSaptaTaala.TriputaMisra:
       return [Anga.A7, Anga.A2, Anga.A2];
-    case Taala.TriputaSankeerna:
+    case SuladiSaptaTaala.TriputaSankeerna:
       return [Anga.A9, Anga.A2, Anga.A2];
-    case Taala.TriputaTisra:
+    case SuladiSaptaTaala.TriputaTisra:
       return [Anga.A3, Anga.A2, Anga.A2];
-    case Taala.VilomaChapu:
+    case ChapuTaala.KhandaChapu:
+      return [Anga.A2, Anga.A3];
+    case ChapuTaala.MisraChapu:
+      return [Anga.A3, Anga.A4];
+    case ChapuTaala.SankeernaChapu:
+      return [Anga.A4, Anga.A5];
+    case ChapuTaala.TisraChapu:
+      return [Anga.A3];
+    case ChapuTaala.VilomaChapu:
       return [Anga.A4, Anga.A3];
   }
 }

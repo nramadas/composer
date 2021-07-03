@@ -43,6 +43,7 @@ export function PickRaaga(props: Props) {
                 className={cx(styles.selectRaaga, {
                   [styles.selected]: raaga === selectedRaaga,
                 })}
+                key={raaga}
                 onClick={() => {
                   dispatch(composerActions.setRaaga(raaga));
                 }}
@@ -71,6 +72,7 @@ export function PickRaaga(props: Props) {
                 className={cx(styles.selectRaaga, {
                   [styles.selected]: raaga === selectedRaaga,
                 })}
+                key={raaga}
                 onClick={() => {
                   dispatch(composerActions.setRaaga(raaga));
                 }}
