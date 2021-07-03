@@ -5,6 +5,7 @@
 .above,
 .below {
   font-size: 0.5em;
+  font-weight: 700;
   left: 0;
   position: absolute;
   right: 0;
@@ -13,7 +14,7 @@
 
 .above {
   bottom: 100%;
-  transform: translateY(.25em);
+  transform: translateY(.3em);
 }
 
 .below {

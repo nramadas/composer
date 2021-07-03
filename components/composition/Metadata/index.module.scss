@@ -7,4 +7,11 @@
 
 .label {
   color: var(--color-onBackground);
+  height: 36px;
+  line-height: 36px;
+}
+
+.scale {
+  color: var(--color-primary);
+  padding: 0 2px;
 }
