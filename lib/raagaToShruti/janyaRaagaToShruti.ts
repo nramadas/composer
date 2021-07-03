@@ -1,7 +1,7 @@
 import { JanyaRaaga } from '#lib/models/Raaga';
 import { Shruti } from '#lib/models/Shruti';
 
-export function JanyaRaagaToShruti(raaga: JanyaRaaga) {
+export function janyaRaagaToShruti(raaga: JanyaRaaga) {
   switch (raaga) {
     // From 'Kanakangi'
     case JanyaRaaga.Kanakaambari:

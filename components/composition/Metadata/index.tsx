@@ -2,6 +2,7 @@ import cx from 'classnames';
 import React from 'react';
 
 import { Composer } from '#components/composition/Composer';
+import { Raaga } from '#components/composition/Raaga';
 import { Body1 } from '#components/typography/Body1';
 
 import styles from './index.module.scss';
@@ -17,6 +18,10 @@ export function Metadata(props: Props) {
         <Body1>Composer: </Body1>
       </div>
       <Composer />
+      <div className={styles.label}>
+        <Body1>Raaga: </Body1>
+      </div>
+      <Raaga />
     </div>
   );
 }

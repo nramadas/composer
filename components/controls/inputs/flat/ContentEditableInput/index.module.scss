@@ -1,9 +1,16 @@
 .input {
   appearance: none;
-  border: none;
   background-color: transparent;
-  color: var(--color-secondary);
+  border: none;
+  border-radius: 4px;
+  color: var(--color-onBackground);
   outline: none;
+  transition: background-color 0.15s;
+
+  &:hover,
+  &:focus {
+    background-color: var(--color-field);
+  }
 
   &:empty:before{
     color: var(--color-field);

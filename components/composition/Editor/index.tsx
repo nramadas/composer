@@ -26,13 +26,15 @@ export const Editor = memo(
       <div className={cx(styles.container, props.className)}>
         <Title className={styles.title} />
         <Metadata />
-        {blocks.map((row, i) => (
-          <Row className={styles.row} key={i}>
-            {row.map(blockKey => (
-              <Block referenceKey={blockKey} key={blockKey} />
-            ))}
-          </Row>
-        ))}
+        <div className={styles.blocks}>
+          {blocks.map((row, i) => (
+            <Row className={styles.row} key={i}>
+              {row.map(blockKey => (
+                <Block referenceKey={blockKey} key={blockKey} />
+              ))}
+            </Row>
+          ))}
+        </div>
       </div>
     );
   },

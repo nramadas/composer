@@ -30,6 +30,7 @@ interface CompositionState extends Omit<BaseComposition, 'swara'> {
   document: Document;
   history: PatchState;
   hovered?: Block['key'];
+  useDikshitarNames: boolean;
 }
 
 const INITIAL_TAALA = Taala.TriputaChatusra;
@@ -55,6 +56,7 @@ const INITIAL_STATE: CompositionState = {
   taala: INITIAL_TAALA,
   title: '',
   transcriber: '',
+  useDikshitarNames: false,
 };
 
 function modify(
