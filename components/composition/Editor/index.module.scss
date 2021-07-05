@@ -1,5 +1,27 @@
 .blocks {
   margin-top: 40px;
+
+  &.twoPer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &.threePer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  &.fourPer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+.blocksWrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .container {

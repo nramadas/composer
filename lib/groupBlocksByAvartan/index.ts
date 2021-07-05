@@ -9,6 +9,22 @@ export function beatLength(block: Block) {
   return 1 / block.style;
 }
 
+export function multiplier(groupBy: number) {
+  if (groupBy <= 3) {
+    return 4;
+  }
+
+  if (groupBy < 5) {
+    return 3;
+  }
+
+  if (groupBy < 8) {
+    return 2;
+  }
+
+  return 1;
+}
+
 export function groupBlocksByAvartan(document: Document, groupBy: number) {
   let blocks = blockListArray(document);
   let trueSize = blocks.length;
@@ -24,10 +40,11 @@ export function groupBlocksByAvartan(document: Document, groupBy: number) {
     }
   }
 
-  const minSize = 2 * groupBy;
+  const rowSize = multiplier(groupBy) * groupBy;
+  const minSize = 2 * rowSize;
   const expectedSize =
-    trueSize + groupBy > minSize
-      ? (Math.ceil(trueSize / groupBy) + 1) * groupBy
+    trueSize + rowSize > minSize
+      ? (Math.ceil(trueSize / rowSize) + 1) * rowSize
       : minSize;
 
   if (blocks.length < expectedSize) {
