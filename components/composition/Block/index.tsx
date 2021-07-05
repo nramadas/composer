@@ -34,7 +34,10 @@ export const Block = memo(
         className={cx(props.className, styles.container, {
           [styles.hovered]: hovered,
         })}
-        onClick={() => dispatch(composerActions.cursorSet(props.referenceKey))}
+        onMouseDown={() => {
+          dispatch(composerActions.cursorSet(props.referenceKey));
+          dispatch(composerActions.startDrag());
+        }}
         onMouseEnter={() =>
           dispatch(composerActions.toggleHovered(props.referenceKey))
         }

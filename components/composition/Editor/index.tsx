@@ -5,6 +5,7 @@ import { Metadata } from '#components/composition/Metadata';
 import { Row } from '#components/composition/Row';
 import { Title } from '#components/composition/Title';
 import { useEditorKeyboardInput } from '#lib/hooks/useEditorKeyboardInput';
+import { useEditorMouseTracking } from '#lib/hooks/useEditorMouseTracking';
 import { useSelector } from '#lib/hooks/useSelector';
 
 import styles from './index.module.scss';
@@ -16,6 +17,7 @@ interface Props {
 export const Editor = memo(
   function Editor(props: Props) {
     useEditorKeyboardInput();
+    useEditorMouseTracking();
 
     const { blocks } = useSelector(state => ({
       blocks: state.composition.blocks,

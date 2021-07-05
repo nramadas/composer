@@ -31,6 +31,7 @@ interface CompositionState extends Omit<BaseComposition, 'swara'> {
   blocks: Block['key'][][];
   cursorPosition: Block['key'][];
   document: Document;
+  dragInProgress: boolean;
   history: PatchState;
   hovered?: Block['key'];
   keyMap: {
@@ -55,6 +56,7 @@ const INITIAL_STATE: CompositionState = {
   document,
   composer: '',
   cursorPosition: [INITIAL_DOCUMENT.head],
+  dragInProgress: false,
   history: {
     cursor: 0,
     stack: [],
@@ -241,11 +243,38 @@ export const composition = createSlice({
         draft.transcriber = action.payload;
       });
     },
+    startDrag(state) {
+      state.dragInProgress = true;
+    },
+    stopDrag(state) {
+      state.dragInProgress = false;
+    },
     toggleHovered(state, action: PayloadAction<CompositionState['hovered']>) {
       if (state.hovered === action.payload) {
         state.hovered = undefined;
       } else {
         state.hovered = action.payload;
+      }
+
+      if (state.dragInProgress && state.hovered) {
+        const start = state.cursorPosition[0];
+        let cur = start;
+        state.cursorPosition = [];
+
+        while (cur) {
+          state.cursorPosition.push(cur);
+          const block = state.document.allBlocks[cur];
+
+          if (cur === state.hovered) {
+            break;
+          } else {
+            cur = block.next;
+          }
+        }
+
+        if (!cur) {
+          state.cursorPosition = [start];
+        }
       }
     },
     undo(state) {
