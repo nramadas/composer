@@ -39,7 +39,7 @@ $controlsHeight: 60px;
   box-sizing: border-box;
   flex-grow: 0;
   flex-shrink: 0;
-  margin-bottom: 200px;
+  margin-bottom: 170px;
   width: 100%;
 }
 
@@ -55,6 +55,13 @@ $controlsHeight: 60px;
   right: 0;
   top: 0;
   z-index: 0;
+}
+
+.keyboard {
+  bottom: 20px;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
 }
 
 .shadowBox {

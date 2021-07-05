@@ -1,86 +1,93 @@
+import { produce } from 'immer';
 import { ulid } from 'ulid';
 
-import { blockList } from '#lib/document/blockList';
+import { blockListArray } from '#lib/document/blockList';
 import { Block, BlockType } from '#lib/models/Block';
 import { Document } from '#lib/models/Document';
 
 export function beatLength(block: Block) {
-  switch (block.type) {
-    case BlockType.Continue:
-    case BlockType.Skip: {
-      return 1;
-    }
-    case BlockType.Note:
-    case BlockType.Undefined: {
-      return 1 / block.style;
-    }
-  }
+  return 1 / block.style;
 }
 
-function* createRows(document: Document, groupBy: number) {
-  let currentSize = 0;
-  let totalSize = 0;
-  let currentRow: Block['key'][] = [];
-  let lastBlock: Block | undefined = undefined;
+export function groupBlocksByAvartan(document: Document, groupBy: number) {
+  let blocks = blockListArray(document);
+  let trueSize = blocks.length;
+  let newDocument = document;
 
-  for (const block of blockList(document)) {
+  for (let i = blocks.length - 1; i >= 0; i--) {
+    const block = blocks[i];
+
+    if (block.type !== BlockType.Undefined) {
+      break;
+    } else {
+      trueSize = i;
+    }
+  }
+
+  const minSize = 2 * groupBy;
+  const expectedSize =
+    trueSize + groupBy > minSize
+      ? (Math.ceil(trueSize / groupBy) + 1) * groupBy
+      : minSize;
+
+  if (blocks.length < expectedSize) {
+    newDocument = produce(newDocument, draft => {
+      let prev = Object.assign({}, blocks[blocks.length - 1]);
+      blocks[blocks.length - 1] = prev;
+      draft.allBlocks[prev.key] = prev;
+      let curLength = blocks.length;
+
+      while (curLength < expectedSize) {
+        const newBlock: Block = {
+          type: BlockType.Undefined,
+          prev: prev.key,
+          next: '',
+          key: ulid(),
+          style: 1,
+        };
+
+        prev.next = newBlock.key;
+        blocks.push(newBlock);
+        draft.allBlocks[newBlock.key] = newBlock;
+        curLength += 1;
+        prev = newBlock;
+      }
+    });
+  } else {
+    newDocument = produce(newDocument, draft => {
+      blocks.slice(expectedSize).forEach(block => {
+        delete draft.allBlocks[block.key];
+      });
+
+      blocks = blocks.slice(0, expectedSize);
+      const lastBlock = Object.assign({}, blocks[blocks.length - 1]);
+      blocks[blocks.length - 1] = lastBlock;
+      lastBlock.next = '';
+      draft.allBlocks[lastBlock.key] = lastBlock;
+    });
+  }
+
+  const rows: Block['key'][][] = [];
+  let currentSize = 0;
+  let currentRow: Block['key'][] = [];
+
+  for (const block of blocks) {
     const length = beatLength(block);
 
     if (currentSize + length > groupBy) {
-      yield currentRow;
+      rows.push(currentRow);
       currentSize = 0;
       currentRow = [];
     }
 
     currentSize += length;
-    totalSize += length;
-    lastBlock = block;
     currentRow.push(block.key);
   }
 
-  let size = 2 * groupBy;
+  rows.push(currentRow);
 
-  if (totalSize + groupBy > size) {
-    size = (Math.floor(size / totalSize) + 2) * groupBy;
-  }
-
-  if (lastBlock && totalSize < size) {
-    let prev = Object.assign({}, lastBlock);
-    document.allBlocks[prev.key] = prev;
-    currentRow[currentRow.length - 1] = prev.key;
-
-    while (totalSize < size) {
-      const newBlock: Block = {
-        key: ulid(),
-        next: '',
-        prev: prev.key,
-        style: 1,
-        type: BlockType.Undefined,
-      };
-
-      prev.next = newBlock.key;
-
-      const length = beatLength(newBlock);
-
-      if (currentSize + length > groupBy) {
-        yield currentRow;
-        currentSize = 0;
-        currentRow = [];
-      }
-
-      document.allBlocks[newBlock.key] = newBlock;
-      currentSize += length;
-      totalSize += length;
-      prev = newBlock;
-      currentRow.push(newBlock.key);
-    }
-  }
-
-  if (currentSize) {
-    yield currentRow;
-  }
-}
-
-export function groupBlocksByAvartan(document: Document, groupBy: number) {
-  return Array.from(createRows(document, groupBy));
+  return {
+    blocks: rows,
+    document: newDocument,
+  };
 }

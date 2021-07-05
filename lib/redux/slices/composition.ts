@@ -9,11 +9,14 @@ import produce, {
 import { avartanLength } from '#lib/avartanLength';
 import { createBlank } from '#lib/document/createBlank';
 import { groupBlocksByAvartan } from '#lib/groupBlocksByAvartan';
-import { Block } from '#lib/models/Block';
+import { Block, BlockType } from '#lib/models/Block';
 import { Composition as BaseComposition } from '#lib/models/Composition';
 import { Document } from '#lib/models/Document';
 import { MelakartaRaaga } from '#lib/models/Raaga';
+import { Shruti } from '#lib/models/Shruti';
+import { Sthayi } from '#lib/models/Sthayi';
 import { SuladiSaptaTaala } from '#lib/models/Taala';
+import { raagaToKeyMap } from '#lib/raagaToKeyMap';
 import { taalaToAvartan } from '#lib/taalaToAvartan';
 
 interface PatchState {
@@ -30,6 +33,10 @@ interface CompositionState extends Omit<BaseComposition, 'swara'> {
   document: Document;
   history: PatchState;
   hovered?: Block['key'];
+  keyMap: {
+    key: string;
+    shruti: Shruti;
+  }[];
   useDikshitarNames: boolean;
 }
 
@@ -38,16 +45,22 @@ const INITIAL_AVARTAN = taalaToAvartan(INITIAL_TAALA);
 const INITIAL_ROW_SIZE = avartanLength(INITIAL_AVARTAN);
 const INITIAL_DOCUMENT = createBlank(INITIAL_ROW_SIZE);
 
+const { blocks, document } = groupBlocksByAvartan(
+  INITIAL_DOCUMENT,
+  INITIAL_ROW_SIZE,
+);
+
 const INITIAL_STATE: CompositionState = {
-  blocks: groupBlocksByAvartan(INITIAL_DOCUMENT, INITIAL_ROW_SIZE),
+  blocks,
+  document,
   composer: '',
   cursorPosition: [INITIAL_DOCUMENT.head],
-  document: INITIAL_DOCUMENT,
   history: {
     cursor: 0,
     stack: [],
   },
   hovered: undefined,
+  keyMap: raagaToKeyMap(MelakartaRaaga.Mayamalavagowla),
   raaga: MelakartaRaaga.Mayamalavagowla,
   taala: INITIAL_TAALA,
   title: '',
@@ -55,7 +68,7 @@ const INITIAL_STATE: CompositionState = {
   useDikshitarNames: false,
 };
 
-function modify(
+function withUndo(
   state: CompositionState,
   mutations: (state: CompositionState) => void,
 ): CompositionState {
@@ -144,26 +157,79 @@ export const composition = createSlice({
       });
     },
     setComposer(state, action: PayloadAction<CompositionState['composer']>) {
-      return modify(state, draft => {
+      return withUndo(state, draft => {
         draft.composer = action.payload;
       });
     },
+    setNote(state, action: PayloadAction<Shruti | ',' | 'del'>) {
+      return withUndo(state, draft => {
+        draft.cursorPosition.forEach((cur, i) => {
+          const curBlock = draft.document.allBlocks[cur];
+
+          if (action.payload === 'del') {
+            draft.document.allBlocks[cur] = {
+              type: BlockType.Undefined,
+              prev: curBlock.prev,
+              next: curBlock.next,
+              key: curBlock.key,
+              style: curBlock.style,
+            };
+          } else if (i === 0 && action.payload !== ',') {
+            draft.document.allBlocks[cur] = {
+              ...curBlock,
+              type: BlockType.Note,
+              shruti: action.payload,
+              sthayi: ('sthayi' in curBlock && curBlock.sthayi) || Sthayi.Mid,
+              style: 'style' in curBlock ? curBlock.style : 1,
+            };
+          } else {
+            draft.document.allBlocks[cur] = {
+              type: BlockType.Continue,
+              prev: curBlock.prev,
+              next: curBlock.next,
+              key: curBlock.key,
+              style: curBlock.style,
+            };
+          }
+        });
+
+        const avartan = taalaToAvartan(draft.taala);
+        const rowSize = avartanLength(avartan);
+        const { blocks, document } = groupBlocksByAvartan(
+          draft.document,
+          rowSize,
+        );
+        draft.blocks = blocks;
+        draft.document = document;
+      });
+    },
     setRaaga(state, action: PayloadAction<CompositionState['raaga']>) {
-      return modify(state, draft => {
+      return withUndo(state, draft => {
         draft.raaga = action.payload;
+        if (action.payload === 'RaagaMaalikaa') {
+          draft.keyMap = [];
+        } else {
+          draft.keyMap = raagaToKeyMap(action.payload);
+        }
       });
     },
     setTaala(state, action: PayloadAction<CompositionState['taala']>) {
-      return modify(state, draft => {
+      return withUndo(state, draft => {
         const avartan = taalaToAvartan(action.payload);
         const rowSize = avartanLength(avartan);
 
         draft.taala = action.payload;
-        draft.blocks = groupBlocksByAvartan(draft.document, rowSize);
+        const { blocks, document } = groupBlocksByAvartan(
+          draft.document,
+          rowSize,
+        );
+        draft.blocks = blocks;
+        draft.document = document;
+        draft.cursorPosition = [draft.document.head];
       });
     },
     setTitle(state, action: PayloadAction<CompositionState['title']>) {
-      return modify(state, draft => {
+      return withUndo(state, draft => {
         draft.title = action.payload;
       });
     },
@@ -171,7 +237,7 @@ export const composition = createSlice({
       state,
       action: PayloadAction<CompositionState['transcriber']>,
     ) {
-      return modify(state, draft => {
+      return withUndo(state, draft => {
         draft.transcriber = action.payload;
       });
     },

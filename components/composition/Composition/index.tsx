@@ -2,6 +2,7 @@ import cx from 'classnames';
 import React from 'react';
 
 import { Editor } from '#components/composition/Editor';
+import { Keyboard } from '#components/composition/Keyboard';
 
 import styles from './index.module.scss';
 
@@ -17,6 +18,7 @@ export function Composition(props: Props) {
       <div className={styles.editorWrapper}>
         <Editor className={styles.editor} />
       </div>
+      <Keyboard className={styles.keyboard} />
     </div>
   );
 }

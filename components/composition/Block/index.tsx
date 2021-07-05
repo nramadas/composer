@@ -1,6 +1,7 @@
 import cx from 'classnames';
 import React, { memo } from 'react';
 
+import { Note } from '#components/composition/Note';
 import { EmptyBlock } from '#components/icons/EmptyBlock';
 import { useDispatch } from '#lib/hooks/useDispatch';
 import { useSelector } from '#lib/hooks/useSelector';
@@ -42,7 +43,17 @@ export const Block = memo(
         }
       >
         <div className={styles.content}>
-          <EmptyBlock className={styles.emptyBlockIcon} />
+          {block.type === BlockType.Note ? (
+            <Note
+              className={styles.note}
+              shruti={block.shruti}
+              sthayi={block.sthayi}
+            />
+          ) : block.type === BlockType.Continue ? (
+            <div className={styles.continue}>,</div>
+          ) : (
+            <EmptyBlock className={styles.emptyBlockIcon} />
+          )}
         </div>
         {withCursor && <div className={styles.cursor} />}
         {(block.type === BlockType.Note ||

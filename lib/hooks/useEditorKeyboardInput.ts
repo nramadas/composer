@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 
 import { useDispatch } from '#lib/hooks/useDispatch';
+import { useSelector } from '#lib/hooks/useSelector';
 import { composerActions } from '#lib/redux/actions';
 
 export function useEditorKeyboardInput() {
   const dispatch = useDispatch();
+  const keyMap = useSelector(state => state.composition.keyMap);
 
   useEffect(() => {
     function captureKeyPress(e: KeyboardEvent) {
@@ -39,6 +41,21 @@ export function useEditorKeyboardInput() {
           case 'ArrowRight': {
             return dispatch(composerActions.cursorNext());
           }
+          default: {
+            keyMap.forEach(mapping => {
+              if (e.key === mapping.key) {
+                dispatch(composerActions.setNote(mapping.shruti));
+              }
+            });
+
+            if (e.key === ' ') {
+              dispatch(composerActions.setNote(','));
+            }
+
+            if (e.key === 'Backspace') {
+              dispatch(composerActions.setNote('del'));
+            }
+          }
         }
       }
     }
@@ -48,5 +65,5 @@ export function useEditorKeyboardInput() {
     return () => {
       document.removeEventListener('keydown', captureKeyPress);
     };
-  }, []);
+  }, [keyMap]);
 }

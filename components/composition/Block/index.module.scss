@@ -50,6 +50,12 @@ $size: 60px;
   width: 0.8 * $size;
 }
 
+.continue,
+.note {
+  color: var(--color-onBackground);
+  font-size: 0.5 * $size;
+}
+
 .over1 {
   background-color: var(--color-onBackground);
   height: 2px;

@@ -1,7 +1,6 @@
 import cx from 'classnames';
 import React, { memo } from 'react';
 
-import { Block } from '#components/composition/Block';
 import { Metadata } from '#components/composition/Metadata';
 import { Row } from '#components/composition/Row';
 import { Title } from '#components/composition/Title';

@@ -36,7 +36,6 @@ export function ContentEditableInput(props: Props) {
       onInput={e => {
         e.preventDefault();
         const text = e.currentTarget.innerText;
-        console.log(text);
 
         if (text !== props.value) {
           props.onInput?.(e);
