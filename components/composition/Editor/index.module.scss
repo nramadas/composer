@@ -5,7 +5,9 @@
 .container {
   background-color: var(--color-elevation-3);
   border-radius: 8px;
+  box-sizing: border-box;
   padding: 40px 80px;
+  max-width: 1040px;
 }
 
 .row {

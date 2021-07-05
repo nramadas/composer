@@ -83,12 +83,12 @@ export function Note(props: Props) {
       )}
       {(props.sthayi === Sthayi.Up1 || props.sthayi === Sthayi.Up2) && (
         <div className={styles.above}>
-          •{props.sthayi === Sthayi.Up2 && ' •'}
+          {props.sthayi === Sthayi.Up2 ? '••' : '•'}
         </div>
       )}
       {(props.sthayi === Sthayi.Sub1 || props.sthayi === Sthayi.Sub2) && (
-        <div className={styles.above}>
-          •{props.sthayi === Sthayi.Sub2 && ' •'}
+        <div className={styles.below}>
+          {props.sthayi === Sthayi.Sub2 ? '••' : '•'}
         </div>
       )}
     </div>

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import { useDispatch } from '#lib/hooks/useDispatch';
 import { useSelector } from '#lib/hooks/useSelector';
+import { Sthayi } from '#lib/models/Sthayi';
 import { composerActions } from '#lib/redux/actions';
 
 export function useEditorKeyboardInput() {
@@ -18,41 +19,72 @@ export function useEditorKeyboardInput() {
 
       if (e.shiftKey && isCmd) {
         if (e.key === 'z') {
+          e.preventDefault();
           return dispatch(composerActions.redo());
         }
       } else if (e.shiftKey) {
         switch (e.key) {
           case 'ArrowLeft': {
+            e.preventDefault();
             return dispatch(composerActions.cursorReduce());
           }
           case 'ArrowRight': {
+            e.preventDefault();
             return dispatch(composerActions.cursorExtend());
           }
         }
       } else if (isCmd) {
-        if (e.key === 'z') {
-          return dispatch(composerActions.undo());
+        switch (e.key) {
+          case 'z': {
+            e.preventDefault();
+            return dispatch(composerActions.undo());
+          }
+          case '1': {
+            e.preventDefault();
+            return dispatch(composerActions.setSthayi(Sthayi.Sub2));
+          }
+          case '2': {
+            e.preventDefault();
+            return dispatch(composerActions.setSthayi(Sthayi.Sub1));
+          }
+          case '3': {
+            e.preventDefault();
+            return dispatch(composerActions.setSthayi(Sthayi.Mid));
+          }
+          case '4': {
+            e.preventDefault();
+            return dispatch(composerActions.setSthayi(Sthayi.Up1));
+          }
+          case '5': {
+            e.preventDefault();
+            return dispatch(composerActions.setSthayi(Sthayi.Up2));
+          }
         }
       } else {
         switch (e.key) {
           case 'ArrowLeft': {
+            e.preventDefault();
             return dispatch(composerActions.cursorPrev());
           }
           case 'ArrowRight': {
+            e.preventDefault();
             return dispatch(composerActions.cursorNext());
           }
           default: {
             keyMap.forEach(mapping => {
               if (e.key === mapping.key) {
+                e.preventDefault();
                 dispatch(composerActions.setNote(mapping.shruti));
               }
             });
 
             if (e.key === ' ') {
+              e.preventDefault();
               dispatch(composerActions.setNote(','));
             }
 
             if (e.key === 'Backspace') {
+              e.preventDefault();
               dispatch(composerActions.setNote('del'));
             }
           }

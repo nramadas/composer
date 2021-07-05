@@ -38,6 +38,7 @@ interface CompositionState extends Omit<BaseComposition, 'swara'> {
     key: string;
     shruti: Shruti;
   }[];
+  defaultSthayi: Sthayi;
   useDikshitarNames: boolean;
 }
 
@@ -56,6 +57,7 @@ const INITIAL_STATE: CompositionState = {
   document,
   composer: '',
   cursorPosition: [INITIAL_DOCUMENT.head],
+  defaultSthayi: Sthayi.Mid,
   dragInProgress: false,
   history: {
     cursor: 0,
@@ -118,6 +120,9 @@ export const composition = createSlice({
       } else if (state.cursorPosition.length > 1) {
         state.cursorPosition = [block.key];
       }
+
+      const headBlock = state.document.allBlocks[state.cursorPosition[0]];
+      state.defaultSthayi = headBlock.sthayi || state.defaultSthayi;
     },
     cursorPrev(state) {
       const first = state.cursorPosition[0];
@@ -128,6 +133,9 @@ export const composition = createSlice({
       } else if (state.cursorPosition.length > 1) {
         state.cursorPosition = [block.key];
       }
+
+      const headBlock = state.document.allBlocks[state.cursorPosition[0]];
+      state.defaultSthayi = headBlock.sthayi || state.defaultSthayi;
     },
     cursorSet(state, action: PayloadAction<string>) {
       state.cursorPosition = [action.payload];
@@ -165,6 +173,10 @@ export const composition = createSlice({
     },
     setNote(state, action: PayloadAction<Shruti | ',' | 'del'>) {
       return withUndo(state, draft => {
+        const head = draft.cursorPosition[0];
+        const headBlock = draft.document.allBlocks[head];
+        const sthayi = headBlock.sthayi || state.defaultSthayi;
+
         draft.cursorPosition.forEach((cur, i) => {
           const curBlock = draft.document.allBlocks[cur];
 
@@ -179,13 +191,14 @@ export const composition = createSlice({
           } else if (i === 0 && action.payload !== ',') {
             draft.document.allBlocks[cur] = {
               ...curBlock,
+              sthayi,
               type: BlockType.Note,
               shruti: action.payload,
-              sthayi: ('sthayi' in curBlock && curBlock.sthayi) || Sthayi.Mid,
               style: 'style' in curBlock ? curBlock.style : 1,
             };
           } else {
             draft.document.allBlocks[cur] = {
+              sthayi,
               type: BlockType.Continue,
               prev: curBlock.prev,
               next: curBlock.next,
@@ -213,6 +226,15 @@ export const composition = createSlice({
         } else {
           draft.keyMap = raagaToKeyMap(action.payload);
         }
+      });
+    },
+    setSthayi(state, action: PayloadAction<Sthayi>) {
+      return withUndo(state, draft => {
+        draft.defaultSthayi = action.payload;
+
+        draft.cursorPosition.forEach(cur => {
+          draft.document.allBlocks[cur].sthayi = action.payload;
+        });
       });
     },
     setTaala(state, action: PayloadAction<CompositionState['taala']>) {

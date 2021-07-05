@@ -7,9 +7,14 @@ $controlsHeight: 60px;
 }
 
 .controls {
+  align-items: center;
   background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: row;
   height: $controlsHeight;
+  justify-content: center;
   left: 0;
+  padding: 0 40px;
   position: absolute;
   right: 0;
   top: 0;
