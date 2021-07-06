@@ -12,27 +12,27 @@ export function janyaRaagaToShruti(raaga: JanyaRaaga) {
     case JanyaRaaga.Kanakatodi:
       return {
         aa: [Shruti.R1, Shruti.G1, Shruti.M1, Shruti.P, Shruti.D1],
-        av: [Shruti.N1, Shruti.D1, Shruti.P, Shruti.M1, Shruti.R1, Shruti.S],
+        av: [Shruti.N1, Shruti.D1, Shruti.P, Shruti.M1, Shruti.R1],
       };
     case JanyaRaaga.Maadhavapriyaa:
       return {
         aa: [Shruti.R1, Shruti.G1, Shruti.P, Shruti.D1, Shruti.N1],
-        av: [Shruti.N1, Shruti.D1, Shruti.P, Shruti.G1, Shruti.R1, Shruti.S],
+        av: [Shruti.N1, Shruti.D1, Shruti.P, Shruti.G1, Shruti.R1],
       };
     case JanyaRaaga.KarnaatakaShuddhaSaaveri:
       return {
         aa: [Shruti.R1, Shruti.M1, Shruti.P, Shruti.D1],
-        av: [Shruti.D1, Shruti.P, Shruti.M1, Shruti.R1, Shruti.S],
+        av: [Shruti.D1, Shruti.P, Shruti.M1, Shruti.R1],
       };
     case JanyaRaaga.Latantapriya:
       return {
         aa: [Shruti.R1, Shruti.G1, Shruti.M1, Shruti.P, Shruti.D1],
-        av: [Shruti.D1, Shruti.P, Shruti.M1, Shruti.R1, Shruti.S],
+        av: [Shruti.D1, Shruti.P, Shruti.M1, Shruti.R1],
       };
     case JanyaRaaga.Lavangi:
       return {
         aa: [Shruti.R1, Shruti.M1, Shruti.D1],
-        av: [Shruti.D1, Shruti.M1, Shruti.R1, Shruti.S],
+        av: [Shruti.D1, Shruti.M1, Shruti.R1],
       };
     case JanyaRaaga.Megha:
       return {
@@ -45,7 +45,7 @@ export function janyaRaagaToShruti(raaga: JanyaRaaga) {
           Shruti.D1,
           Shruti.P,
         ],
-        av: [Shruti.N1, Shruti.D1, Shruti.P, Shruti.M1, Shruti.R1, Shruti.S],
+        av: [Shruti.N1, Shruti.D1, Shruti.P, Shruti.M1, Shruti.R1],
       };
     case JanyaRaaga.Rishabhavilaasa:
       return {
@@ -55,7 +55,7 @@ export function janyaRaagaToShruti(raaga: JanyaRaaga) {
     case JanyaRaaga.Sarvashree:
       return {
         aa: [Shruti.M1, Shruti.P],
-        av: [Shruti.P, Shruti.M1, Shruti.S],
+        av: [Shruti.P, Shruti.M1],
       };
     case JanyaRaaga.SuddhaMukhaari:
       return {
@@ -65,12 +65,12 @@ export function janyaRaagaToShruti(raaga: JanyaRaaga) {
     case JanyaRaaga.Tatillatika:
       return {
         aa: [Shruti.R1, Shruti.M1, Shruti.P, Shruti.D1],
-        av: [Shruti.D1, Shruti.P, Shruti.M1, Shruti.R1, Shruti.S],
+        av: [Shruti.D1, Shruti.P, Shruti.M1, Shruti.R1],
       };
     case JanyaRaaga.Vaageeshwari:
       return {
         aa: [Shruti.R1, Shruti.G1, Shruti.M1, Shruti.P, Shruti.D1],
-        av: [Shruti.D1, Shruti.M1, Shruti.P, Shruti.G1, Shruti.R1, Shruti.S],
+        av: [Shruti.D1, Shruti.M1, Shruti.P, Shruti.G1, Shruti.R1],
       };
 
     // From 'Rathnāngi'
@@ -82,7 +82,7 @@ export function janyaRaagaToShruti(raaga: JanyaRaaga) {
     case JanyaRaaga.Ganamukhaari:
       return {
         aa: [Shruti.R1, Shruti.M1, Shruti.D1],
-        av: [Shruti.N2, Shruti.D1, Shruti.M1, Shruti.R1, Shruti.S],
+        av: [Shruti.N2, Shruti.D1, Shruti.M1, Shruti.R1],
       };
     case JanyaRaaga.Ratnavaraali:
       return {
@@ -92,22 +92,22 @@ export function janyaRaagaToShruti(raaga: JanyaRaaga) {
     case JanyaRaaga.Revati:
       return {
         aa: [Shruti.R1, Shruti.M1, Shruti.P, Shruti.N2],
-        av: [Shruti.N2, Shruti.P, Shruti.M1, Shruti.R1, Shruti.S],
+        av: [Shruti.N2, Shruti.P, Shruti.M1, Shruti.R1],
       };
     case JanyaRaaga.Shreemani:
       return {
         aa: [Shruti.R1, Shruti.G1, Shruti.P, Shruti.D1],
-        av: [Shruti.N2, Shruti.D1, Shruti.P, Shruti.G1, Shruti.R1, Shruti.S],
+        av: [Shruti.N2, Shruti.D1, Shruti.P, Shruti.G1, Shruti.R1],
       };
     case JanyaRaaga.Shreemati:
       return {
         aa: [Shruti.R1, Shruti.G1, Shruti.P, Shruti.D1],
-        av: [Shruti.N2, Shruti.D1, Shruti.P, Shruti.G1, Shruti.R1, Shruti.S],
+        av: [Shruti.N2, Shruti.D1, Shruti.P, Shruti.G1, Shruti.R1],
       };
     case JanyaRaaga.Svadhya:
       return {
         aa: [Shruti.R1, Shruti.M1, Shruti.P, Shruti.N2],
-        av: [Shruti.N2, Shruti.D1, Shruti.P, Shruti.M1, Shruti.R1, Shruti.S],
+        av: [Shruti.N2, Shruti.D1, Shruti.P, Shruti.M1, Shruti.R1],
       };
 
     // From Gānamoorti
