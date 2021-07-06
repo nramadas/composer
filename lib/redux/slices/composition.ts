@@ -5,9 +5,11 @@ import produce, {
   produceWithPatches,
   original,
 } from 'immer';
+import { ulid } from 'ulid';
 
 import { avartanLength } from '#lib/avartanLength';
 import { createBlank } from '#lib/document/createBlank';
+import { fixPrecision } from '#lib/fixPrecision';
 import { groupBlocksByAvartan } from '#lib/groupBlocksByAvartan';
 import { Block, BlockType } from '#lib/models/Block';
 import { Composition as BaseComposition } from '#lib/models/Composition';
@@ -18,6 +20,45 @@ import { Sthayi } from '#lib/models/Sthayi';
 import { SuladiSaptaTaala } from '#lib/models/Taala';
 import { raagaToKeyMap } from '#lib/raagaToKeyMap';
 import { taalaToAvartan } from '#lib/taalaToAvartan';
+
+function createSegment(
+  headBlock: Block,
+  tailBlock: Block,
+  number: Block['style'],
+  selectionLength: number,
+) {
+  const blocks: Block[] = [];
+  let prev: Block | undefined = undefined;
+
+  for (let i = 0; i < number * selectionLength; i++) {
+    const block: Block =
+      i === 0
+        ? {
+            ...headBlock,
+            prev: headBlock.prev,
+            next: '',
+            style: number,
+          }
+        : {
+            type: BlockType.Undefined,
+            key: ulid(),
+            sthayi: headBlock.sthayi,
+            prev: blocks[blocks.length - 1].key,
+            next: tailBlock.next,
+            style: number,
+          };
+
+    if (prev) {
+      prev.next = block.key;
+    }
+
+    blocks.push(block);
+    prev = block;
+  }
+
+  blocks[blocks.length - 1].next = tailBlock.next;
+  return blocks;
+}
 
 interface PatchState {
   cursor: number;
@@ -30,6 +71,7 @@ interface PatchState {
 interface CompositionState extends Omit<BaseComposition, 'swara'> {
   blocks: Block['key'][][];
   cursorPosition: Block['key'][];
+  defaultSthayi: Sthayi;
   document: Document;
   dragInProgress: boolean;
   history: PatchState;
@@ -38,7 +80,6 @@ interface CompositionState extends Omit<BaseComposition, 'swara'> {
     key: string;
     shruti: Shruti;
   }[];
-  defaultSthayi: Sthayi;
   useDikshitarNames: boolean;
 }
 
@@ -171,6 +212,83 @@ export const composition = createSlice({
         draft.composer = action.payload;
       });
     },
+    setMaatraa(state, action: PayloadAction<Block['style']>) {
+      return withUndo(state, draft => {
+        const beatLengths = draft.cursorPosition.map(cur => {
+          return draft.document.allBlocks[cur].style;
+        });
+
+        // selection must not exceed length of 1
+        const total = beatLengths.reduce((acc, b) => acc + 1 / b, 0);
+
+        if (fixPrecision(total) > 1) {
+          return;
+        }
+
+        const headBlock = draft.document.allBlocks[draft.cursorPosition[0]];
+        const tailBlock =
+          draft.document.allBlocks[
+            draft.cursorPosition[draft.cursorPosition.length - 1]
+          ];
+        let newSegment: Block[] = [];
+
+        if (
+          draft.cursorPosition.length > 1 &&
+          action.payload === 1 &&
+          total === 1
+        ) {
+          newSegment = createSegment(headBlock, tailBlock, 1, total);
+        } else if (action.payload === 2 && (total === 1 || total === 0.5)) {
+          newSegment = createSegment(headBlock, tailBlock, 2, total);
+        } else if (
+          action.payload === 3 &&
+          (total === 1 || total === 1 / 3 || total === 2 / 3)
+        ) {
+          newSegment = createSegment(headBlock, tailBlock, 3, total);
+        } else if (action.payload === 4 && (total === 1 || total === 0.5)) {
+          newSegment = createSegment(headBlock, tailBlock, 4, total);
+        } else if (
+          action.payload === 6 &&
+          (total === 1 || total === 0.5 || total === 1 / 3 || total === 2 / 3)
+        ) {
+          newSegment = createSegment(headBlock, tailBlock, 6, total);
+        }
+
+        if (newSegment.length) {
+          const segmentHead = newSegment[0];
+          const segmentTail = newSegment[newSegment.length - 1];
+
+          if (segmentHead.prev) {
+            draft.document.allBlocks[segmentHead.prev].next = segmentHead.key;
+          } else {
+            draft.document.head = segmentHead.key;
+          }
+
+          if (segmentTail.next) {
+            draft.document.allBlocks[segmentTail.next].prev = segmentTail.key;
+          }
+
+          for (const key of draft.cursorPosition) {
+            delete draft.document.allBlocks[key];
+          }
+
+          for (const block of newSegment) {
+            draft.document.allBlocks[block.key] = block;
+          }
+
+          draft.cursorPosition = [newSegment[0].key];
+
+          const avartan = taalaToAvartan(draft.taala);
+          const rowSize = avartanLength(avartan);
+          const { blocks, document } = groupBlocksByAvartan(
+            draft.document,
+            rowSize,
+          );
+          draft.blocks = blocks;
+          draft.document = document;
+        }
+      });
+    },
     setNote(state, action: PayloadAction<Shruti | ',' | 'del'>) {
       return withUndo(state, draft => {
         const head = draft.cursorPosition[0];
@@ -216,6 +334,17 @@ export const composition = createSlice({
         );
         draft.blocks = blocks;
         draft.document = document;
+
+        if (action.payload !== 'del') {
+          const last = draft.cursorPosition[draft.cursorPosition.length - 1];
+          const block = draft.document.allBlocks[last];
+
+          if (block.next) {
+            draft.cursorPosition = [block.next];
+          } else if (draft.cursorPosition.length > 1) {
+            draft.cursorPosition = [block.key];
+          }
+        }
       });
     },
     setRaaga(state, action: PayloadAction<CompositionState['raaga']>) {

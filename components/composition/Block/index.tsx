@@ -33,6 +33,8 @@ export const Block = memo(
       <button
         className={cx(props.className, styles.container, {
           [styles.hovered]: hovered,
+          [styles.by2]: block.style === 2 || block.style === 4,
+          [styles.by3]: block.style === 3 || block.style === 6,
         })}
         onMouseDown={() => {
           dispatch(composerActions.cursorSet(props.referenceKey));
@@ -59,22 +61,19 @@ export const Block = memo(
           )}
         </div>
         {withCursor && <div className={styles.cursor} />}
-        {(block.type === BlockType.Note ||
-          block.type === BlockType.Undefined) &&
-          (block.style === 2 || block.style === 3 ? (
+        {block.style === 2 || block.style === 3 ? (
+          <div className={styles.over1} />
+        ) : block.style === 4 || block.style === 6 ? (
+          <>
             <div className={styles.over1} />
-          ) : block.style === 4 || block.style === 6 ? (
-            <>
-              <div className={styles.over1} />
-              <div className={styles.over2} />
-            </>
-          ) : block.style === 8 || block.style === 12 ? (
-            <>
-              <div className={styles.over1} />
-              <div className={styles.over2} />
-              <div className={styles.over3} />
-            </>
-          ) : undefined)}
+            <div className={styles.over2} />
+          </>
+        ) : undefined}
+        {block.style === 3 ? (
+          <div className={styles.three1}>3</div>
+        ) : block.style === 6 ? (
+          <div className={styles.three2}>3</div>
+        ) : undefined}
       </button>
     );
   },

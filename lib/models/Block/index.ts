@@ -17,21 +17,21 @@ interface MetaData {
 export interface ContinueBlock extends MetaData {
   type: BlockType.Continue;
   sthayi?: Sthayi;
-  style: 1 | 2 | 3 | 4 | 6 | 8 | 12;
+  style: 1 | 2 | 3 | 4 | 6;
 }
 
 export interface NoteBlock extends MetaData {
   type: BlockType.Note;
   shruti: Shruti;
   sthayi: Sthayi;
-  style: 1 | 2 | 3 | 4 | 6 | 8 | 12;
+  style: 1 | 2 | 3 | 4 | 6;
 }
 
 export interface UndefinedBlock extends MetaData {
   type: BlockType.Undefined;
   shruti?: Shruti;
   sthayi?: Sthayi;
-  style: 1 | 2 | 3 | 4 | 6 | 8 | 12;
+  style: 1 | 2 | 3 | 4 | 6;
 }
 
 export type Block = ContinueBlock | NoteBlock | UndefinedBlock;

@@ -23,20 +23,12 @@ export const Editor = memo(
       blocks: state.composition.blocks,
     }));
 
-    const rowLength = blocks[0].length;
-
     return (
       <div className={cx(styles.container, props.className)}>
         <Title className={styles.title} />
         <Metadata />
         <div className={styles.blocksWrapper}>
-          <div
-            className={cx(styles.blocks, {
-              [styles.twoPer]: rowLength < 8,
-              [styles.threePer]: rowLength < 5,
-              [styles.fourPer]: rowLength <= 3,
-            })}
-          >
+          <div className={cx(styles.blocks)}>
             {blocks.map((row, i) => (
               <Row blocks={row} className={styles.row} key={i} />
             ))}

@@ -32,6 +32,7 @@ function emitBlocks(blocks: BlockRef[], avartan: Anga[]) {
           {currentRow.map(key => (
             <Block referenceKey={key} key={key} />
           ))}
+          <div className={styles.divider} />
         </div>,
       );
 
@@ -50,6 +51,8 @@ function emitBlocks(blocks: BlockRef[], avartan: Anga[]) {
       {currentRow.map(key => (
         <Block referenceKey={key} key={key} />
       ))}
+      <div className={styles.divider} />
+      <div className={styles.divider} />
     </div>,
   );
 
@@ -81,7 +84,6 @@ export function Row(props: Props) {
             key: i,
           }),
         )}
-        <div className={styles.divider} />
       </div>
     </div>
   );

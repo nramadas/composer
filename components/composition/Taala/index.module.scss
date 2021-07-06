@@ -1,7 +1,6 @@
 .container {
   border-radius: 4px;
-  border: 1px soild var(--color-secondary);
-  color: var(--color-primary);
+  color: var(--color-onBackground);
   cursor: pointer;
   display: inline-block;
   outline: none;
@@ -12,6 +11,5 @@
   &:hover,
   &:focus {
     background-color: var(--color-field);
-    color: var(--color-primaryFocused);
   }
 }

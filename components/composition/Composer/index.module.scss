@@ -1,6 +1,6 @@
 .input {
   box-sizing: border-box;
-  color: var(--color-primary);
+  color: var(--color-onBackground);
   font-family: var(--font-title);
   font-size: 1rem;
   font-weight: 400;
@@ -9,8 +9,4 @@
   padding: 8px;
   text-overflow: ellipsis;
   white-space: nowrap;
-
-  &:hover {
-    color: var(--color-primaryFocused);
-  }
 }

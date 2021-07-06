@@ -7,10 +7,26 @@ $size: 60px;
   cursor: pointer;
   display: block;
   height: $size;
-  min-width: $size;
   outline: none;
   padding: 0;
   position: relative;
+  width: $size;
+
+  &.by2 {
+    width: $size / 2;
+
+    .emptyBlockIcon {
+      width: 0.4 * $size;
+    }
+  }
+
+  &.by3 {
+    width: $size / 3;
+
+    .emptyBlockIcon {
+      width: (0.8 / 3) * $size;
+    }
+  }
 
   &.hovered {
     .content {
@@ -74,11 +90,24 @@ $size: 60px;
   top: -4px;
 }
 
-.over3 {
-  background-color: var(--color-onBackground);
-  height: 2px;
+.three1 {
+  bottom: 100%;
+  color: var(--color-onBackground);
+  font-size: 0.5rem;
   left: 0;
+  margin-bottom: 2px;
   position: absolute;
   right: 0;
-  top: -6px;
+  text-align: center;
+}
+
+.three2 {
+  bottom: 100%;
+  color: var(--color-onBackground);
+  font-size: 0.5rem;
+  left: 0;
+  margin-bottom: 6px;
+  position: absolute;
+  right: 0;
+  text-align: center;
 }
