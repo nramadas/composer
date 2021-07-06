@@ -10,6 +10,7 @@ export enum BlockType {
 
 interface MetaData {
   key: NominalID<'block key'>;
+  lyrics?: string;
   prev: string;
   next: string;
 }

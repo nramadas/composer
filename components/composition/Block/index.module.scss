@@ -1,6 +1,6 @@
 $size: 60px;
 
-.container {
+.button {
   background-color: transparent;
   box-sizing: border-box;
   border: none;
@@ -12,22 +12,6 @@ $size: 60px;
   position: relative;
   width: $size;
 
-  &.by2 {
-    width: $size / 2;
-
-    .emptyBlockIcon {
-      width: 0.4 * $size;
-    }
-  }
-
-  &.by3 {
-    width: $size / 3;
-
-    .emptyBlockIcon {
-      width: (0.8 / 3) * $size;
-    }
-  }
-
   &.hovered {
     .content {
       background-color: var(--color-field);
@@ -35,6 +19,43 @@ $size: 60px;
 
     .emptyBlockIcon {
       fill: var(--color-secondary);
+    }
+  }
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &.by2 {
+    .button {
+      width: $size / 2;
+    }
+
+    .emptyBlockIcon {
+      width: 0.4 * $size;
+    }
+
+    .lyrics {
+      max-width: $size / 2;
+      min-width: $size / 2;
+    }
+  }
+
+  &.by3 {
+    .button {
+      width: $size / 3;
+    }
+
+    .emptyBlockIcon {
+      width: (0.8 / 3) * $size;
+    }
+
+    .lyrics {
+      max-width: $size / 3;
+      min-width: $size / 3
     }
   }
 }
@@ -64,6 +85,18 @@ $size: 60px;
   height: 0.8 * $size;
   transition: fill 0.15s;
   width: 0.8 * $size;
+}
+
+.lyrics {
+  box-sizing: border-box;
+  font-size: 0.8rem;
+  height: calc(0.8rem + 16px);
+  margin-bottom: 4px;
+  min-width: 40px;
+  overflow: visible;
+  padding: 8px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .continue,

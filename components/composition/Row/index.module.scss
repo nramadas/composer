@@ -1,15 +1,23 @@
 .anga {
-  align-items: center;
+  align-items: flex-start;
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
 .container {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  position: relative;
+
+  &:hover {
+    .add {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
 }
 
 .content {
@@ -28,4 +36,16 @@
   & ~ & {
     margin-left: 3px;
   }
+}
+
+.input {
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  font-variant: small-caps;
+  height: calc(0.875rem + 16px);
+  letter-spacing: 0.25px;
+  overflow: visible;
+  padding: 8px;
+  white-space: nowrap;
+  width: calc(100% - 9px);
 }

@@ -29,6 +29,7 @@ export function ContentEditableInput(props: Props) {
 
   return (
     <div
+      tabIndex={1}
       {...props}
       contentEditable
       className={cx(styles.input, props.className)}

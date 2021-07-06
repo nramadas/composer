@@ -60,6 +60,16 @@ function createSegment(
   return blocks;
 }
 
+interface LyricsPayload {
+  key: Block['key'];
+  text: string;
+}
+
+interface SectionTitlePayload {
+  key: Block['key'];
+  text: string;
+}
+
 interface PatchState {
   cursor: number;
   stack: {
@@ -80,6 +90,9 @@ interface CompositionState extends Omit<BaseComposition, 'swara'> {
     key: string;
     shruti: Shruti;
   }[];
+  sectionTitles: {
+    [key: string]: string;
+  };
   useDikshitarNames: boolean;
 }
 
@@ -107,6 +120,7 @@ const INITIAL_STATE: CompositionState = {
   hovered: undefined,
   keyMap: raagaToKeyMap(MelakartaRaaga.Mayamalavagowla),
   raaga: MelakartaRaaga.Mayamalavagowla,
+  sectionTitles: {},
   taala: INITIAL_TAALA,
   title: '',
   transcriber: '',
@@ -210,6 +224,12 @@ export const composition = createSlice({
     setComposer(state, action: PayloadAction<CompositionState['composer']>) {
       return withUndo(state, draft => {
         draft.composer = action.payload;
+      });
+    },
+    setLyrics(state, action: PayloadAction<LyricsPayload>) {
+      return withUndo(state, draft => {
+        draft.document.allBlocks[action.payload.key].lyrics =
+          action.payload.text;
       });
     },
     setMaatraa(state, action: PayloadAction<Block['style']>) {
@@ -355,6 +375,11 @@ export const composition = createSlice({
         } else {
           draft.keyMap = raagaToKeyMap(action.payload);
         }
+      });
+    },
+    setSectionTitle(state, action: PayloadAction<SectionTitlePayload>) {
+      return withUndo(state, draft => {
+        draft.sectionTitles[action.payload.key] = action.payload.text;
       });
     },
     setSthayi(state, action: PayloadAction<Sthayi>) {

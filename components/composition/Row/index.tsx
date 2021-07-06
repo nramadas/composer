@@ -1,12 +1,16 @@
 import cx from 'classnames';
-import React from 'react';
+import debounce from 'lodash/debounce';
+import React, { useCallback } from 'react';
 
 import { Block } from '#components/composition/Block';
+import { ContentEditableInput } from '#components/controls/inputs/flat/ContentEditableInput';
 import { LENGTHS } from '#lib/avartanLength';
 import { beatLength } from '#lib/groupBlocksByAvartan';
+import { useDispatch } from '#lib/hooks/useDispatch';
 import { useSelector } from '#lib/hooks/useSelector';
 import { Anga } from '#lib/models/Anga';
 import { Block as BlockModel } from '#lib/models/Block';
+import { composerActions } from '#lib/redux/actions';
 import { taalaToAvartan } from '#lib/taalaToAvartan';
 
 import styles from './index.module.scss';
@@ -65,19 +69,46 @@ interface Props {
 }
 
 export function Row(props: Props) {
-  const { avartan, blocks } = useSelector(
+  const dispatch = useDispatch();
+
+  const { avartan, blocks, sectionTitle } = useSelector(
     state => ({
       avartan: taalaToAvartan(state.composition.taala),
       blocks: props.blocks.map(key => ({
         key,
         length: beatLength(state.composition.document.allBlocks[key]),
       })),
+      sectionTitle: state.composition.sectionTitles[props.blocks[0]] || '',
     }),
+    [props.blocks],
+  );
+
+  const setSectionTitle = useCallback(
+    debounce((text: string) => {
+      dispatch(
+        composerActions.setSectionTitle({
+          text,
+          key: props.blocks[0],
+        }),
+      );
+    }, 250),
     [props.blocks],
   );
 
   return (
     <div className={cx(props.className, styles.container)}>
+      <ContentEditableInput
+        className={styles.input}
+        value={sectionTitle}
+        onKeyDown={e => {
+          if (!e.metaKey && !e.ctrlKey) {
+            e.stopPropagation();
+          }
+        }}
+        onInput={e => {
+          setSectionTitle(e.currentTarget.innerText);
+        }}
+      />
       <div className={styles.content}>
         {emitBlocks(blocks, avartan).map((el, i) =>
           React.cloneElement(el, {
