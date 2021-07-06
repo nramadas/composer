@@ -43,5 +43,17 @@ export function janyaRaagaToEnglish(raaga: JanyaRaaga) {
       return 'Shreemati';
     case JanyaRaaga.Svadhya:
       return 'Svadhya';
+
+    // From Gānamoorti
+    case JanyaRaaga.Gaanasaamavaraali:
+      return 'Gānasāmavarāli';
+    case JanyaRaaga.Bhinnapanchamam:
+      return 'Bhinnapanchamam';
+    case JanyaRaaga.Naadharanjani:
+      return 'Nādharanjani';
+    case JanyaRaaga.Poorvavaraali:
+      return 'Poorvavarāli';
+    case JanyaRaaga.Saamavaraali:
+      return 'Sāmavarāli';
   }
 }

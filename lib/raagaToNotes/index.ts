@@ -9,11 +9,18 @@ export function raagaToNotes(raaga: MelakartaRaaga | JanyaRaaga) {
 
   if (shruti) {
     return {
-      aa: shruti
-        .map(s => ({
-          shruti: s,
+      aa: [
+        {
+          shruti: Shruti.S,
           sthayi: Sthayi.Mid,
-        }))
+        },
+      ]
+        .concat(
+          shruti.map(s => ({
+            shruti: s,
+            sthayi: Sthayi.Mid,
+          })),
+        )
         .concat({
           shruti: Shruti.S,
           sthayi: Sthayi.Up1,
@@ -23,23 +30,35 @@ export function raagaToNotes(raaga: MelakartaRaaga | JanyaRaaga) {
           shruti: Shruti.S,
           sthayi: Sthayi.Up1,
         },
-      ].concat(
-        shruti.reverse().map(s => ({
-          shruti: s,
+      ]
+        .concat(
+          shruti.reverse().map(s => ({
+            shruti: s,
+            sthayi: Sthayi.Mid,
+          })),
+        )
+        .concat({
+          shruti: Shruti.S,
           sthayi: Sthayi.Mid,
-        })),
-      ),
+        }),
     };
   }
 
   const { aa, av } = janyaRaagaToShruti(raaga as JanyaRaaga);
 
   return {
-    aa: aa
-      .map(s => ({
-        shruti: s,
+    aa: [
+      {
+        shruti: Shruti.S,
         sthayi: Sthayi.Mid,
-      }))
+      },
+    ]
+      .concat(
+        aa.map(s => ({
+          shruti: s,
+          sthayi: Sthayi.Mid,
+        })),
+      )
       .concat({
         shruti: Shruti.S,
         sthayi: Sthayi.Up1,
@@ -49,11 +68,16 @@ export function raagaToNotes(raaga: MelakartaRaaga | JanyaRaaga) {
         shruti: Shruti.S,
         sthayi: Sthayi.Up1,
       },
-    ].concat(
-      av.map(s => ({
-        shruti: s,
+    ]
+      .concat(
+        av.map(s => ({
+          shruti: s,
+          sthayi: Sthayi.Mid,
+        })),
+      )
+      .concat({
+        shruti: Shruti.S,
         sthayi: Sthayi.Mid,
-      })),
-    ),
+      }),
   };
 }

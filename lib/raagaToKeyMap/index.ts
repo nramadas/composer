@@ -25,10 +25,10 @@ function allNotes(raaga: JanyaRaaga | MelakartaRaaga) {
   const shruti = melakartaRaagaToShruti(raaga as MelakartaRaaga);
 
   if (shruti) {
-    return shruti;
+    return [Shruti.S].concat(shruti);
   }
 
-  const notes = new Set<Shruti>([]);
+  const notes = new Set<Shruti>([Shruti.S]);
 
   const { aa, av } = janyaRaagaToShruti(raaga as JanyaRaaga);
 

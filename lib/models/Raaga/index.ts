@@ -119,4 +119,11 @@ export enum JanyaRaaga {
   Shreemani = 'Shreemani',
   Shreemati = 'Shreemati',
   Svadhya = 'Svadhya',
+
+  // From Gānamoorti
+  Gaanasaamavaraali = 'Gaanasaamavaraali',
+  Bhinnapanchamam = 'Bhinnapanchamam',
+  Naadharanjani = 'Naadharanjani',
+  Poorvavaraali = 'Poorvavaraali',
+  Saamavaraali = 'Saamavaraali',
 }
