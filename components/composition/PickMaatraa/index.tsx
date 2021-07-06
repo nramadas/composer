@@ -49,13 +49,13 @@ export function PickMaatraa(props: Props) {
       <Body2>Mātrā:</Body2>
       {(
         [
-          [1, '1'],
-          [2, '½'],
-          [3, '⅓'],
-          [4, '¼'],
-          [6, '⅙'],
+          [1, '1', 'Whole\n(ctrl / ⌘ + 1)'],
+          [2, '½', 'Half\n(ctrl / ⌘ + 2)'],
+          [3, '⅓', 'Triplet\n(ctrl / ⌘ + 3)'],
+          [4, '¼', 'Quarter\n(ctrl / ⌘ + 4)'],
+          [6, '⅙', 'Sixth\n(ctrl / ⌘ + 5)'],
         ] as const
-      ).map(([length, text]) => {
+      ).map(([length, text, infotext]) => {
         const disabled =
           selectedLength > 1 ||
           (length === 1
@@ -66,6 +66,7 @@ export function PickMaatraa(props: Props) {
           <RoundedGlass
             className={styles.button}
             disabled={disabled}
+            infotext={infotext}
             key={length}
             selected={selected === length}
             onClick={() => {

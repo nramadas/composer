@@ -8,14 +8,16 @@ $gradient-opacity: 0.1;
   box-shadow: -4px -2px 16px rgba(195, 200, 205, 0.07), 4px 4px 18px rgba(0, 0, 0, 0.44);
   box-sizing: border-box;
   cursor: pointer;
-  outline: none;
-  overflow: hidden;
   position: relative;
   transition: background-color 0.15s, border-color 0.15s, height 0.15s;
   width: 100%;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0);
+
+    .infotext {
+      opacity: 1;
+    }
   }
 
   &.disabled {
@@ -37,6 +39,34 @@ $gradient-opacity: 0.1;
   position: relative;
 }
 
+.infotext {
+  background-color: var(--color-background);
+  border-radius: 4px;
+  color: var(--color-onBackground);
+  left: 50%;
+  margin-top: 8px;
+  min-width: 100px;
+  opacity: 0;
+  padding: 8px 12px 12px;
+  pointer-events: none;
+  position: absolute;
+  top: 100%;
+  transform: translateX(-50%);
+  transition: opacity 0.15s;
+  white-space: pre;
+
+  &:after {
+    background-color: var(--color-background);
+    bottom: 100%;
+    content: ' ';
+    height: 8px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, 50%) rotate(45deg);
+    width: 8px;
+  }
+}
+
 .layer {
   bottom: 0;
   left: 0;
@@ -47,6 +77,7 @@ $gradient-opacity: 0.1;
 
 .layer1 {
   background: linear-gradient(to bottom right, rgb(255, 255, 255, $gradient-opacity) -6.95%, rgba(0, 0, 0, $gradient-opacity) 91.44%);
+  border-radius: 6px;
   opacity: 1;
   transition: opacity 0.15s;
   z-index: 2;
@@ -54,6 +85,7 @@ $gradient-opacity: 0.1;
 
 .layer2 {
   background: rgba(0, 0, 0, $gradient-opacity);
+  border-radius: 6px;
   opacity: 0;
   transition: opacity 0.15s;
   z-index: 3;

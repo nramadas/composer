@@ -27,18 +27,25 @@ export function PickSthayi(props: Props) {
   return (
     <div className={cx(props.className, styles.container)}>
       <Body2>Sthāyi:</Body2>
-      {[Sthayi.Sub2, Sthayi.Sub1, Sthayi.Mid, Sthayi.Up1, Sthayi.Up2].map(
-        sthayi => (
-          <RoundedGlass
-            className={styles.button}
-            key={sthayi}
-            selected={selected === sthayi}
-            onClick={() => dispatch(composerActions.setSthayi(sthayi))}
-          >
-            <Note shruti={Shruti.S} sthayi={sthayi} />
-          </RoundedGlass>
-        ),
-      )}
+      {(
+        [
+          [Sthayi.Sub2, 'Anumandra\n(ctrl / ⌘ + q)'],
+          [Sthayi.Sub1, 'Mandra\n(ctrl / ⌘ + w)'],
+          [Sthayi.Mid, 'Madhya\n(ctrl / ⌘ + e)'],
+          [Sthayi.Up1, 'Tara\n(ctrl / ⌘ + r)'],
+          [Sthayi.Up2, 'Athithara\n(ctrl / ⌘ + t)'],
+        ] as const
+      ).map(([sthayi, infotext]) => (
+        <RoundedGlass
+          className={styles.button}
+          infotext={infotext}
+          key={sthayi}
+          selected={selected === sthayi}
+          onClick={() => dispatch(composerActions.setSthayi(sthayi))}
+        >
+          <Note shruti={Shruti.S} sthayi={sthayi} />
+        </RoundedGlass>
+      ))}
     </div>
   );
 }

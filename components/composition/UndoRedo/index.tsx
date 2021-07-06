@@ -28,6 +28,7 @@ export function UndoRedo(props: Props) {
       <RoundedGlass
         className={styles.button}
         disabled={undoDisabled}
+        infotext={'Undo\n(ctrl / ⌘ + z)'}
         onClick={() => dispatch(composerActions.undo())}
       >
         <Undo className={styles.icon} />
@@ -35,6 +36,7 @@ export function UndoRedo(props: Props) {
       <RoundedGlass
         className={styles.button}
         disabled={redoDisabled}
+        infotext={'Redo\n(ctrl / ⌘ + shift + z)'}
         onClick={() => dispatch(composerActions.redo())}
       >
         <Redo className={styles.icon} />

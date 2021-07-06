@@ -39,25 +39,45 @@ export function useEditorKeyboardInput() {
             e.preventDefault();
             return dispatch(composerActions.undo());
           }
-          case '1': {
+          case 'q': {
             e.preventDefault();
             return dispatch(composerActions.setSthayi(Sthayi.Sub2));
           }
-          case '2': {
+          case 'w': {
             e.preventDefault();
             return dispatch(composerActions.setSthayi(Sthayi.Sub1));
           }
-          case '3': {
+          case 'e': {
             e.preventDefault();
             return dispatch(composerActions.setSthayi(Sthayi.Mid));
           }
-          case '4': {
+          case 'r': {
             e.preventDefault();
             return dispatch(composerActions.setSthayi(Sthayi.Up1));
           }
-          case '5': {
+          case 't': {
             e.preventDefault();
             return dispatch(composerActions.setSthayi(Sthayi.Up2));
+          }
+          case '1': {
+            e.preventDefault();
+            return dispatch(composerActions.setMaatraa(1));
+          }
+          case '2': {
+            e.preventDefault();
+            return dispatch(composerActions.setMaatraa(2));
+          }
+          case '3': {
+            e.preventDefault();
+            return dispatch(composerActions.setMaatraa(3));
+          }
+          case '4': {
+            e.preventDefault();
+            return dispatch(composerActions.setMaatraa(4));
+          }
+          case '5': {
+            e.preventDefault();
+            return dispatch(composerActions.setMaatraa(6));
           }
         }
       } else {
