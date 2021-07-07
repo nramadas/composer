@@ -18,13 +18,14 @@ export function createCss() {
         ${printCssVars(createCssColorVarsFromTheme(DEFAULT_COLORS.light))}
         --style-background: var(--color-elevation-3);
         --style-backdrop-filter: none;
-        background-color: var(--color-canvas);
+        background-color: var(--color-background);
         font-family: var(--font-body);
       }
 
       @media (prefers-color-scheme: dark) {
         html {
           ${printCssVars(createCssColorVarsFromTheme(DEFAULT_COLORS.dark))}
+          background-color: var(--color-canvas);
         }
       }
 
