@@ -9,7 +9,6 @@ import { ulid } from 'ulid';
 
 import { avartanLength } from '#lib/avartanLength';
 import { createBlank } from '#lib/document/createBlank';
-import { fixPrecision } from '#lib/fixPrecision';
 import { groupBlocksByAvartan } from '#lib/groupBlocksByAvartan';
 import { Block, BlockType } from '#lib/models/Block';
 import { Composition as BaseComposition } from '#lib/models/Composition';
@@ -87,6 +86,7 @@ interface CompositionState extends Omit<BaseComposition, 'swara'> {
   dragInProgress: boolean;
   history: PatchState;
   hovered?: Block['key'];
+  id: string;
   keyMap: {
     key: string;
     shruti: Shruti;
@@ -119,6 +119,7 @@ const INITIAL_STATE: CompositionState = {
     stack: [],
   },
   hovered: undefined,
+  id: ulid(),
   keyMap: raagaToKeyMap(MelakartaRaaga.Mayamalavagowla),
   raaga: MelakartaRaaga.Mayamalavagowla,
   sectionTitles: {},
@@ -221,6 +222,18 @@ export const composition = createSlice({
       return produce(nextState, draft => {
         draft.history.cursor++;
       });
+    },
+    reset(state) {
+      const keys = Object.keys(INITIAL_STATE) as (keyof typeof INITIAL_STATE)[];
+
+      for (const key of keys) {
+        const value = INITIAL_STATE[key];
+
+        // @ts-ignore
+        state[key] = value;
+      }
+
+      state.id = ulid();
     },
     setComposer(state, action: PayloadAction<CompositionState['composer']>) {
       return withUndo(state, draft => {

@@ -12,11 +12,16 @@ interface Props {
   children?: React.ReactNode;
   infotext?: string;
   to: PageRoute;
+  onClick?(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void;
 }
 
 export function NavButton(props: Props) {
   return (
-    <Link className={cx(props.className, styles.container)} to={props.to}>
+    <Link
+      className={cx(props.className, styles.container)}
+      to={props.to}
+      onClick={props.onClick}
+    >
       {props.children}
       {props.infotext && (
         <div className={styles.infotext}>

@@ -85,7 +85,7 @@ export function App(props: Props) {
                 ? [
                     {
                       data: location,
-                      key: location.hash,
+                      key: location.key || location.pathname,
                       style: { opacity: spring(100) },
                     },
                   ]
@@ -128,7 +128,7 @@ export function App(props: Props) {
                       >
                         {Component ? (
                           <Component />
-                        ) : (
+                        ) : typeof item.data !== 'string' ? (
                           <Switch location={item.data}>
                             {overlayRoutes.map(route => (
                               <Route
@@ -138,7 +138,7 @@ export function App(props: Props) {
                               />
                             ))}
                           </Switch>
-                        )}
+                        ) : null}
                       </div>
                     </div>
                   );

@@ -1,0 +1,41 @@
+.container {
+  background: var(--color-elevation-3);
+  border-radius: 20px;
+  box-shadow: var(--shadow-elevation-7);
+  overflow: hidden;
+  padding: 20px;
+  position: relative;
+}
+
+.content {
+  color: var(--color-onBackground);
+}
+
+.closeIcon {
+  cursor: pointer;
+  fill: var(--color-onBackground);
+  padding: 8px;
+  position: absolute;
+  right: 20px;
+  top: 13px;
+  transition: fill 0.15s;
+  width: 16px;
+
+  &:hover {
+    fill: var(--color-primary);
+  }
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.header {
+  color: var(--color-onBackgroundFaded);
+  margin-bottom: 32px;
+  text-transform: uppercase;
+}

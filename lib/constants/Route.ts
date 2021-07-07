@@ -1,4 +1,5 @@
 export enum ModalRoute {
+  Confirm = 'Confirm',
   PickRaaga = 'PickRaaga',
   PickTaala = 'PickTaala',
 }
