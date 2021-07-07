@@ -26,8 +26,18 @@
 }
 
 .icon {
-  fill: var(--color-secondary);
   height: 55%;
   width: 55%;
+}
+
+.logo {
+  &:focus {
+    box-shadow: var(--shadow-elevation-2);
+  }
+
+  &:hover,
+  &:hover &:focus {
+    box-shadow: var(--shadow-elevation-2);
+  }
 }
 

@@ -235,6 +235,25 @@ export const composition = createSlice({
 
       state.id = ulid();
     },
+    set(state, action: PayloadAction<CompositionState>) {
+      const keys = Object.keys(INITIAL_STATE) as (keyof typeof INITIAL_STATE)[];
+
+      // first reset the state
+      for (const key of keys) {
+        const value = INITIAL_STATE[key];
+
+        // @ts-ignore
+        state[key] = value;
+      }
+
+      // then sync it up with the provided copy
+      for (const key of keys) {
+        const value = action.payload[key];
+
+        // @ts-ignore
+        state[key] = value;
+      }
+    },
     setComposer(state, action: PayloadAction<CompositionState['composer']>) {
       return withUndo(state, draft => {
         draft.composer = action.payload;

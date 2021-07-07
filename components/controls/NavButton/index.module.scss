@@ -4,20 +4,23 @@
   border: 2px solid var(--color-secondary);
   border-radius: 4px;
   display: flex;
+  fill: var(--color-secondary);
   flex-direction: column;
   justify-content: center;
   position: relative;
-  transition: border-color 0.25s, transform 0.25s;
+  transition: border-color 0.25s, box-shadow 0.15s, transform 0.25s;
   box-sizing: border-box;
 
   &:focus {
     border-color: var(--color-secondaryFocused);
+    box-shadow: var(--shadow-elevation-2);
     transform: scale(1.05);
   }
 
   &:hover,
   &:hover &:focus {
     border-color: var(--color-secondaryHovered);
+    box-shadow: var(--shadow-elevation-2);
     transform: scale(1.05);
 
     .infotext {
@@ -27,7 +30,13 @@
 
   &:active {
     border-color: var(--color-secondaryPressed);
+    box-shadow: var(--shadow-elevation-0);
     transform: scale(0.95);
+  }
+
+  &.selected {
+    border-color: var(--color-primary);
+    fill: var(--color-primary);
   }
 }
 
@@ -56,5 +65,14 @@
     top: 50%;
     transform: translate(-50%, -50%) rotate(45deg);
     width: 8px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    &.selected {
+      border-color: var(--color-onBackground);
+      fill: var(--color-onBackground);
+    }
   }
 }

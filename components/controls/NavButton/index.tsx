@@ -12,13 +12,16 @@ interface Props {
   children?: React.ReactNode;
   infotext?: string;
   to: PageRoute;
+  selected?: boolean;
   onClick?(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void;
 }
 
 export function NavButton(props: Props) {
   return (
     <Link
-      className={cx(props.className, styles.container)}
+      className={cx(props.className, styles.container, {
+        [styles.selected]: !!props.selected,
+      })}
       to={props.to}
       onClick={props.onClick}
     >
