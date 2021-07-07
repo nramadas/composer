@@ -77,7 +77,7 @@ export function createColors(inputs: ThemeInputs): Colors {
     light: {
       background: inputs.background,
       backgroundRGB: rgbStr(inputs.background),
-      backgroundTransparent: transparentize(0.35, inputs.background),
+      backgroundTransparent: transparentize(0.25, inputs.background),
       brand: '#1976D2',
       brandRGB: rgbStr('#1976D2'),
       brandHalo: '#448AFF',

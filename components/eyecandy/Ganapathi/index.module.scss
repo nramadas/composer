@@ -1,0 +1,11 @@
+.container {
+  fill: none;
+  stroke: var(--color-onBackgroundFaded);
+  stroke-width: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    stroke: var(--color-primaryHovered);
+  }
+}

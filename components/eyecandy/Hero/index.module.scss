@@ -1,0 +1,38 @@
+.container {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: max-content 1fr;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.cta {
+  margin-top: 80px;
+  margin-left: 4px;
+}
+
+.ganapathi {
+  height: 400px;
+}
+
+.subTitle {
+  color: var(--color-onBackground);
+  padding-left: 2px;
+}
+
+.title {
+  color: var(--color-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+  .subTitle {
+    color: var(--color-onBackgroundFaded);
+  }
+
+  .title {
+    color: var(--color-onBackground);
+  }
+}
