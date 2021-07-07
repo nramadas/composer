@@ -1,0 +1,39 @@
+.container {
+  align-items: center;
+  background-color: var(--color-primary);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: background-color 0.25s, box-shadow 0.25s, transform 0.25s;
+
+  &:focus {
+    background-color: var(--color-primaryFocused);
+    transform: scale(1.05);
+  }
+
+  &:hover,
+  &:hover &:focus {
+    background-color: var(--color-primaryHovered);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    background-color: var(--color-primaryPressed);
+    transform: scale(0.95);
+  }
+}
+
+.icon {
+  fill: none;
+  stroke: var(--color-elevation-2);
+  stroke-width: 3px;
+  height: 80%;
+  width: 80%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .icon {
+    stroke: var(--color-secondaryFocused);
+  }
+}

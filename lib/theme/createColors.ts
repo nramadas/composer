@@ -173,5 +173,5 @@ export const DEFAULT = createColors({
   background: '#ffffff',
   backgroundDark: '#121212',
   primary: '#6c5b7b',
-  secondary: darken(0.2, '#ffffff'),
+  secondary: darken(0.4, '#ffffff'),
 });
