@@ -30,7 +30,7 @@ export const Editor = memo(
         <div className={styles.blocksWrapper}>
           <div className={cx(styles.blocks)}>
             {blocks.map((row, i) => (
-              <Row blocks={row} className={styles.row} key={i} />
+              <Row blocks={row} className={styles.row} key={i} rowKey={i} />
             ))}
           </div>
         </div>

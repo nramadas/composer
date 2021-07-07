@@ -65,6 +65,7 @@ function emitBlocks(blocks: BlockRef[], avartan: Anga[]) {
 
 interface Props {
   blocks: BlockModel['key'][];
+  rowKey: number;
   className?: string;
 }
 
@@ -78,9 +79,9 @@ export function Row(props: Props) {
         key,
         length: beatLength(state.composition.document.allBlocks[key]),
       })),
-      sectionTitle: state.composition.sectionTitles[props.blocks[0]] || '',
+      sectionTitle: state.composition.sectionTitles[props.rowKey] || '',
     }),
-    [props.blocks],
+    [props.blocks, props.rowKey],
   );
 
   const setSectionTitle = useCallback(
@@ -88,11 +89,11 @@ export function Row(props: Props) {
       dispatch(
         composerActions.setSectionTitle({
           text,
-          key: props.blocks[0],
+          key: props.rowKey,
         }),
       );
     }, 250),
-    [props.blocks],
+    [props.rowKey],
   );
 
   return (

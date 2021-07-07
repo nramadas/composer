@@ -66,7 +66,7 @@ interface LyricsPayload {
 }
 
 interface SectionTitlePayload {
-  key: Block['key'];
+  key: number;
   text: string;
 }
 
@@ -91,7 +91,7 @@ interface CompositionState extends Omit<BaseComposition, 'swara'> {
     shruti: Shruti;
   }[];
   sectionTitles: {
-    [key: string]: string;
+    [key: number]: string;
   };
   useDikshitarNames: boolean;
 }
