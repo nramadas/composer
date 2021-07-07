@@ -32,32 +32,37 @@ export function useEditorKeyboardInput() {
             e.preventDefault();
             return dispatch(composerActions.cursorExtend());
           }
+          case '!':
+          case '1': {
+            e.preventDefault();
+            return dispatch(composerActions.setSthayi(Sthayi.Sub2));
+          }
+          case '@':
+          case '2': {
+            e.preventDefault();
+            return dispatch(composerActions.setSthayi(Sthayi.Sub1));
+          }
+          case '#':
+          case '3': {
+            e.preventDefault();
+            return dispatch(composerActions.setSthayi(Sthayi.Mid));
+          }
+          case '$':
+          case '4': {
+            e.preventDefault();
+            return dispatch(composerActions.setSthayi(Sthayi.Up1));
+          }
+          case '%':
+          case '5': {
+            e.preventDefault();
+            return dispatch(composerActions.setSthayi(Sthayi.Up2));
+          }
         }
       } else if (isCmd) {
         switch (e.key) {
           case 'z': {
             e.preventDefault();
             return dispatch(composerActions.undo());
-          }
-          case 'q': {
-            e.preventDefault();
-            return dispatch(composerActions.setSthayi(Sthayi.Sub2));
-          }
-          case 'w': {
-            e.preventDefault();
-            return dispatch(composerActions.setSthayi(Sthayi.Sub1));
-          }
-          case 'e': {
-            e.preventDefault();
-            return dispatch(composerActions.setSthayi(Sthayi.Mid));
-          }
-          case 'r': {
-            e.preventDefault();
-            return dispatch(composerActions.setSthayi(Sthayi.Up1));
-          }
-          case 't': {
-            e.preventDefault();
-            return dispatch(composerActions.setSthayi(Sthayi.Up2));
           }
           case '1': {
             e.preventDefault();

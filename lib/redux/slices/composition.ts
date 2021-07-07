@@ -315,11 +315,16 @@ export const composition = createSlice({
         const head = draft.cursorPosition[0];
         const headBlock = draft.document.allBlocks[head];
         const sthayi = headBlock.sthayi || state.defaultSthayi;
+        let goBack = false;
 
         draft.cursorPosition.forEach((cur, i) => {
           const curBlock = draft.document.allBlocks[cur];
 
           if (action.payload === 'del') {
+            if (draft.document.allBlocks[cur].type === BlockType.Undefined) {
+              goBack = true;
+            }
+
             draft.document.allBlocks[cur] = {
               type: BlockType.Undefined,
               prev: curBlock.prev,
@@ -356,7 +361,16 @@ export const composition = createSlice({
         draft.blocks = blocks;
         draft.document = document;
 
-        if (action.payload !== 'del') {
+        if (action.payload === 'del' && goBack) {
+          const first = draft.cursorPosition[0];
+          const block = draft.document.allBlocks[first];
+
+          if (block.prev) {
+            draft.cursorPosition = [block.prev];
+          } else if (draft.cursorPosition.length > 1) {
+            draft.cursorPosition = [block.key];
+          }
+        } else if (action.payload !== 'del') {
           const last = draft.cursorPosition[draft.cursorPosition.length - 1];
           const block = draft.document.allBlocks[last];
 

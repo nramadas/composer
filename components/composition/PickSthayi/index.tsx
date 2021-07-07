@@ -29,11 +29,11 @@ export function PickSthayi(props: Props) {
       <Body2>Sthāyi:</Body2>
       {(
         [
-          [Sthayi.Sub2, 'Anumandra\n(ctrl / ⌘ + q)'],
-          [Sthayi.Sub1, 'Mandra\n(ctrl / ⌘ + w)'],
-          [Sthayi.Mid, 'Madhya\n(ctrl / ⌘ + e)'],
-          [Sthayi.Up1, 'Tara\n(ctrl / ⌘ + r)'],
-          [Sthayi.Up2, 'Athithara\n(ctrl / ⌘ + t)'],
+          [Sthayi.Sub2, 'Anumandra\n(shift + 1)'],
+          [Sthayi.Sub1, 'Mandra\n(shift + 2)'],
+          [Sthayi.Mid, 'Madhya\n(shift + 3)'],
+          [Sthayi.Up1, 'Tara\n(shift + 4)'],
+          [Sthayi.Up2, 'Athithara\n(shift + 5)'],
         ] as const
       ).map(([sthayi, infotext]) => (
         <RoundedGlass
