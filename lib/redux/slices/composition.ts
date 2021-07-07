@@ -20,6 +20,7 @@ import { Sthayi } from '#lib/models/Sthayi';
 import { SuladiSaptaTaala } from '#lib/models/Taala';
 import { raagaToKeyMap } from '#lib/raagaToKeyMap';
 import { taalaToAvartan } from '#lib/taalaToAvartan';
+import { totalBeatLength } from '#lib/totalBeatLength';
 
 function createSegment(
   headBlock: Block,
@@ -239,9 +240,9 @@ export const composition = createSlice({
         });
 
         // selection must not exceed length of 1
-        const total = beatLengths.reduce((acc, b) => acc + 1 / b, 0);
+        const total = totalBeatLength(beatLengths);
 
-        if (fixPrecision(total) > 1) {
+        if (total > 1) {
           return;
         }
 

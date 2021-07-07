@@ -8,6 +8,7 @@ import { useDispatch } from '#lib/hooks/useDispatch';
 import { useSelector } from '#lib/hooks/useSelector';
 import { Block } from '#lib/models/Block';
 import { composerActions } from '#lib/redux/actions';
+import { totalBeatLength } from '#lib/totalBeatLength';
 
 import styles from './index.module.scss';
 
@@ -28,14 +29,7 @@ export function PickMaatraa(props: Props) {
     });
 
     let selected: Block['style'] | undefined = styles[0];
-    let selectedLength = 0;
-
-    for (let i = 0; i < styles.length; i++) {
-      selectedLength += 1 / styles[i];
-      if (selected !== styles[i]) {
-        selected = undefined;
-      }
-    }
+    const selectedLength = totalBeatLength(styles);
 
     if (selectedLength > 1) {
       selected = undefined;
