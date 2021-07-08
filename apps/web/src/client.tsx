@@ -45,6 +45,8 @@ async function initialize() {
     document.getElementById('root'),
   );
 
+  document.body.style.opacity = '1';
+
   // @ts-ignore
   if (module.hot) {
     // @ts-ignore

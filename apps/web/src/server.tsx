@@ -44,6 +44,8 @@ export const renderApp = async (req: any, res: any) => {
         <meta charSet='utf-8' />
         <title>Ganapathi - Carnatic Music Notation Software</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        ${ createCss() }
+        ${ cssLinksFromAssets(assets, 'client') }
         <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 105.83334 105.83333'>
           <style>
             svg {
@@ -77,10 +79,14 @@ export const renderApp = async (req: any, res: any) => {
             </g>
           </g>
         </svg>">
-        ${ createCss() }
-        ${ cssLinksFromAssets(assets, 'client') }
+        <style>
+          body {
+            transition: opacity 0.50s;
+          }
+        </style>
       </head>
       <body>
+        <script>document.body.style.opacity = '0'</script>
         <div id="root">${ markup }</div>
         ${ jsScriptTagsFromAssets(assets, 'client', ' defer crossorigin') }
       </body>
