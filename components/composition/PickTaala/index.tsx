@@ -9,7 +9,7 @@ import { useDispatch } from '#lib/hooks/useDispatch';
 import { useSelector } from '#lib/hooks/useSelector';
 import { ChapuTaala, SuladiSaptaTaala } from '#lib/models/Taala';
 import { composerActions } from '#lib/redux/actions';
-import { taalaToToName } from '#lib/taalaToName';
+import { taalaToName } from '#lib/taalaToName';
 import { taalaToSymbols } from '#lib/taalaToSymbols';
 
 import styles from './index.module.scss';
@@ -45,7 +45,7 @@ export function PickTaala(props: Props) {
                 }}
               >
                 <div className={styles.taalaNameContainer}>
-                  <Body2>{taalaToToName(taala)}</Body2>
+                  <Body2>{taalaToName(taala)}</Body2>
                   {taala === selectedTaala && (
                     <Checkmark className={styles.selectIcon} />
                   )}
@@ -69,7 +69,7 @@ export function PickTaala(props: Props) {
                 }}
               >
                 <div className={styles.taalaNameContainer}>
-                  <Body2>{taalaToToName(taala)}</Body2>
+                  <Body2>{taalaToName(taala)}</Body2>
                   {taala === selectedTaala && (
                     <Checkmark className={styles.selectIcon} />
                   )}

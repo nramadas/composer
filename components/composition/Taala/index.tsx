@@ -6,7 +6,7 @@ import { Body1 } from '#components/typography/Body1';
 import { ModalRoute } from '#lib/constants/Route';
 import { useModalLink } from '#lib/hooks/useModalLink';
 import { useSelector } from '#lib/hooks/useSelector';
-import { taalaToToName } from '#lib/taalaToName';
+import { taalaToName } from '#lib/taalaToName';
 import { taalaToSymbols } from '#lib/taalaToSymbols';
 
 import styles from './index.module.scss';
@@ -26,7 +26,7 @@ export function Taala(props: Props) {
       className={cx(styles.container, props.className)}
       to={getModalLink(ModalRoute.PickTaala)}
     >
-      <Body1>{taalaToToName(taala)}</Body1>
+      <Body1>{taalaToName(taala)}</Body1>
       &nbsp; &nbsp;
       <Body1>{taalaToSymbols(taala)}</Body1>
     </Link>

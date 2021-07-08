@@ -46,7 +46,6 @@ const setupClient = (
           : '',
       },
     }),
-    suspense: isServerSide,
     url: process.env.RAZZLE_GQL_ENDPOINT!,
   });
 };

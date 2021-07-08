@@ -1,0 +1,60 @@
+.container {
+  background-color: var(--color-elevation-3);
+  border-radius: 4px;
+  border: none;
+  box-shadow: var(--shadow-elevation-1);
+  cursor: pointer;
+  outline: none;
+  padding: 20px;
+  transition: background-color 0.25s, box-shadow 0.25s, transform 0.25s;
+
+  &:hover,
+  &:focus {
+    background-color: var(--color-elevation-4);
+    box-shadow: var(--shadow-elevation-3);
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    background-color: var(--color-elevation-2);
+    box-shadow: var(--shadow-elevation-1);
+    transform: scale(0.95);
+  }
+}
+
+.info {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.label {
+  color: var(--color-onBackgroundFaded);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  color: var(--color-onBackground);
+  display: grid;
+  gap: 8px;
+  grid-template-columns: max-content 1fr;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.title {
+  color: var(--color-onBackground);
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &.noTitle {
+    color: var(--color-onBackgroundFaded);
+  }
+}

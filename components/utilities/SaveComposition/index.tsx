@@ -1,4 +1,3 @@
-import debounce from 'lodash/debounce';
 import { useEffect, useRef } from 'react';
 import { useMutation } from 'urql';
 
@@ -23,20 +22,36 @@ export function SaveComposition() {
   }));
 
   const getCompositionState = useRef(() => compositionState);
-  const save = useRef(
-    debounce(async () => {
+  const timer = useRef<ReturnType<typeof setTimeout>>();
+  const save = useRef(() => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
+
+    timer.current = setTimeout(async () => {
       const composition = await withLowPriority(() =>
         stateToComposition(getCompositionState.current()),
       );
 
       saveComposition({ composition });
-    }, 5000),
-  );
+    }, 5000);
+  });
 
   useEffect(() => {
     getCompositionState.current = () => compositionState;
     save.current();
   }, [compositionState]);
+
+  useEffect(() => {
+    return () => {
+      if (timer.current) {
+        clearTimeout(timer.current);
+      }
+
+      const composition = stateToComposition(getCompositionState.current());
+      saveComposition({ composition });
+    };
+  }, []);
 
   return null;
 }

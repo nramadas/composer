@@ -5,21 +5,51 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { App } from '#web/App';
 
-const initialRefreshToken = Cookies.get('r_token');
-const initialSessionToken = Cookies.get('s_token');
+async function initialize() {
+  const initialRefreshToken = Cookies.get('r_token');
+  let initialSessionToken = Cookies.get('s_token');
 
-hydrate(
-  <BrowserRouter>
-    <App
-      initialRefreshToken={initialRefreshToken}
-      initialSessionToken={initialSessionToken}
-    />
-  </BrowserRouter>,
-  document.getElementById('root'),
-);
+  if (initialRefreshToken) {
+    const result = await fetch(process.env.RAZZLE_GQL_ENDPOINT!, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
+          mutation ($refresh: ID!) {
+            refreshSession(refresh: $refresh) {
+              session
+            }
+          }
+        `,
+        variables: {
+          refresh: initialRefreshToken,
+        },
+      }),
+    }).then(r => r.json());
 
-// @ts-ignore
-if (module.hot) {
+    if (result.data?.refreshSession) {
+      initialSessionToken = result.data.refreshSession.session;
+      Cookies.set('s_token', initialSessionToken || '', { path: '/' });
+    }
+  }
+
+  hydrate(
+    <BrowserRouter>
+      <App
+        initialRefreshToken={initialRefreshToken}
+        initialSessionToken={initialSessionToken}
+      />
+    </BrowserRouter>,
+    document.getElementById('root'),
+  );
+
   // @ts-ignore
-  module.hot.accept();
+  if (module.hot) {
+    // @ts-ignore
+    module.hot.accept();
+  }
 }
+
+initialize();

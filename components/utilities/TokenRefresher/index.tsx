@@ -12,7 +12,7 @@ export function TokenRefresher() {
   useEffect(() => {
     if (typeof window !== undefined) {
       setTimeout(() => {
-        refreshSession({ refreshToken: refresh }).then(result => {
+        refreshSession({ refresh }).then(result => {
           const newSession = result.data?.refreshSession?.session;
 
           if (newSession) {

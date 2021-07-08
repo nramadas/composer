@@ -3,9 +3,9 @@ import { Sthayi } from '#lib/models/Sthayi';
 import { NominalID } from '#lib/type/nominal';
 
 export enum BlockType {
-  Continue,
-  Note,
-  Undefined,
+  Continue = 'Continue',
+  Note = 'Note',
+  Undefined = 'Undefined',
 }
 
 interface MetaData {
