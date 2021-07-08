@@ -17,6 +17,20 @@ export class CompositionService {
     private readonly compositionRepository: Repository<Composition>,
   ) {}
 
+  async delete(userId: User['id'], key: CompositionModel['key']) {
+    const composition = await this.compositionRepository.findOne({
+      where: { belongsToId: userId, key },
+    });
+
+    if (composition) {
+      const result = entityToModel(composition);
+      await this.compositionRepository.delete(composition.id);
+      return result;
+    }
+
+    return null;
+  }
+
   async get(id: Composition['id']) {
     const composition = await this.compositionRepository.findOne({
       where: { id },

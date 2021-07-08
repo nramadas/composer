@@ -1,7 +1,9 @@
 import cx from 'classnames';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useMutation } from 'urql';
 
+import { Trash } from '#components/icons/Trash';
 import { Body2 } from '#components/typography/Body2';
 import { H5 } from '#components/typography/H5';
 import { PageRoute } from '#lib/constants/Route';
@@ -12,6 +14,7 @@ import { composerActions } from '#lib/redux/actions';
 import { taalaToName } from '#lib/taalaToName';
 import { compositionToState } from '#lib/transformComposition';
 
+import deleteCompositionMutation from './deleteComposition.gql';
 import styles from './index.module.scss';
 
 interface Props {
@@ -22,6 +25,7 @@ interface Props {
 export function Composition(props: Props) {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [, deleteComposition] = useMutation(deleteCompositionMutation);
 
   return (
     <button
@@ -31,10 +35,19 @@ export function Composition(props: Props) {
         history.push(PageRoute.Compose);
       }}
     >
+      <Trash
+        className={styles.deleteIcon}
+        onClick={e => {
+          e.preventDefault();
+          e.stopPropagation();
+          deleteComposition({ key: props.composition.key });
+        }}
+      />
       <header
         className={cx(styles.title, {
           [styles.noTitle]: !props.composition.title,
         })}
+        title={props.composition.title || 'Untitled'}
       >
         <H5>{props.composition.title || 'Untitled'}</H5>
       </header>

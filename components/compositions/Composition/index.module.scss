@@ -6,6 +6,7 @@
   cursor: pointer;
   outline: none;
   padding: 20px;
+  position: relative;
   transition: background-color 0.25s, box-shadow 0.25s, transform 0.25s;
 
   &:hover,
@@ -15,13 +16,37 @@
   }
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.01);
+
+    .deleteIcon {
+      fill: var(--color-onBackgroundFaded);
+      pointer-events: all;
+
+      &:hover {
+        fill: var(--color-error);
+      }
+    }
   }
 
   &:active {
     background-color: var(--color-elevation-2);
     box-shadow: var(--shadow-elevation-1);
-    transform: scale(0.95);
+    transform: scale(0.99);
+  }
+}
+
+.deleteIcon {
+  fill: transparent;
+  height: 20px;
+  padding: 4px;
+  pointer-events: none;
+  position: absolute;
+  right: 8px;
+  top: 21px;
+  transition: fill 0.15s;
+
+  &:hover {
+    fill: var(--color-error);
   }
 }
 
@@ -53,6 +78,7 @@
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding-right: 20px;
 
   &.noTitle {
     color: var(--color-onBackgroundFaded);

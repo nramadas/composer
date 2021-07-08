@@ -11,6 +11,24 @@ export const config: Config = {
   },
   updates: {
     Mutation: {
+      deleteComposition: (result, args, cache) => {
+        const query = gql`
+          query {
+            myCompositions {
+              key
+            }
+          }
+        `;
+
+        cache.updateQuery({ query }, data => {
+          if (data?.myCompositions) {
+            data.myCompositions = data.myCompositions.filter(
+              (c: Composition) => c.key !== args.compositionKey,
+            );
+          }
+          return data;
+        });
+      },
       saveComposition: (result, args, cache) => {
         const query = gql`
           query {
