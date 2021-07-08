@@ -8,6 +8,7 @@ export function entityToModel(dbModel: UserDbModel): UserModel {
   };
 
   return {
+    activated: dbModel.activated,
     id: dbModel.id,
     created: dbModel.created,
     email: dbModel.email,

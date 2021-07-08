@@ -1,0 +1,21 @@
+.container {
+  align-items: center;
+  background-color: transparent;
+  border-radius: 4px;
+  color: var(--color-onBackgroundFaded);
+  display: inline-flex;
+  flex-direction: row;
+  padding: 8px;
+  text-decoration: none;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: var(--color-field);
+  }
+}
+
+.icon {
+  fill: var(--color-onBackgroundFaded);
+  height: 1rem;
+  margin-right: 4px;
+}

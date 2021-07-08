@@ -4,7 +4,6 @@ import React from 'react';
 import { TransitionMotion, spring } from 'react-motion';
 import { Provider } from 'react-redux';
 import { Route, Switch, useLocation } from 'react-router-dom';
-import type { ssrExchange } from 'urql';
 import 'normalize.css';
 
 import { AuthTokenProvider } from '#components/providers/AuthToken';
@@ -23,8 +22,6 @@ import { pages } from './pages';
 
 enablePatches();
 
-type SSRExchange = ReturnType<typeof ssrExchange>;
-
 interface LocationState {
   backgroundLocation?: ReturnType<typeof useLocation>;
 }
@@ -34,7 +31,6 @@ interface Props {
   initialAppState?: any;
   initialRefreshToken?: AuthToken['refresh'];
   initialSessionToken?: AuthToken['session'];
-  ssrExchange?: SSRExchange;
 }
 
 export function App(props: Props) {
@@ -55,12 +51,11 @@ export function App(props: Props) {
         Cookies.set('s_token', session, { path: '/' })
       }
     >
-      <TokenRefresher />
       <URQLProvider
         initialState={props.initialAppState}
         schema={props.gqlSchema}
-        ssrExchange={props.ssrExchange}
       >
+        <TokenRefresher />
         <Provider store={store}>
           <Switch location={backgroundLocation || location}>
             {pageRoutes.map(route => (

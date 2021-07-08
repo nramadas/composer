@@ -41,8 +41,12 @@ function allNotes(raaga: JanyaRaaga | MelakartaRaaga) {
 
 const keys = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';'];
 
-export function raagaToKeyMap(raaga: JanyaRaaga | MelakartaRaaga) {
-  const notes = allNotes(raaga);
+export function raagaToKeyMap(
+  raaga: JanyaRaaga | MelakartaRaaga | 'RaagaMaalikaa',
+) {
+  const notes = allNotes(
+    raaga === 'RaagaMaalikaa' ? MelakartaRaaga.Mayamalavagowla : raaga,
+  );
 
   return notes.map((note, i) => ({
     key: keys[i],

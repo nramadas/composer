@@ -6,6 +6,9 @@ import { User as UserModel } from './index';
 
 @ObjectType({ description: 'A user' })
 export class User implements UserModel {
+  @Field({ description: 'Whether or not the user is a paying customer' })
+  activated!: boolean;
+
   @Field({ description: 'When the user created the account' })
   created!: Date;
 

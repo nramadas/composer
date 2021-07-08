@@ -78,7 +78,7 @@ interface PatchState {
   }[];
 }
 
-interface CompositionState extends Omit<BaseComposition, 'swara'> {
+export interface CompositionState extends Omit<BaseComposition, 'blocks'> {
   blocks: Block['key'][][];
   cursorPosition: Block['key'][];
   defaultSthayi: Sthayi;
@@ -86,15 +86,10 @@ interface CompositionState extends Omit<BaseComposition, 'swara'> {
   dragInProgress: boolean;
   history: PatchState;
   hovered?: Block['key'];
-  id: string;
   keyMap: {
     key: string;
     shruti: Shruti;
   }[];
-  sectionTitles: {
-    [key: number]: string;
-  };
-  useDikshitarNames: boolean;
 }
 
 const INITIAL_TAALA = SuladiSaptaTaala.TriputaChatusra;
@@ -119,13 +114,12 @@ const INITIAL_STATE: CompositionState = {
     stack: [],
   },
   hovered: undefined,
-  id: ulid(),
+  key: ulid(),
   keyMap: raagaToKeyMap(MelakartaRaaga.Mayamalavagowla),
   raaga: MelakartaRaaga.Mayamalavagowla,
   sectionTitles: {},
   taala: INITIAL_TAALA,
   title: '',
-  transcriber: '',
   useDikshitarNames: false,
 };
 
@@ -233,7 +227,7 @@ export const composition = createSlice({
         state[key] = value;
       }
 
-      state.id = ulid();
+      state.key = ulid();
     },
     set(state, action: PayloadAction<CompositionState>) {
       const keys = Object.keys(INITIAL_STATE) as (keyof typeof INITIAL_STATE)[];

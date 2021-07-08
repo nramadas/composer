@@ -5,5 +5,4 @@ export interface Document {
     [key: string]: Block;
   };
   head: Block['key'];
-  numBeats: number;
 }

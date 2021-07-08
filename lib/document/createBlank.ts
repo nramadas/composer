@@ -7,7 +7,6 @@ export function createBlank(numTotalBeats: number): Document {
   const document: Document = {
     allBlocks: {},
     head: '',
-    numBeats: numTotalBeats,
   };
 
   let prev: Block['key'] = '';

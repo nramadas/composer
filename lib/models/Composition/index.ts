@@ -1,12 +1,17 @@
+import { Block } from '#lib/models/Block';
 import { MelakartaRaaga, JanyaRaaga } from '#lib/models/Raaga';
-import { Swara } from '#lib/models/Swara';
 import { ChapuTaala, SuladiSaptaTaala } from '#lib/models/Taala';
+import { NominalID } from '#lib/type/nominal';
 
 export interface Composition {
+  blocks: Block[];
   composer: string;
+  key: NominalID<'composition'>;
   raaga: MelakartaRaaga | JanyaRaaga | 'RaagaMaalikaa';
-  swara: Swara[];
+  sectionTitles: {
+    [key: number]: string;
+  };
   taala: ChapuTaala | SuladiSaptaTaala;
   title: string;
-  transcriber: string;
+  useDikshitarNames: boolean;
 }

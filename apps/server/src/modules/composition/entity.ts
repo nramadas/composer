@@ -4,42 +4,37 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  ManyToOne,
   PrimaryColumn,
-  Unique,
   UpdateDateColumn,
-  OneToMany,
 } from 'typeorm';
 import { ulid } from 'ulid';
 
-import { Data, User as UserModel } from '#lib/models/User';
-import { Composition } from '#server/modules/composition/entity';
+import { Composition as CompositionModel } from '#lib/models/Composition';
+import { User } from '#server/modules/user/entity';
 
 @Entity()
-@Unique(['authId', 'email'])
-export class User {
+export class Composition {
   @PrimaryColumn('varchar')
-  id!: UserModel['id'];
+  id!: string;
 
   @BeforeInsert()
   setId() {
     this.id = ulid();
   }
 
-  @Column()
-  authId!: string;
-
-  @Column()
-  activated!: boolean;
-
   @Column({ type: 'jsonb' })
-  data!: Partial<Data>;
+  data!: CompositionModel;
 
   @Column()
-  email!: string;
+  belongsToId!: User['id'];
+
+  @Column()
+  key!: string;
 
   // relations
-  @OneToMany('Composition', 'belongsTo')
-  compositions!: Composition[];
+  @ManyToOne('User', 'compositions')
+  belongsTo!: User;
 
   // metadata
   @CreateDateColumn()

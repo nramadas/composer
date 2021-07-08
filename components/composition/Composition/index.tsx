@@ -4,6 +4,7 @@ import React from 'react';
 import { Controls } from '#components/composition/Controls';
 import { Editor } from '#components/composition/Editor';
 import { Keyboard } from '#components/composition/Keyboard';
+import { SaveComposition } from '#components/utilities/SaveComposition';
 
 import styles from './index.module.scss';
 
@@ -22,6 +23,7 @@ export function Composition(props: Props) {
         <Editor className={styles.editor} />
       </div>
       <Keyboard className={styles.keyboard} />
+      <SaveComposition />
     </div>
   );
 }

@@ -19,9 +19,26 @@ export class UserService {
     private readonly userRepository: Repository<User>,
   ) {}
 
+  async activateUser(id: User['id']) {
+    const user = await this.userRepository.findOne({ where: { id } });
+
+    if (user) {
+      user.activated = true;
+      await this.userRepository.save(user);
+      return true;
+    }
+
+    return false;
+  }
+
   async create(model: Partial<Data> & { authId: string; email: string }) {
     const { authId, email, ...data } = model;
-    const user = this.userRepository.create({ authId, email, data });
+    const user = this.userRepository.create({
+      authId,
+      email,
+      data,
+      activated: false,
+    });
     await this.userRepository.save(user);
     this.logger.verbose(`Created a new user with id ${user.id}`);
     return entityToModel(user);

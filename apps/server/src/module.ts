@@ -9,13 +9,12 @@ import { TypeGraphQLModule } from 'typegraphql-nestjs';
 
 import { authChecker } from '#lib/graphql/authChecker';
 import { AuthnModule } from '#server/modules/authn';
+import { CompositionModule } from '#server/modules/composition';
 import { FileUploadModule } from '#server/modules/fileUpload';
 import { GqlContextModule } from '#server/modules/gqlContext';
 import { GqlContextService } from '#server/modules/gqlContext/service';
 import { PermissionModule } from '#server/modules/permission';
 import { PermissionService } from '#server/modules/permission/service';
-import { StagedTrackModule } from '#server/modules/stagedTrack';
-import { TrackModule } from '#server/modules/track';
 import { UserModule } from '#server/modules/user';
 
 import { AppController } from './controller';
@@ -53,9 +52,8 @@ import { AppService } from './service';
     }),
     AuthnModule,
     FileUploadModule,
-    StagedTrackModule,
-    TrackModule,
     UserModule,
+    CompositionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
