@@ -259,6 +259,11 @@ export const composition = createSlice({
         draft.composer = action.payload;
       });
     },
+    setDikshitarNaming(state, action: PayloadAction<boolean>) {
+      return withUndo(state, draft => {
+        draft.useDikshitarNames = action.payload;
+      });
+    },
     setLyrics(state, action: PayloadAction<LyricsPayload>) {
       return withUndo(state, draft => {
         draft.document.allBlocks[action.payload.key].lyrics =

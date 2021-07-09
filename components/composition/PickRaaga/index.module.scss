@@ -79,3 +79,15 @@
     border-color: var(--color-primary);
   }
 }
+
+.switchRow {
+  align-items: center;
+  color: var(--color-onBackgroundFaded);
+  display: flex;
+  flex-direction: row;
+  margin-top: 8px;
+}
+
+.switch {
+  margin-left: 8px;
+}

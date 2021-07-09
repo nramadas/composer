@@ -1,0 +1,51 @@
+$size: 25px;
+
+.container {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: $size / 2;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: inset 2px 2px 5px rgba(105, 141, 173, 0.4);
+  box-sizing: border-box;
+  cursor: pointer;
+  height: $size;
+  outline: none;
+  position: relative;
+  transition: background-color 0.25s;
+  width: 1.5 * $size;
+
+  &.on {
+    background-color: rgba(var(--color-primaryRGB), 0.6);
+
+    .thumb {
+      left: calc(50% - 6px);
+    }
+  }
+}
+
+.thumb {
+  background-color: var(--color-elevation-3);
+  border-radius: $size / 2;
+  box-shadow: 2px 2px 8px rgba(136, 165, 191, 0.28), inset 0px -1px 1px rgba(85, 102, 123, 0.4);
+  height: $size - 3;
+  left: 1px;
+  position: absolute;
+  top: 1px;
+  transition: left 0.25s;
+  width: $size - 3;
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: inset 2px 2px 8px rgba(4, 4, 5, 0.6);
+
+    &.on {
+      background-color: rgba(var(--color-primaryRGB), 0.5);
+    }
+  }
+
+  .thumb {
+    box-shadow: inset 0px -1px 1px #181A1D;
+  }
+}

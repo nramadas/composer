@@ -2,6 +2,7 @@ import cx from 'classnames';
 import React from 'react';
 
 import { Scale } from '#components/composition/Scale';
+import { Switch } from '#components/controls/Switch';
 import { Checkmark } from '#components/icons/Checkmark';
 import { Body2 } from '#components/typography/Body2';
 import { H3 } from '#components/typography/H3';
@@ -33,11 +34,31 @@ export function PickRaaga(props: Props) {
       <header>
         <H3 className={styles.header}>Select Rāga</H3>
       </header>
+      <div className={styles.switchRow}>
+        <Body2>Use Muthuswami Dikshitar naming scheme:</Body2>
+        <Switch
+          className={styles.switch}
+          value={useDikshitarNames}
+          onChange={() =>
+            dispatch(composerActions.setDikshitarNaming(!useDikshitarNames))
+          }
+        />
+      </div>
       <article className={styles.raagas}>
         <Overline className={styles.sectionHeader}>Mēḷakarta</Overline>
         <div className={styles.grid}>
           {Object.values(MelakartaRaaga)
-            .sort()
+            .sort((a, b) => {
+              const nameA = useDikshitarNames
+                ? melakartaRaagaToEnglishMuthu(a)
+                : melakartaRaagaToEnglish(a);
+
+              const nameB = useDikshitarNames
+                ? melakartaRaagaToEnglishMuthu(b)
+                : melakartaRaagaToEnglish(b);
+
+              return nameA.localeCompare(nameB);
+            })
             .map(raaga => (
               <button
                 className={cx(styles.selectRaaga, {
