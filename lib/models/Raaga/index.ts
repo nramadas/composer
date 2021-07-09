@@ -214,4 +214,20 @@ export enum JanyaRaaga {
   Kalaakaanti = 'Kalaakaanti',
   Kalkada = 'Kalkada',
   Kalpanadhaarini = 'Kalpanadhaarini',
+
+  // From Vakulābharanam
+  VaateeVasantabhairavi = 'VaateeVasantabhairavi',
+  Aahiri = 'Aahiri',
+  Amudhasurabhi = 'Amudhasurabhi',
+  Devipriya = 'Devipriya',
+  Kalindaja = 'Kalindaja',
+  Kuvalayabharanam = 'Kuvalayabharanam',
+  Mukthipradayini = 'Mukthipradayini',
+  Sallapa = 'Sallapa',
+  Soma = 'Soma',
+  Suuryaa = 'Suuryaa',
+  ShuddhaKaambhoji = 'ShuddhaKaambhoji',
+  Vasantabhairavi = 'Vasantabhairavi',
+  VasantaMukhaari = 'VasantaMukhaari',
+  Vijayollaasini = 'Vijayollaasini',
 }
