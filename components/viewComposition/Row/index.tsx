@@ -3,30 +3,25 @@ import React from 'react';
 
 import { Block } from '#components/viewComposition/Block';
 import { LENGTHS } from '#lib/avartanLength';
-import { beatLength } from '#lib/groupBlocksByAvartan';
 import { Anga } from '#lib/models/Anga';
 import { Block as BlockModel } from '#lib/models/Block';
 import { ChapuTaala, SuladiSaptaTaala } from '#lib/models/Taala';
 import { taalaToAvartan } from '#lib/taalaToAvartan';
+import { totalBeatLength } from '#lib/totalBeatLength';
 
 import styles from './index.module.scss';
 
-interface BlockRef {
-  block: BlockModel;
-  length: number;
-}
-
-function emitBlocks(blocks: BlockRef[], avartan: Anga[]) {
+function emitBlocks(blocks: BlockModel[], avartan: Anga[]) {
   const result: JSX.Element[] = [];
   let currentAngaIndex = 0;
   let currentAngaLength = LENGTHS.get(avartan[currentAngaIndex]);
-  let currentLength = 0;
+  let currentLengths: BlockModel['style'][] = [];
   let currentRow: BlockModel[] = [];
 
   for (let i = 0; i < blocks.length; i++) {
     const block = blocks[i];
 
-    if (currentLength >= currentAngaLength) {
+    if (totalBeatLength(currentLengths) >= currentAngaLength) {
       result.push(
         <div className={styles.anga}>
           {currentRow.map(block => (
@@ -38,12 +33,12 @@ function emitBlocks(blocks: BlockRef[], avartan: Anga[]) {
 
       currentAngaIndex = (currentAngaIndex + 1) % avartan.length;
       currentAngaLength = LENGTHS.get(avartan[currentAngaIndex]);
-      currentLength = 0;
+      currentLengths = [];
       currentRow = [];
     }
 
-    currentRow.push(block.block);
-    currentLength += block.length;
+    currentRow.push(block);
+    currentLengths.push(block.style);
   }
 
   result.push(
@@ -69,16 +64,11 @@ interface Props {
 export function Row(props: Props) {
   const avartan = taalaToAvartan(props.taala);
 
-  const blockRefs = props.blocks.map(block => ({
-    block,
-    length: beatLength(block),
-  }));
-
   return (
     <div className={cx(props.className, styles.container)}>
       <div className={styles.title}>{props.title}</div>
       <div className={styles.content}>
-        {emitBlocks(blockRefs, avartan).map((el, i) =>
+        {emitBlocks(props.blocks, avartan).map((el, i) =>
           React.cloneElement(el, {
             key: i,
           }),

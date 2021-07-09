@@ -5,32 +5,32 @@ import React, { useCallback } from 'react';
 import { Block } from '#components/composition/Block';
 import { ContentEditableInput } from '#components/controls/inputs/flat/ContentEditableInput';
 import { LENGTHS } from '#lib/avartanLength';
-import { beatLength } from '#lib/groupBlocksByAvartan';
 import { useDispatch } from '#lib/hooks/useDispatch';
 import { useSelector } from '#lib/hooks/useSelector';
 import { Anga } from '#lib/models/Anga';
 import { Block as BlockModel } from '#lib/models/Block';
 import { composerActions } from '#lib/redux/actions';
 import { taalaToAvartan } from '#lib/taalaToAvartan';
+import { totalBeatLength } from '#lib/totalBeatLength';
 
 import styles from './index.module.scss';
 
 interface BlockRef {
   key: BlockModel['key'];
-  length: number;
+  length: BlockModel['style'];
 }
 
 function emitBlocks(blocks: BlockRef[], avartan: Anga[]) {
   const result: JSX.Element[] = [];
   let currentAngaIndex = 0;
   let currentAngaLength = LENGTHS.get(avartan[currentAngaIndex]);
-  let currentLength = 0;
+  let currentLengths: BlockModel['style'][] = [];
   let currentRow: BlockModel['key'][] = [];
 
   for (let i = 0; i < blocks.length; i++) {
     const block = blocks[i];
 
-    if (currentLength >= currentAngaLength) {
+    if (totalBeatLength(currentLengths) >= currentAngaLength) {
       result.push(
         <div className={styles.anga}>
           {currentRow.map(key => (
@@ -42,12 +42,12 @@ function emitBlocks(blocks: BlockRef[], avartan: Anga[]) {
 
       currentAngaIndex = (currentAngaIndex + 1) % avartan.length;
       currentAngaLength = LENGTHS.get(avartan[currentAngaIndex]);
-      currentLength = 0;
+      currentLengths = [];
       currentRow = [];
     }
 
     currentRow.push(block.key);
-    currentLength += block.length;
+    currentLengths.push(block.length);
   }
 
   result.push(
@@ -77,7 +77,7 @@ export function Row(props: Props) {
       avartan: taalaToAvartan(state.composition.taala),
       blocks: props.blocks.map(key => ({
         key,
-        length: beatLength(state.composition.document.allBlocks[key]),
+        length: state.composition.document.allBlocks[key].style,
       })),
       sectionTitle: state.composition.sectionTitles[props.rowKey] || '',
     }),
