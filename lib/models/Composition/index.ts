@@ -7,6 +7,7 @@ export interface Composition {
   blocks: Block[];
   composer: string;
   key: NominalID<'composition'>;
+  lastUpdate: number;
   raaga: MelakartaRaaga | JanyaRaaga | 'RaagaMaalikaa';
   sectionTitles: {
     [key: number]: string;

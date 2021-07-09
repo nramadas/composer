@@ -33,6 +33,7 @@ mutation ($composition: CompositionInput!) {
     }
     composer
     key
+    lastUpdate
     raaga
     sectionTitles
     taala

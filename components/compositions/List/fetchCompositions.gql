@@ -33,6 +33,7 @@ query {
     }
     composer
     key
+    lastUpdate
     raaga
     sectionTitles
     taala

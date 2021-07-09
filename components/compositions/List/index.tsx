@@ -30,13 +30,15 @@ export function List(props: Props) {
             Array.from({ length: 5 }).map((_, i) => (
               <div className={styles.emptyComposition} key={i} />
             ))}
-          {compositions.map(composition => (
-            <Composition
-              className={styles.composition}
-              composition={composition}
-              key={composition.key}
-            />
-          ))}
+          {compositions
+            .sort((a, b) => b.lastUpdate - a.lastUpdate)
+            .map(composition => (
+              <Composition
+                className={styles.composition}
+                composition={composition}
+                key={composition.key}
+              />
+            ))}
         </div>
       </div>
     </div>

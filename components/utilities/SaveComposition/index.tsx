@@ -14,6 +14,7 @@ export function SaveComposition() {
     composer: state.composition.composer,
     document: state.composition.document,
     key: state.composition.key,
+    lastUpdate: state.composition.lastUpdate,
     raaga: state.composition.raaga,
     sectionTitles: state.composition.sectionTitles,
     taala: state.composition.taala,

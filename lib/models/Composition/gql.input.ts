@@ -16,6 +16,9 @@ export class CompositionInput implements CompositionModel {
   @Field(type => ID)
   key!: CompositionModel['key'];
 
+  @Field()
+  lastUpdate!: number;
+
   @Field(type => String)
   raaga!: CompositionModel['raaga'];
 

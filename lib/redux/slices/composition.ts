@@ -116,6 +116,7 @@ const INITIAL_STATE: CompositionState = {
   hovered: undefined,
   key: ulid(),
   keyMap: raagaToKeyMap(MelakartaRaaga.Mayamalavagowla),
+  lastUpdate: Date.now(),
   raaga: MelakartaRaaga.Mayamalavagowla,
   sectionTitles: {},
   taala: INITIAL_TAALA,
@@ -139,6 +140,7 @@ function withUndo(
     draft.history.cursor++;
     draft.history.stack.length = draft.history.cursor;
     draft.history.stack[draft.history.cursor - 1] = { patches, inversePatches };
+    draft.lastUpdate = Date.now();
   });
 }
 
@@ -215,6 +217,7 @@ export const composition = createSlice({
 
       return produce(nextState, draft => {
         draft.history.cursor++;
+        draft.lastUpdate = Date.now();
       });
     },
     reset(state) {
@@ -228,6 +231,7 @@ export const composition = createSlice({
       }
 
       state.key = ulid();
+      state.lastUpdate = Date.now();
     },
     set(state, action: PayloadAction<CompositionState>) {
       const keys = Object.keys(INITIAL_STATE) as (keyof typeof INITIAL_STATE)[];
@@ -247,6 +251,8 @@ export const composition = createSlice({
         // @ts-ignore
         state[key] = value;
       }
+
+      state.lastUpdate = Date.now();
     },
     setComposer(state, action: PayloadAction<CompositionState['composer']>) {
       return withUndo(state, draft => {
@@ -452,14 +458,6 @@ export const composition = createSlice({
         draft.title = action.payload;
       });
     },
-    setTranscriber(
-      state,
-      action: PayloadAction<CompositionState['transcriber']>,
-    ) {
-      return withUndo(state, draft => {
-        draft.transcriber = action.payload;
-      });
-    },
     startDrag(state) {
       state.dragInProgress = true;
     },
@@ -518,6 +516,7 @@ export const composition = createSlice({
 
       return produce(nextState, draft => {
         draft.history.cursor--;
+        draft.lastUpdate = Date.now();
       });
     },
   },

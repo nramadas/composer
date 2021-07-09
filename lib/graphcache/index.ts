@@ -8,6 +8,9 @@ type Config = Parameters<typeof cacheExchange>[0];
 export const config: Config = {
   keys: {
     Composition: data => String(data.key),
+    ContinueBlock: data => String(data.key),
+    NoteBlock: data => String(data.key),
+    UndefinedBlock: data => String(data.key),
   },
   updates: {
     Mutation: {

@@ -36,6 +36,7 @@ export function compositionToState(composition: Composition): CompositionState {
     hovered: undefined,
     key: composition.key,
     keyMap: raagaToKeyMap(composition.raaga),
+    lastUpdate: composition.lastUpdate,
     raaga: composition.raaga,
     sectionTitles: composition.sectionTitles,
     taala: composition.taala,
@@ -51,6 +52,7 @@ export function stateToComposition(
     | 'composer'
     | 'document'
     | 'key'
+    | 'lastUpdate'
     | 'raaga'
     | 'sectionTitles'
     | 'taala'
@@ -71,6 +73,7 @@ export function stateToComposition(
     blocks,
     composer: state.composer,
     key: state.key,
+    lastUpdate: state.lastUpdate,
     raaga: state.raaga,
     sectionTitles: state.sectionTitles,
     taala: state.taala,
