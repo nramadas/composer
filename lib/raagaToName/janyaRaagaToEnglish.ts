@@ -89,5 +89,53 @@ export function janyaRaagaToEnglish(raaga: JanyaRaaga) {
       return 'Navarasa Mālā';
     case JanyaRaaga.SindhuGowri:
       return 'Sindhu Gowri';
+
+    // From Hanumatodi
+    case JanyaRaaga.Janatodi:
+      return 'Janatodi';
+    case JanyaRaaga.AmritaDhanyaasi:
+      return 'Amrita Dhanyāsi';
+    case JanyaRaaga.Asaaveri:
+      return 'Asāveri';
+    case JanyaRaaga.Bhaanuchandrika:
+      return 'Bhānuchandrika';
+    case JanyaRaaga.Bhadratodi:
+      return 'Bhadratodi';
+    case JanyaRaaga.Bhoopaalam:
+      return 'Bhoopālam';
+    case JanyaRaaga.Chandrikatodi:
+      return 'Chandrikatodi';
+    case JanyaRaaga.Deshikatodi:
+      return 'Deshikatodi';
+    case JanyaRaaga.Dhanyaasi:
+      return 'Dhanyāsi';
+    case JanyaRaaga.Divyamaalati:
+      return 'Divyamālati';
+    case JanyaRaaga.Ghanta:
+      return 'Ghanta';
+    case JanyaRaaga.Kalaasaaveri:
+      return 'Kalāsāveri';
+    case JanyaRaaga.Kanakasaaveri:
+      return 'Kanakasāveri';
+    case JanyaRaaga.Naagavaraali:
+      return 'Nāgavarāli';
+    case JanyaRaaga.Prabhupriya:
+      return 'Prabhupriya';
+    case JanyaRaaga.Punnaagatodi:
+      return 'Punnāgatodi';
+    case JanyaRaaga.Punnagavarali:
+      return 'Punnagavarali';
+    case JanyaRaaga.Shravanamallika:
+      return 'Shravanamallika';
+    case JanyaRaaga.Sowjanya:
+      return 'Sowjanya';
+    case JanyaRaaga.ShuddhaSeemantini:
+      return 'Shuddha Seemantini';
+    case JanyaRaaga.ShuddhaTodi:
+      return 'Shuddha Todi';
+    case JanyaRaaga.Sindhubhairavi:
+      return 'Sindhubhairavi';
+    case JanyaRaaga.Swarnamalli:
+      return 'Swarnamalli';
   }
 }
