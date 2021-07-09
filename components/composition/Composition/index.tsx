@@ -23,7 +23,7 @@ export function Composition(props: Props) {
         <Editor className={styles.editor} />
       </div>
       <Keyboard className={styles.keyboard} />
-      <SaveComposition />
+      <SaveComposition className={styles.saveComposition} />
     </div>
   );
 }

@@ -69,6 +69,13 @@ $controlsHeight: 60px;
   transform: translateX(-50%);
 }
 
+.saveComposition {
+  bottom: 8px;
+  position: fixed;
+  right: 8px;
+  z-index: 1;
+}
+
 .shadowBox {
   bottom: 0;
   box-shadow: inset var(--shadow-elevation-3);

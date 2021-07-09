@@ -1,0 +1,26 @@
+@keyframes inout {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.container {
+  animation: inout 2s;
+  background-color: rgba(var(--color-backgroundRGB), 0.8);
+  border-radius: 4px;
+  color: var(--color-onBackground);
+  padding: 4px 12px 8px;
+  opacity: 0;
+}

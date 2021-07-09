@@ -1,13 +1,20 @@
-import { useEffect, useRef } from 'react';
+import cx from 'classnames';
+import React, { useEffect, useRef, useState } from 'react';
 import { useMutation } from 'urql';
 
+import { Caption } from '#components/typography/Caption';
 import { useSelector } from '#lib/hooks/useSelector';
 import { stateToComposition } from '#lib/transformComposition';
 import { withLowPriority } from '#lib/withLowPriority';
 
+import styles from './index.module.scss';
 import saveCompositionMutation from './saveComposition.gql';
 
-export function SaveComposition() {
+interface Props {
+  className?: string;
+}
+
+export function SaveComposition(props: Props) {
   const [, saveComposition] = useMutation(saveCompositionMutation);
   const compositionState = useSelector(state => ({
     blocks: state.composition.blocks,
@@ -21,6 +28,7 @@ export function SaveComposition() {
     title: state.composition.title,
     useDikshitarNames: state.composition.useDikshitarNames,
   }));
+  const [saveCount, setSaveCount] = useState(0);
 
   const getCompositionState = useRef(() => compositionState);
   const timer = useRef<ReturnType<typeof setTimeout>>();
@@ -34,8 +42,9 @@ export function SaveComposition() {
         stateToComposition(getCompositionState.current()),
       );
 
+      setSaveCount(count => count + 1);
       saveComposition({ composition });
-    }, 5000);
+    }, 3000);
   });
 
   useEffect(() => {
@@ -53,6 +62,14 @@ export function SaveComposition() {
       saveComposition({ composition });
     };
   }, []);
+
+  if (saveCount > 1) {
+    return (
+      <div className={cx(props.className, styles.container)} key={saveCount}>
+        <Caption>Autosaving...</Caption>
+      </div>
+    );
+  }
 
   return null;
 }
