@@ -193,4 +193,25 @@ export enum JanyaRaaga {
   Niranjana = 'Niranjana',
   Shaanthabhaashini = 'Shaanthabhaashini',
   Shivashakti = 'Shivashakti',
+
+  // From Kokilapriyaa
+  Kokilaaravam = 'Kokilaaravam',
+  Chitramani = 'Chitramani',
+  Jnaanachintaamani = 'Jnaanachintaamani',
+  Kowmaari = 'Kowmaari',
+  ShuddhaLalitha = 'ShuddhaLalitha',
+  Vardhani = 'Vardhani',
+  Vasantamalli = 'Vasantamalli',
+  Vasantanaaraayani = 'Vasantanaaraayani',
+
+  // From Rupavati
+  Rowpyanaka = 'Rowpyanaka',
+  Shyaamakalyaani = 'Shyaamakalyaani',
+
+  // From Gaayakapriya
+  GeyaHejjajji = 'GeyaHejjajji',
+  Hejjajji = 'Hejjajji',
+  Kalaakaanti = 'Kalaakaanti',
+  Kalkada = 'Kalkada',
+  Kalpanadhaarini = 'Kalpanadhaarini',
 }

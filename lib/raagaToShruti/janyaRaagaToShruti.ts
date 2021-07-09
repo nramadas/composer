@@ -555,5 +555,111 @@ export function janyaRaagaToShruti(raaga: JanyaRaaga) {
         aa: [Shruti.G2, Shruti.M1, Shruti.D2],
         av: [Shruti.N2, Shruti.D2, Shruti.M1, Shruti.G2],
       };
+
+    // From Kokilapriyaa
+    case JanyaRaaga.Kokilaaravam:
+      return {
+        aa: [Shruti.R1, Shruti.M1, Shruti.P, Shruti.D2, Shruti.N3],
+        av: [Shruti.N3, Shruti.D2, Shruti.P, Shruti.M1, Shruti.G2, Shruti.R2],
+      };
+    case JanyaRaaga.Chitramani:
+      return {
+        aa: [Shruti.R1, Shruti.M1, Shruti.P, Shruti.D2, Shruti.N3],
+        av: [Shruti.N3, Shruti.D2, Shruti.P, Shruti.M1, Shruti.G2, Shruti.R1],
+      };
+    case JanyaRaaga.Jnaanachintaamani:
+      return {
+        aa: [Shruti.R1, Shruti.M1, Shruti.D2, Shruti.N3],
+        av: [Shruti.N3, Shruti.D2, Shruti.P, Shruti.M1, Shruti.R1],
+      };
+    case JanyaRaaga.Kowmaari:
+      return {
+        aa: [Shruti.R1, Shruti.G2, Shruti.M1, Shruti.P, Shruti.D2],
+        av: [Shruti.N3, Shruti.D2, Shruti.P, Shruti.M1, Shruti.G2, Shruti.R1],
+      };
+    case JanyaRaaga.ShuddhaLalitha:
+      return {
+        aa: [Shruti.P, Shruti.M1, Shruti.D2, Shruti.N3],
+        av: [
+          Shruti.N3,
+          Shruti.S,
+          Shruti.D2,
+          Shruti.P,
+          Shruti.M1,
+          Shruti.G2,
+          Shruti.R1,
+        ],
+      };
+    case JanyaRaaga.Vardhani:
+      return {
+        aa: [
+          Shruti.G2,
+          Shruti.M1,
+          Shruti.P,
+          Shruti.M1,
+          Shruti.P,
+          Shruti.D2,
+          Shruti.N3,
+        ],
+        av: [Shruti.N3, Shruti.D2, Shruti.P, Shruti.M1, Shruti.G2, Shruti.R1],
+      };
+    case JanyaRaaga.Vasantamalli:
+      return {
+        aa: [Shruti.G2, Shruti.M1, Shruti.P, Shruti.N3],
+        av: [Shruti.D2, Shruti.P, Shruti.M1, Shruti.G2],
+      };
+    case JanyaRaaga.Vasantanaaraayani:
+      return {
+        aa: [Shruti.R1, Shruti.G2, Shruti.M1, Shruti.P],
+        av: [Shruti.N3, Shruti.D2, Shruti.P, Shruti.M1, Shruti.G2, Shruti.R1],
+      };
+
+    // From Rupavati
+    case JanyaRaaga.Rowpyanaka:
+      return {
+        aa: [Shruti.M1, Shruti.P, Shruti.D3, Shruti.N3],
+        av: [Shruti.N3, Shruti.P, Shruti.M1, Shruti.G2, Shruti.R1],
+      };
+    case JanyaRaaga.Shyaamakalyaani:
+      return {
+        aa: [Shruti.M1, Shruti.G2, Shruti.M1, Shruti.P, Shruti.D3, Shruti.N3],
+        av: [
+          Shruti.N3,
+          Shruti.P,
+          Shruti.D3,
+          Shruti.N3,
+          Shruti.P,
+          Shruti.M1,
+          Shruti.G2,
+          Shruti.R1,
+        ],
+      };
+
+    // From Gāyakapriya
+    case JanyaRaaga.GeyaHejjajji:
+      return {
+        aa: [Shruti.R1, Shruti.M1, Shruti.G3, Shruti.M1, Shruti.P, Shruti.D1],
+        av: [Shruti.N3, Shruti.D1, Shruti.P, Shruti.M1, Shruti.G3, Shruti.R1],
+      };
+    case JanyaRaaga.Hejjajji:
+      return {
+        aa: [Shruti.R1, Shruti.G3, Shruti.M1, Shruti.P, Shruti.D1],
+        av: [Shruti.N1, Shruti.D1, Shruti.P, Shruti.M1, Shruti.G3, Shruti.R1],
+      };
+    case JanyaRaaga.Kalaakaanti:
+      return {
+        aa: [Shruti.R1, Shruti.G3, Shruti.M1, Shruti.D1, Shruti.N1],
+        av: [Shruti.N1, Shruti.D1, Shruti.P, Shruti.G3, Shruti.R1],
+      };
+    case JanyaRaaga.Kalkada:
+      return {
+        aa: [Shruti.R1, Shruti.G3, Shruti.P, Shruti.D1, Shruti.N1],
+        av: [Shruti.N1, Shruti.D1, Shruti.P, Shruti.G3, Shruti.R1],
+      };
+    case JanyaRaaga.Kalpanadhaarini:
+      return {
+        aa: [Shruti.G3, Shruti.M1, Shruti.P, Shruti.D1],
+        av: [Shruti.N1, Shruti.D1, Shruti.P, Shruti.M1, Shruti.G3, Shruti.R1],
+      };
   }
 }
