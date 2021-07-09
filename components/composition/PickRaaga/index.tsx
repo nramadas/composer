@@ -88,7 +88,17 @@ export const PickRaaga = memo(
           <Overline className={styles.sectionHeader}>Janya</Overline>
           <div className={styles.grid}>
             {Object.values(JanyaRaaga)
-              .sort()
+              .sort((a, b) => {
+                const nameA = useDikshitarNames
+                  ? janyaRaagaToEnglishMuthu(a)
+                  : janyaRaagaToEnglish(a);
+
+                const nameB = useDikshitarNames
+                  ? janyaRaagaToEnglishMuthu(b)
+                  : janyaRaagaToEnglish(b);
+
+                return nameA.localeCompare(nameB);
+              })
               .map(raaga => (
                 <button
                   className={cx(styles.selectRaaga, {
