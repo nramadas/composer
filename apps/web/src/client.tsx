@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import React from 'react';
-import { hydrate } from 'react-dom';
+import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 import { App } from '#web/App';
@@ -35,7 +35,7 @@ async function initialize() {
     }
   }
 
-  hydrate(
+  render(
     <BrowserRouter>
       <App
         initialRefreshToken={initialRefreshToken}

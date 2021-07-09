@@ -1,10 +1,6 @@
 import express from 'express';
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
 
 import { createCss } from '#lib/theme/createCss';
-import { App } from '#web/App';
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST!);
 
@@ -28,13 +24,7 @@ const jsScriptTagsFromAssets = (assets: any, entrypoint: any, extra = '') => {
     : '';
 };
 
-export const renderApp = async (req: any, res: any) => {
-  const markup = renderToString(
-    <StaticRouter location={req.url}>
-      <App />
-    </StaticRouter>,
-  );
-
+export const renderApp = (req: any, res: any) => {
   const html =
     // prettier-ignore
     `<!doctype html>
@@ -83,11 +73,20 @@ export const renderApp = async (req: any, res: any) => {
           body {
             transition: opacity 0.50s;
           }
+
+          noscript {
+            align-items: center;
+            color: var(--color-onBackground);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
         </style>
       </head>
       <body>
+        <noscript>Sorry, this page requires javascript to function</noscript>
         <script>document.body.style.opacity = '0'</script>
-        <div id="root">${ markup }</div>
+        <div id="root"></div>
         ${ jsScriptTagsFromAssets(assets, 'client', ' defer crossorigin') }
       </body>
     </html>`;
