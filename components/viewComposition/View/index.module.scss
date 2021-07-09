@@ -1,0 +1,38 @@
+.blocks {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.blocksWrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container {
+  padding: 80px 40px;
+}
+
+.metaData {
+  margin-top: 40px;
+}
+
+.notFound {
+  align-items: center;
+  color: var(--color-onBackground);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 20px;
+}
+
+.title {
+  color: var(--color-onBackground);
+  display: block;
+  text-align: center;
+}

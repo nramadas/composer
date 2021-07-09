@@ -11,11 +11,13 @@ import { taalaToAvartan } from '#lib/taalaToAvartan';
 export function compositionToState(composition: Composition): CompositionState {
   const initialDocument: Document = {
     allBlocks: {},
-    head: composition.blocks[0].key,
+    head: composition.blocks[0][0].key,
   };
 
-  for (const block of composition.blocks) {
-    initialDocument.allBlocks[block.key] = block;
+  for (const row of composition.blocks) {
+    for (const block of row) {
+      initialDocument.allBlocks[block.key] = block;
+    }
   }
 
   const avartan = taalaToAvartan(composition.taala);
@@ -60,13 +62,15 @@ export function stateToComposition(
     | 'useDikshitarNames'
   >,
 ): Composition {
-  const blocks: Block[] = [];
+  const blocks: Block[][] = [];
 
   for (const row of state.blocks) {
+    const newRow: Block[] = [];
     for (const blockKey of row) {
       const block = state.document.allBlocks[blockKey];
-      blocks.push(block);
+      newRow.push(block);
     }
+    blocks.push(newRow);
   }
 
   return {

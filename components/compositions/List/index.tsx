@@ -17,6 +17,7 @@ export function List(props: Props) {
   const [result] = useUserDependentQuery({ query: fetchCompositionsQuery });
 
   const compositions: CompositionModel[] = result.data?.myCompositions || [];
+  const userId = result.data?.me.id || '';
 
   return (
     <div className={cx(props.className, styles.container)}>
@@ -37,6 +38,7 @@ export function List(props: Props) {
                 className={styles.composition}
                 composition={composition}
                 key={composition.key}
+                userId={userId}
               />
             ))}
         </div>

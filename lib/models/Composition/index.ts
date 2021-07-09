@@ -4,7 +4,7 @@ import { ChapuTaala, SuladiSaptaTaala } from '#lib/models/Taala';
 import { NominalID } from '#lib/type/nominal';
 
 export interface Composition {
-  blocks: Block[];
+  blocks: Block[][];
   composer: string;
   key: NominalID<'composition'>;
   lastUpdate: number;

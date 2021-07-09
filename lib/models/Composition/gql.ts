@@ -1,14 +1,14 @@
-import { GraphQLJSONObject } from 'graphql-type-json';
+import { GraphQLJSON, GraphQLJSONObject } from 'graphql-type-json';
 import { Field, ID, ObjectType } from 'type-graphql';
 
-import { Block } from '#lib/models/Block/gql';
+import { Block } from '#lib/models/Block';
 
 import { Composition as CompositionModel } from './index';
 
 @ObjectType({ description: 'A composition' })
 export class Composition implements CompositionModel {
-  @Field(type => [Block])
-  blocks!: typeof Block[];
+  @Field(type => GraphQLJSON)
+  blocks!: Block[][];
 
   @Field()
   composer!: string;

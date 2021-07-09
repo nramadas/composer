@@ -26,4 +26,8 @@ export const pages = {
     loader: () => import('#components/pages/Home'),
     loading: () => <div />,
   }),
+  [PageRoute.View]: Loadable({
+    loader: () => import('#components/pages/ViewComposition'),
+    loading: () => <div />,
+  }),
 };

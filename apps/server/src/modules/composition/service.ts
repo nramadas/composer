@@ -31,9 +31,9 @@ export class CompositionService {
     return null;
   }
 
-  async get(id: Composition['id']) {
+  async get(userId: User['id'], key: Composition['key']) {
     const composition = await this.compositionRepository.findOne({
-      where: { id },
+      where: { key, belongsToId: userId },
     });
     return composition ? entityToModel(composition) : null;
   }

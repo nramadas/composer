@@ -50,6 +50,12 @@
   }
 }
 
+.footer {
+  align-items: center;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 .info {
   overflow: hidden;
   white-space: nowrap;
@@ -83,4 +89,15 @@
   &.noTitle {
     color: var(--color-onBackgroundFaded);
   }
+}
+
+.update {
+  color: var(--color-onBackgroundFaded);
+  display: block;
+  margin-top: 4px;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }

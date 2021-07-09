@@ -1,8 +1,5 @@
-query {
-  me {
-    id
-  }
-  myCompositions {
+query ($userId: ID!, $key: ID!) {
+  getComposition(belongsTo: $userId, key: $key) {
     blocks
     composer
     key

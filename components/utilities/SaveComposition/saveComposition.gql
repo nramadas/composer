@@ -1,36 +1,6 @@
 mutation ($composition: CompositionInput!) {
   saveComposition(composition: $composition) {
-    blocks {
-      ... on ContinueBlock {
-        key
-        lyrics
-        next
-        prev
-        sthayi
-        style
-        type
-      }
-      ... on NoteBlock {
-        key
-        lyrics
-        next
-        prev
-        shruti
-        sthayi
-        style
-        type
-      }
-      ... on UndefinedBlock {
-        key
-        lyrics
-        next
-        prev
-        shruti
-        sthayi
-        style
-        type
-      }
-    }
+    blocks
     composer
     key
     lastUpdate

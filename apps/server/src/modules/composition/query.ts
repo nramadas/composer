@@ -27,8 +27,9 @@ export class CompositionQueryResolver {
     nullable: true,
   })
   async getComposition(
-    @Arg('compositionId', type => ID) compositionId: string,
+    @Arg('belongsTo', type => ID) belongsTo: User['id'],
+    @Arg('key', type => ID) key: Composition['key'],
   ) {
-    return await this.compositionService.get(compositionId);
+    return await this.compositionService.get(belongsTo, key);
   }
 }

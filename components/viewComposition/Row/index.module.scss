@@ -31,8 +31,9 @@
   }
 }
 
-.input {
+.title {
   box-sizing: border-box;
+  color: var(--color-onBackground);
   font-size: 0.875rem;
   font-variant: small-caps;
   height: calc(0.875rem + 16px);
