@@ -172,4 +172,25 @@ export enum JanyaRaaga {
   ShuddhaTodi = 'ShuddhaTodi',
   Sindhubhairavi = 'Sindhubhairavi',
   Swarnamalli = 'Swarnamalli',
+
+  // From Dhenuka
+  Dhunibhinnashadjam = 'Dhunibhinnashadjam',
+  Bhinnashadjam = 'Bhinnashadjam',
+  Mohananaata = 'Mohananaata',
+  Udayaravichandrika = 'Udayaravichandrika',
+  Vasanthatodi = 'Vasanthatodi',
+
+  // From Nātakapriya
+  Nataabharanam = 'Nataabharanam',
+  Alankaarapriya = 'Alankaarapriya',
+  Bhaagyashabari = 'Bhaagyashabari',
+  Deeparamu = 'Deeparamu',
+  Gunaavati = 'Gunaavati',
+  Hindoladeshikam = 'Hindoladeshikam',
+  Kanakadri = 'Kanakadri',
+  Maatangakaamini = 'Maatangakaamini',
+  Naatyadhaarana = 'Naatyadhaarana',
+  Niranjana = 'Niranjana',
+  Shaanthabhaashini = 'Shaanthabhaashini',
+  Shivashakti = 'Shivashakti',
 }

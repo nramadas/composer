@@ -137,5 +137,43 @@ export function janyaRaagaToEnglishMuthu(raaga: JanyaRaaga) {
       return 'Sindhubhairavi';
     case JanyaRaaga.Swarnamalli:
       return 'Swarnamalli';
+
+    // From Dhenuka
+    case JanyaRaaga.Dhunibhinnashadjam:
+      return 'Dhunibhinnashadjam';
+    case JanyaRaaga.Bhinnashadjam:
+      return 'Bhinnashadjam';
+    case JanyaRaaga.Mohananaata:
+      return 'Mohananāta';
+    case JanyaRaaga.Udayaravichandrika:
+      return 'Udayaravichandrika';
+    case JanyaRaaga.Vasanthatodi:
+      return 'Vasanthatodi';
+
+    // From Nātakapriya
+    case JanyaRaaga.Nataabharanam:
+      return 'Natābharanam';
+    case JanyaRaaga.Alankaarapriya:
+      return 'Alankārapriya';
+    case JanyaRaaga.Bhaagyashabari:
+      return 'Bhāgyashabari';
+    case JanyaRaaga.Deeparamu:
+      return 'Deeparamu';
+    case JanyaRaaga.Gunaavati:
+      return 'Gunāvati';
+    case JanyaRaaga.Hindoladeshikam:
+      return 'Hindoladeshikam';
+    case JanyaRaaga.Kanakadri:
+      return 'Kanakadri';
+    case JanyaRaaga.Maatangakaamini:
+      return 'Mātangakāmini';
+    case JanyaRaaga.Naatyadhaarana:
+      return 'Nātyadhārana';
+    case JanyaRaaga.Niranjana:
+      return 'Niranjana';
+    case JanyaRaaga.Shaanthabhaashini:
+      return 'Shānthabhāshini';
+    case JanyaRaaga.Shivashakti:
+      return 'Shivashakti';
   }
 }
