@@ -10,28 +10,32 @@ async function initialize() {
   let initialSessionToken = Cookies.get('s_token');
 
   if (initialRefreshToken) {
-    const result = await fetch(process.env.RAZZLE_GQL_ENDPOINT!, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: `
+    try {
+      const result = await fetch(process.env.RAZZLE_GQL_ENDPOINT!, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
           mutation ($refresh: ID!) {
             refreshSession(refresh: $refresh) {
               session
             }
           }
         `,
-        variables: {
-          refresh: initialRefreshToken,
-        },
-      }),
-    }).then(r => r.json());
+          variables: {
+            refresh: initialRefreshToken,
+          },
+        }),
+      }).then(r => r.json());
 
-    if (result.data?.refreshSession) {
-      initialSessionToken = result.data.refreshSession.session;
-      Cookies.set('s_token', initialSessionToken || '', { path: '/' });
+      if (result.data?.refreshSession) {
+        initialSessionToken = result.data.refreshSession.session;
+        Cookies.set('s_token', initialSessionToken || '', { path: '/' });
+      }
+    } catch (e) {
+      // pass
     }
   }
 
