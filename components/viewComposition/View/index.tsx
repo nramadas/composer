@@ -6,9 +6,11 @@ import { H3 } from '#components/typography/H3';
 import { H4 } from '#components/typography/H4';
 import { Metadata } from '#components/viewComposition/Metadata';
 import { Row } from '#components/viewComposition/Row';
+import { avartanLength } from '#lib/avartanLength';
 import { BlockType } from '#lib/models/Block';
 import { Composition } from '#lib/models/Composition';
 import { User } from '#lib/models/User';
+import { taalaToAvartan } from '#lib/taalaToAvartan';
 
 import fetchCompositionQuery from './fetchComposition.gql';
 import styles from './index.module.scss';
@@ -63,12 +65,20 @@ export function View(props: Props) {
     );
   }
 
+  const rowSize = avartanLength(taalaToAvartan(composition.taala));
+
   return (
     <article className={cx(styles.container, props.className)}>
       <H4 className={styles.title}>{composition.title}</H4>
       <Metadata className={styles.metaData} composition={composition} />
       <div className={styles.blocksWrapper}>
-        <div className={cx(styles.blocks)}>
+        <div
+          className={cx(styles.blocks, {
+            [styles.rowSize3]: rowSize === 3,
+            [styles.rowSize5]: rowSize === 5,
+            [styles.rowSize18]: rowSize === 18,
+          })}
+        >
           {cleanUp(composition.blocks).map((row, i) => (
             <Row
               blocks={row}

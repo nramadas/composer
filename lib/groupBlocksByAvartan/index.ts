@@ -2,7 +2,6 @@ import { produce } from 'immer';
 import { ulid } from 'ulid';
 
 import { blockListArray } from '#lib/document/blockList';
-import { fixPrecision } from '#lib/fixPrecision';
 import { Block, BlockType } from '#lib/models/Block';
 import { Document } from '#lib/models/Document';
 import { totalBeatLength } from '#lib/totalBeatLength';
@@ -12,15 +11,11 @@ export function beatLength(block: Block) {
 }
 
 export function multiplier(groupBy: number) {
-  if (groupBy <= 3) {
+  if (groupBy <= 4) {
     return 4;
   }
 
-  if (groupBy < 5) {
-    return 3;
-  }
-
-  if (groupBy < 8) {
+  if (groupBy < 9) {
     return 2;
   }
 

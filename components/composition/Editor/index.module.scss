@@ -5,6 +5,18 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 40px;
+
+  &.rowSize3 {
+    max-width: 790px;
+  }
+
+  &.rowSize5 {
+    max-width: 770px;
+  }
+
+  &.rowSize18 {
+    max-width: 700px;
+  }
 }
 
 .blocksWrapper {
