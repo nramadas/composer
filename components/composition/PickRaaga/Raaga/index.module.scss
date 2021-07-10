@@ -1,0 +1,47 @@
+.scale {
+  font-size: 0.8rem;
+  margin-top: 8px;
+  opacity: 0.7;
+
+  & ~ & {
+    margin-top: 4px;
+  }
+}
+
+.scaleNameContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.selectIcon {
+  fill: var(--color-primary);
+  height: 16px;
+  margin-left: 8px;
+  width: 16px;
+}
+
+.selectRaaga {
+  background-color: transparent;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  color: var(--color-onBackground);
+  cursor: pointer;
+  height: 74px;
+  outline: none;
+  padding: 8px;
+  width: 220px;
+  text-align: left;
+  transition: background-color 0.15s, border-color 0.15s;
+
+  &:hover,
+  &:focus {
+    background-color: var(--color-field);
+  }
+
+  &.selected {
+    border-color: var(--color-primary);
+  }
+}

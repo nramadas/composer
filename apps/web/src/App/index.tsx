@@ -115,10 +115,7 @@ export function App(props: Props) {
                     >
                       <div
                         style={{
-                          opacity: `${item.style.opacity / 50}`,
-                          transform: `scale(${
-                            0.75 + item.style.opacity / 400
-                          })`,
+                          opacity: `${item.style.opacity / 100}`,
                         }}
                       >
                         {Component ? (
