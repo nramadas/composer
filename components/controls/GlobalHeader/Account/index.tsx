@@ -18,7 +18,10 @@ interface Props {
 }
 
 export function Account(props: Props) {
-  const [result] = useUserDependentQuery({ query: fetchUserQuery });
+  const [result] = useUserDependentQuery({
+    query: fetchUserQuery,
+    requestPolicy: 'cache-and-network',
+  });
   const me: User | null = result.data?.me;
 
   if (me) {

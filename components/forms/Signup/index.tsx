@@ -68,7 +68,11 @@ export function Signup(props: Props) {
           className={styles.input}
           label="email"
           tabIndex={props.inert ? -1 : undefined}
-          onChange={e => setEmail(e.currentTarget.value)}
+          onChange={e => {
+            e.stopPropagation();
+            setEmail(e.currentTarget.value);
+          }}
+          onKeyDown={e => e.stopPropagation()}
           onValidate={text => (text ? '' : 'Email cannot be blank')}
         />
       </div>
@@ -78,7 +82,11 @@ export function Signup(props: Props) {
           label="password"
           tabIndex={props.inert ? -1 : undefined}
           type="password"
-          onChange={e => setPassword(e.currentTarget.value)}
+          onChange={e => {
+            e.stopPropagation();
+            setPassword(e.currentTarget.value);
+          }}
+          onKeyDown={e => e.stopPropagation()}
           onValidate={text => (text ? '' : 'Password cannot be blank')}
         />
       </div>
@@ -88,7 +96,11 @@ export function Signup(props: Props) {
           label="repeat password"
           tabIndex={props.inert ? -1 : undefined}
           type="password"
-          onChange={e => setPassword2(e.currentTarget.value)}
+          onChange={e => {
+            e.stopPropagation();
+            setPassword2(e.currentTarget.value);
+          }}
+          onKeyDown={e => e.stopPropagation()}
           onValidate={text => (text === password ? '' : 'Passwords must match')}
         />
       </div>

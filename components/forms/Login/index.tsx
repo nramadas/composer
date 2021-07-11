@@ -63,7 +63,11 @@ export function Login(props: Props) {
           className={styles.input}
           label="email"
           tabIndex={props.inert ? -1 : undefined}
-          onChange={e => setEmail(e.currentTarget.value)}
+          onChange={e => {
+            e.stopPropagation();
+            setEmail(e.currentTarget.value);
+          }}
+          onKeyDown={e => e.stopPropagation()}
           onValidate={text => (text ? '' : 'Email cannot be blank')}
         />
       </div>
@@ -73,7 +77,11 @@ export function Login(props: Props) {
           label="password"
           tabIndex={props.inert ? -1 : undefined}
           type="password"
-          onChange={e => setPassword(e.currentTarget.value)}
+          onChange={e => {
+            e.stopPropagation();
+            setPassword(e.currentTarget.value);
+          }}
+          onKeyDown={e => e.stopPropagation()}
           onValidate={text => (text ? '' : 'Password cannot be blank')}
         />
       </div>

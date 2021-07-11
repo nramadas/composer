@@ -1,9 +1,42 @@
 $controlsHeight: 60px;
+$activationBannerHeight: 24px;
+
+.activationBanner {
+  align-items: center;
+  background-color: var(--color-error);
+  box-sizing: border-box;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  height: $activationBannerHeight;
+  justify-content: center;
+  padding: 0 20px;
+  position: relative;
+  z-index: 3;
+
+  a {
+    color: #fff;
+  }
+}
 
 .container {
   height: 100%;
   overflow: hidden;
   position: relative;
+
+  &.userNotActivated {
+    .controls {
+      top: $activationBannerHeight;
+    }
+
+    .editorWrapper {
+      padding-top: $controlsHeight + $activationBannerHeight + 40px;
+    }
+
+    .shadowBox {
+      top: $controlsHeight + $activationBannerHeight;
+    }
+  }
 }
 
 .controls {

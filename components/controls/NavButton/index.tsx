@@ -10,6 +10,7 @@ import styles from './index.module.scss';
 interface Props {
   className?: string;
   children?: React.ReactNode;
+  disabled?: boolean;
   infotext?: string;
   to: PageRoute;
   selected?: boolean;
@@ -20,10 +21,19 @@ export function NavButton(props: Props) {
   return (
     <Link
       className={cx(props.className, styles.container, {
+        [styles.disabled]: !!props.disabled,
         [styles.selected]: !!props.selected,
       })}
-      to={props.to}
-      onClick={props.onClick}
+      to={props.disabled ? '' : props.to}
+      onClick={e => {
+        if (props.disabled) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+
+        props.onClick?.(e);
+      }}
     >
       {props.children}
       {props.infotext && (

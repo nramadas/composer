@@ -4,9 +4,11 @@ import { useMutation } from 'urql';
 
 import { Caption } from '#components/typography/Caption';
 import { useSelector } from '#lib/hooks/useSelector';
+import { useUserDependentQuery } from '#lib/hooks/useUserDependentQuery';
 import { stateToComposition } from '#lib/transformComposition';
 import { withLowPriority } from '#lib/withLowPriority';
 
+import fetchUserQuery from './fetchUser.gql';
 import styles from './index.module.scss';
 import saveCompositionMutation from './saveComposition.gql';
 
@@ -16,6 +18,7 @@ interface Props {
 
 export function SaveComposition(props: Props) {
   const [, saveComposition] = useMutation(saveCompositionMutation);
+  const [fetchUserResult] = useUserDependentQuery({ query: fetchUserQuery });
   const compositionState = useSelector(state => ({
     blocks: state.composition.blocks,
     composer: state.composition.composer,
@@ -47,13 +50,23 @@ export function SaveComposition(props: Props) {
     }, 3000);
   });
 
+  const userIsActivated = !!fetchUserResult.data?.me?.activated;
+
   useEffect(() => {
+    if (!userIsActivated) {
+      return;
+    }
+
     getCompositionState.current = () => compositionState;
     save.current();
-  }, [compositionState]);
+  }, [compositionState, userIsActivated]);
 
   useEffect(() => {
     return () => {
+      if (!userIsActivated) {
+        return;
+      }
+
       if (timer.current) {
         clearTimeout(timer.current);
       }
@@ -61,7 +74,7 @@ export function SaveComposition(props: Props) {
       const composition = stateToComposition(getCompositionState.current());
       saveComposition({ composition });
     };
-  }, []);
+  }, [userIsActivated]);
 
   if (saveCount > 1) {
     return (
