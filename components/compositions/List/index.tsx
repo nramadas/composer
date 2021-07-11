@@ -14,7 +14,10 @@ interface Props {
 }
 
 export function List(props: Props) {
-  const [result] = useUserDependentQuery({ query: fetchCompositionsQuery });
+  const [result] = useUserDependentQuery({
+    query: fetchCompositionsQuery,
+    requestPolicy: 'cache-and-network',
+  });
 
   const compositions: CompositionModel[] = result.data?.myCompositions || [];
   const userId = result.data?.me.id || '';

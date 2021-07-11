@@ -1,5 +1,6 @@
-query fetchUser {
+query {
   me {
     activated
+    id
   }
 }

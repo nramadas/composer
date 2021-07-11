@@ -8,6 +8,7 @@ import 'normalize.css';
 
 import { AuthTokenProvider } from '#components/providers/AuthToken';
 import { URQLProvider } from '#components/providers/Urql';
+import { InitialUserFetch } from '#components/utilities/InitialUserFetch';
 import { TokenRefresher } from '#components/utilities/TokenRefresher';
 import { PageRoute } from '#lib/constants/Route';
 import { AuthToken } from '#lib/models/AuthToken';
@@ -56,6 +57,7 @@ export function App(props: Props) {
         schema={props.gqlSchema}
       >
         <TokenRefresher />
+        <InitialUserFetch />
         <Provider store={store}>
           <Switch location={backgroundLocation || location}>
             {pageRoutes.map(route => (

@@ -1,6 +1,8 @@
 query {
   me {
     activated
+    email
     id
+    preferredLanguage
   }
 }
