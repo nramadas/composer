@@ -8,6 +8,13 @@
   position: relative;
 }
 
+.filter {
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+  margin: 8px 0 8px;
+}
+
 .header {
   color: var(--color-onBackground);
 }
@@ -20,7 +27,6 @@
 
 .raagas {
   flex-grow: 0;
-  margin-top: 40px;
   overflow-y: auto;
 }
 

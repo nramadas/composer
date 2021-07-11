@@ -111,8 +111,7 @@ export function App(props: Props) {
                         backgroundColor: `rgba(0,0,0,${
                           item.style.opacity / 200
                         })`,
-                        pointerEvents:
-                          item.style.opacity !== 100 ? 'none' : 'all',
+                        pointerEvents: item.style.opacity < 90 ? 'none' : 'all',
                       }}
                     >
                       <div
