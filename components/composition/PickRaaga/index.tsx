@@ -36,6 +36,7 @@ const REPLACEMENTS = [
   ['ś‌', 's'],
   ['ṃ', 'm'],
   ['ḍ', 'd'],
+  ['đ', 'd'],
 ] as const;
 
 function clearStr(str: string) {
