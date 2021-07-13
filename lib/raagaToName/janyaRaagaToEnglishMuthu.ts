@@ -879,5 +879,221 @@ export function janyaRaagaToEnglishMuthu(raaga: JanyaRaaga) {
       return 'Surasena';
     case JanyaRaaga.Vasanthi:
       return 'Vasanthi';
+
+    // From Harikāmbhoji
+    case JanyaRaaga.Harikedaaragowla:
+      return 'Harikedāragowla';
+    case JanyaRaaga.Ambhojini:
+      return 'Ambhojini';
+    case JanyaRaaga.Andhali:
+      return 'Andhali';
+    case JanyaRaaga.Aparoopam:
+      return 'Aparoopam';
+    case JanyaRaaga.Baalahamsa:
+      return 'Bālahamsa';
+    case JanyaRaaga.Bahudaari:
+      return 'Bahudāri';
+    case JanyaRaaga.Bhoopaali:
+      return 'Bhoopāli';
+    case JanyaRaaga.Chaayalagakhamaas:
+      return 'Chāyalagakhamās';
+    case JanyaRaaga.Chaayataarangini:
+      return 'Chāyatārangini';
+    case JanyaRaaga.Chandrahasitham:
+      return 'Chandrahasitham';
+    case JanyaRaaga.Dasharatipriya:
+      return 'Dasharatipriya';
+    case JanyaRaaga.Dayaranjani:
+      return 'Dayaranjani';
+    case JanyaRaaga.Desh:
+      return 'Desh';
+    case JanyaRaaga.Deshaakshi:
+      return 'Deshākshi';
+    case JanyaRaaga.Deshkaar:
+      return 'Deshkār';
+    case JanyaRaaga.Dwaithachintaamani:
+      return 'Dwaithachintāmani';
+    case JanyaRaaga.Dwijaavanthi:
+      return 'Dwijāvanthi';
+    case JanyaRaaga.Eeshamanohari:
+      return 'Eeshamanohari';
+    case JanyaRaaga.Eeshaivaridhi:
+      return 'Eeshaivaridhi';
+    case JanyaRaaga.Gaandhaaralola:
+      return 'Gāndhāralola';
+    case JanyaRaaga.Gavathi:
+      return 'Gavathi';
+    case JanyaRaaga.Guhamanohari:
+      return 'Guhamanohari';
+    case JanyaRaaga.Guharanjani:
+      return 'Guharanjani';
+    case JanyaRaaga.Hamsaroopini:
+      return 'Hamsaroopini';
+    case JanyaRaaga.Harikedaaram:
+      return 'Harikedāram';
+    case JanyaRaaga.Harini:
+      return 'Harini';
+    case JanyaRaaga.Harithapriya:
+      return 'Harithapriya';
+    case JanyaRaaga.Hemasaaranga:
+      return 'Hemasāranga';
+    case JanyaRaaga.Jaijaivanthi:
+      return 'Jaijaivanthi';
+    case JanyaRaaga.Jaithshree:
+      return 'Jaithshree';
+    case JanyaRaaga.JanaSammodhini:
+      return 'Jana Sammodhini';
+    case JanyaRaaga.Jayaraama:
+      return 'Jayarāma';
+    case JanyaRaaga.Jhinjothi:
+      return 'Jhinjothi';
+    case JanyaRaaga.Jog:
+      return 'Jog';
+    case JanyaRaaga.Jujahuli:
+      return 'Jujahuli';
+    case JanyaRaaga.Kaambhoji:
+      return 'Kāmbhoji';
+    case JanyaRaaga.KaapiNaaraayani:
+      return 'Kāpi Nārāyani';
+    case JanyaRaaga.Kamaas:
+      return 'Kamās';
+    case JanyaRaaga.KarnaatakaBehaag:
+      return 'Karnātaka Behāg';
+    case JanyaRaaga.KarnaatakaDevagaandhaari:
+      return 'Karnātaka Devagāndhāri';
+    case JanyaRaaga.KarnaatakaKhamaas:
+      return 'Karnātaka Khamās';
+    case JanyaRaaga.Kedaaragowla:
+      return 'Kedāragowla';
+    case JanyaRaaga.Keshavapriyaa:
+      return 'Keshavapriyā';
+    case JanyaRaaga.Kokiladhwani:
+      return 'Kokiladhwani';
+    case JanyaRaaga.Kokilavaraali:
+      return 'Kokilavarāli';
+    case JanyaRaaga.Kunthalavaraali:
+      return 'Kunthalavarāli';
+    case JanyaRaaga.Maalavi:
+      return 'Mālavi';
+    case JanyaRaaga.Madhurakokila:
+      return 'Madhurakokila';
+    case JanyaRaaga.Mahathi:
+      return 'Mahathi';
+    case JanyaRaaga.Mahuri:
+      return 'Mahuri';
+    case JanyaRaaga.Manjupriya:
+      return 'Manjupriya';
+    case JanyaRaaga.Manoharam:
+      return 'Manoharam';
+    case JanyaRaaga.Mattakokila:
+      return 'Mattakokila';
+    case JanyaRaaga.Meghana:
+      return 'Meghana';
+    case JanyaRaaga.Mohanam:
+      return 'Mohanam';
+    case JanyaRaaga.Naadavalli:
+      return 'Nādavalli';
+    case JanyaRaaga.Naagaswaraavali:
+      return 'Nāgaswarāvali';
+    case JanyaRaaga.Naaraayanagowla:
+      return 'Nārāyanagowla';
+    case JanyaRaaga.Naaraayani:
+      return 'Nārāyani';
+    case JanyaRaaga.NaattaiKurinji:
+      return 'Nāttai Kurinji';
+    case JanyaRaaga.NaattaiNaaraayani:
+      return 'Nāttai Nārāyani';
+    case JanyaRaaga.Nandhkowns:
+      return 'Nandhkowns';
+    case JanyaRaaga.Narani:
+      return 'Narani';
+    case JanyaRaaga.NavarasaKalaanidhi:
+      return 'Navarasa Kalānidhi';
+    case JanyaRaaga.NavarasaKannada:
+      return 'Navarasa Kannada';
+    case JanyaRaaga.Neela:
+      return 'Neela';
+    case JanyaRaaga.Paarsi:
+      return 'Pārsi';
+    case JanyaRaaga.Parameshwarapriyaa:
+      return 'Parameshwarapriyā';
+    case JanyaRaaga.Pashupathipriyaa:
+      return 'Pashupathipriyā';
+    case JanyaRaaga.Poornakaambhoji:
+      return 'Poornakāmbhoji';
+    case JanyaRaaga.PrataapaNaattai:
+      return 'Pratāpa Nāttai';
+    case JanyaRaaga.Prataapavaraali:
+      return 'Pratāpavarāli';
+    case JanyaRaaga.Pravalajyoti:
+      return 'Pravalajyoti';
+    case JanyaRaaga.Raagapanjaramu:
+      return 'Rāgapanjaramu';
+    case JanyaRaaga.Raagavinodini:
+      return 'Rāgavinodini';
+    case JanyaRaaga.Raageshree:
+      return 'Rāgeshree';
+    case JanyaRaaga.RaviChandrikaa:
+      return 'Ravi Chandrikā';
+    case JanyaRaaga.Saavithri:
+      return 'Sāvithri';
+    case JanyaRaaga.Sahaana:
+      return 'Sahāna';
+    case JanyaRaaga.SaraswathiManohari:
+      return 'Saraswathi Manohari';
+    case JanyaRaaga.Sathvamanjari:
+      return 'Sathvamanjari';
+    case JanyaRaaga.Shakunthala:
+      return 'Shakunthala';
+    case JanyaRaaga.Shankaraharigowla:
+      return 'Shankaraharigowla';
+    case JanyaRaaga.Shenchukaambhoji:
+      return 'Shenchukāmbhoji';
+    case JanyaRaaga.Chenjurutti:
+      return 'Chenjurutti';
+    case JanyaRaaga.ShivaKaambhoji:
+      return 'Shiva Kāmbhoji';
+    case JanyaRaaga.Surutti:
+      return 'Surutti';
+    case JanyaRaaga.Shyaamaa:
+      return 'Shyāmā';
+    case JanyaRaaga.Simhavikrama:
+      return 'Simhavikrama';
+    case JanyaRaaga.SindhuKannada:
+      return 'Sindhu Kannada';
+    case JanyaRaaga.SindhuSurutti:
+      return 'Sindhu Surutti';
+    case JanyaRaaga.SuddhaKhamaas:
+      return 'Suddha Khamās';
+    case JanyaRaaga.SuddhaVaraali:
+      return 'Suddha Varāli';
+    case JanyaRaaga.Suddha:
+      return 'Suddha';
+    case JanyaRaaga.Suddhatarangini:
+      return 'Suddhatarangini';
+    case JanyaRaaga.Sumanapriyaa:
+      return 'Sumanapriyā';
+    case JanyaRaaga.Suposhini:
+      return 'Suposhini';
+    case JanyaRaaga.Suvarnakriyaa:
+      return 'Suvarnakriyā';
+    case JanyaRaaga.Swaraavali:
+      return 'Swarāvali';
+    case JanyaRaaga.Swaravedi:
+      return 'Swaravedi';
+    case JanyaRaaga.Tilakavathi:
+      return 'Tilakavathi';
+    case JanyaRaaga.Thilang:
+      return 'Thilang';
+    case JanyaRaaga.Umaabharanam:
+      return 'Umābharanam';
+    case JanyaRaaga.Vaishnavi:
+      return 'Vaishnavi';
+    case JanyaRaaga.Veenavadini:
+      return 'Veenavadini';
+    case JanyaRaaga.Vivardhani:
+      return 'Vivardhani';
+    case JanyaRaaga.YadukulaKaambhoji:
+      return 'Yadukula Kāmbhoji';
   }
 }
