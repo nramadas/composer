@@ -801,5 +801,83 @@ export function janyaRaagaToEnglishMuthu(raaga: JanyaRaaga) {
       return 'Tavamukhāri';
     case JanyaRaaga.Vajrakaanti:
       return 'Vajrakānti';
+
+    // From Gowri Manohari
+    case JanyaRaaga.Gowrivelaavali:
+      return 'Gowrivelāvali';
+    case JanyaRaaga.Gowrishankar:
+      return 'Gowrishankar';
+    case JanyaRaaga.Hamsadeepika:
+      return 'Hamsadeepika';
+    case JanyaRaaga.Hrudkamali:
+      return 'Hrudkamali';
+    case JanyaRaaga.Lavanthika:
+      return 'Lavanthika';
+    case JanyaRaaga.Sundaramanohari:
+      return 'Sundaramanohari';
+    case JanyaRaaga.Vasantashree:
+      return 'Vasantashree';
+    case JanyaRaaga.Velaavali:
+      return 'Velāvali';
+
+    // From Varunapriyaa
+    case JanyaRaaga.Veeravasantham:
+      return 'Veeravasantham';
+
+    // From Māraranjani
+    case JanyaRaaga.Sharaavathi:
+      return 'Sharāvathi';
+    case JanyaRaaga.Devasalaga:
+      return 'Devasalaga';
+    case JanyaRaaga.Kesari:
+      return 'Kesari';
+    case JanyaRaaga.Gayakamandini:
+      return 'Gayakamandini';
+    case JanyaRaaga.Raajathilaka:
+      return 'Rājathilaka';
+
+    // From Chārukeshi
+    case JanyaRaaga.Tarangini:
+      return 'Tarangini';
+    case JanyaRaaga.Chirswaroopi:
+      return 'Chirswaroopi';
+    case JanyaRaaga.Maaravi:
+      return 'Māravi';
+    case JanyaRaaga.Poorvadhanyaasi:
+      return 'Poorvadhanyāsi';
+    case JanyaRaaga.ShivaManohari:
+      return 'Shiva Manohari';
+    case JanyaRaaga.Shukrajyothi:
+      return 'Shukrajyothi';
+    case JanyaRaaga.Ushaabharanam:
+      return 'Ushābharanam';
+
+    // From Sarasāngi
+    case JanyaRaaga.Sowrasenaa:
+      return 'Sowrasenā';
+    case JanyaRaaga.Haripriya:
+      return 'Haripriya';
+    case JanyaRaaga.Srirangapriya:
+      return 'Srirangapriya';
+    case JanyaRaaga.KamalaaManohari:
+      return 'Kamalā Manohari';
+    case JanyaRaaga.Madhulika:
+      return 'Madhulika';
+    case JanyaRaaga.Nalinakaanthi:
+      return 'Nalinakānthi';
+    case JanyaRaaga.Neelamani:
+      return 'Neelamani';
+    case JanyaRaaga.Salavi:
+      return 'Salavi';
+    case JanyaRaaga.Sarasaanana:
+      return 'Sarasānana';
+    case JanyaRaaga.Saraseeruha:
+      return 'Saraseeruha';
+    case JanyaRaaga.Simhavaahini:
+      return 'Simhavāhini';
+    case JanyaRaaga.Surasena:
+      return 'Surasena';
+    case JanyaRaaga.Vasanthi:
+      return 'Vasanthi';
   }
 }

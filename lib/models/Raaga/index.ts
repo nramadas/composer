@@ -518,4 +518,48 @@ export enum JanyaRaaga {
   Swararanjani = 'Swararanjani',
   Tavamukhaari = 'Tavamukhaari',
   Vajrakaanti = 'Vajrakaanti',
+
+  // From Gowri Manohari
+  Gowrivelaavali = 'Gowrivelaavali',
+  Gowrishankar = 'Gowrishankar',
+  Hamsadeepika = 'Hamsadeepika',
+  Hrudkamali = 'Hrudkamali',
+  Lavanthika = 'Lavanthika',
+  Sundaramanohari = 'Sundaramanohari',
+  Vasantashree = 'Vasantashree',
+  Velaavali = 'Velaavali',
+
+  // From Varunapriyaa
+  Veeravasantham = 'Veeravasantham',
+
+  // From Māraranjani
+  Sharaavathi = 'Sharaavathi',
+  Devasalaga = 'Devasalaga',
+  Kesari = 'Kesari',
+  Gayakamandini = 'Gayakamandini',
+  Raajathilaka = 'Raajathilaka',
+
+  // From Chārukeshi
+  Tarangini = 'Tarangini',
+  Chirswaroopi = 'Chirswaroopi',
+  Maaravi = 'Maaravi',
+  Poorvadhanyaasi = 'Poorvadhanyaasi',
+  ShivaManohari = 'ShivaManohari',
+  Shukrajyothi = 'Shukrajyothi',
+  Ushaabharanam = 'Ushaabharanam',
+
+  // From Sarasāngi
+  Sowrasenaa = 'Sowrasenaa',
+  Haripriya = 'Haripriya',
+  Srirangapriya = 'Srirangapriya',
+  KamalaaManohari = 'KamalaaManohari',
+  Madhulika = 'Madhulika',
+  Nalinakaanthi = 'Nalinakaanthi',
+  Neelamani = 'Neelamani',
+  Salavi = 'Salavi',
+  Sarasaanana = 'Sarasaanana',
+  Saraseeruha = 'Saraseeruha',
+  Simhavaahini = 'Simhavaahini',
+  Surasena = 'Surasena',
+  Vasanthi = 'Vasanthi',
 }
