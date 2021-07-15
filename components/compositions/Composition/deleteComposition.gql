@@ -1,5 +1,0 @@
-mutation ($key: ID!) {
-  deleteComposition (compositionKey: $key) {
-    key
-  }
-}

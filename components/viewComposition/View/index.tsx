@@ -1,18 +1,14 @@
 import cx from 'classnames';
 import React from 'react';
-import { useQuery } from 'urql';
 
-import { H3 } from '#components/typography/H3';
 import { H4 } from '#components/typography/H4';
 import { Metadata } from '#components/viewComposition/Metadata';
 import { Row } from '#components/viewComposition/Row';
 import { avartanLength } from '#lib/avartanLength';
 import { BlockType } from '#lib/models/Block';
 import { Composition } from '#lib/models/Composition';
-import { User } from '#lib/models/User';
 import { taalaToAvartan } from '#lib/taalaToAvartan';
 
-import fetchCompositionQuery from './fetchComposition.gql';
 import styles from './index.module.scss';
 
 function cleanUp(blocks: Composition['blocks']): Composition['blocks'] {
@@ -41,30 +37,11 @@ function cleanUp(blocks: Composition['blocks']): Composition['blocks'] {
 
 interface Props {
   className?: string;
-  userId: User['id'];
-  compositionKey: Composition['key'];
+  composition: Composition;
 }
 
 export function View(props: Props) {
-  const [result] = useQuery({
-    query: fetchCompositionQuery,
-    variables: { userId: props.userId, key: props.compositionKey },
-  });
-
-  const composition: Composition | null = result.data?.getComposition;
-
-  if (result.fetching) {
-    return <div />;
-  }
-
-  if (!composition) {
-    return (
-      <article className={cx(styles.notFound, props.className)}>
-        <H3>Composition not found</H3>
-      </article>
-    );
-  }
-
+  const { composition } = props;
   const rowSize = avartanLength(taalaToAvartan(composition.taala));
 
   return (

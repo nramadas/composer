@@ -4,7 +4,6 @@ import React from 'react';
 import { Logo } from '#components/controls/Logo';
 import { H6 } from '#components/typography/H6';
 
-import { Account } from './Account';
 import styles from './index.module.scss';
 
 interface Props {
@@ -18,9 +17,7 @@ export function GlobalHeader(props: Props) {
         <Logo className={styles.logo} />
         <H6 className={styles.title}>Ganapathi</H6>
       </div>
-      <div className={styles.rhs}>
-        <Account />
-      </div>
+      <div className={styles.rhs} />
     </header>
   );
 }

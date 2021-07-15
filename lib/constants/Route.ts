@@ -14,5 +14,5 @@ export enum PageRoute {
   Compositions = '/compositions',
   Home = '/',
   Profile = '/me',
-  View = '/view/:userId/:key/:title?',
+  View = '/view/:title/:payload',
 }

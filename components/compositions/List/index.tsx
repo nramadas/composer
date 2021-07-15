@@ -3,10 +3,8 @@ import React from 'react';
 
 import { Composition } from '#components/compositions/Composition';
 import { H3 } from '#components/typography/H3';
-import { useUserDependentQuery } from '#lib/hooks/useUserDependentQuery';
-import { Composition as CompositionModel } from '#lib/models/Composition';
+import { useStorage } from '#lib/hooks/useStorage';
 
-import fetchCompositionsQuery from './fetchCompositions.gql';
 import styles from './index.module.scss';
 
 interface Props {
@@ -14,13 +12,7 @@ interface Props {
 }
 
 export function List(props: Props) {
-  const [result] = useUserDependentQuery({
-    query: fetchCompositionsQuery,
-    requestPolicy: 'cache-and-network',
-  });
-
-  const compositions: CompositionModel[] = result.data?.myCompositions || [];
-  const userId = result.data?.me.id || '';
+  const { compositions } = useStorage();
 
   return (
     <div className={cx(props.className, styles.container)}>
@@ -30,10 +22,6 @@ export function List(props: Props) {
       <div className={styles.shadowBox} />
       <div className={styles.compositionList}>
         <div className={styles.compositionListInner}>
-          {result.fetching &&
-            Array.from({ length: 5 }).map((_, i) => (
-              <div className={styles.emptyComposition} key={i} />
-            ))}
           {compositions
             .sort((a, b) => b.lastUpdate - a.lastUpdate)
             .map(composition => (
@@ -41,7 +29,6 @@ export function List(props: Props) {
                 className={styles.composition}
                 composition={composition}
                 key={composition.key}
-                userId={userId}
               />
             ))}
         </div>
