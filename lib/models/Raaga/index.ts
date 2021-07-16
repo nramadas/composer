@@ -672,7 +672,7 @@ export enum JanyaRaaga {
   Vivardhani = 'Vivardhani',
   YadukulaKaambhoji = 'YadukulaKaambhoji',
 
-  // Dheera Shankarābharanam
+  // From Dheera Shankarābharanam
   Aanandharoopa = 'Aanandharoopa',
   Aarabhi = 'Aarabhi',
   Ataana = 'Ataana',
@@ -740,4 +740,30 @@ export enum JanyaRaaga {
   Vedhaandhagamana = 'Vedhaandhagamana',
   Veeraprataapa = 'Veeraprataapa',
   Vilaasini = 'Vilaasini',
+
+  // From Nāganandhini
+  Naagabharanam = 'Naagabharanam',
+  Gambheeravani = 'Gambheeravani',
+  Lalithagaandharva = 'Lalithagaandharva',
+  Saamanta = 'Saamanta',
+
+  // From Yāgapriyā
+  Kalaavathi = 'Kalaavathi',
+  Damarugapriya = 'Damarugapriya',
+  Desharanjani = 'Desharanjani',
+  Deshyathodi = 'Deshyathodi',
+  Kalaahamsa = 'Kalaahamsa',
+  Niranjani = 'Niranjani',
+  Prathaapahamsi = 'Prathaapahamsi',
+
+  // From Rāgavardhani
+  Raagachoodaamani = 'Raagachoodaamani',
+  Amudagaandhaari = 'Amudagaandhaari',
+  Dhowmya = 'Dhowmya',
+  Hindoladarbaar = 'Hindoladarbaar',
+  Ramyaa = 'Ramyaa',
+  Saamantajingala = 'Saamantajingala',
+
+  // From Gangeyabhushani
+  Gangaatarangini = 'Gangaatarangini',
 }

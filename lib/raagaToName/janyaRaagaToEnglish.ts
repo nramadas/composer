@@ -1231,5 +1231,49 @@ export function janyaRaagaToEnglish(raaga: JanyaRaaga) {
       return 'Veerapratāpa';
     case JanyaRaaga.Vilaasini:
       return 'Vilāsini';
+
+    // From Nāganandhini
+    case JanyaRaaga.Naagabharanam:
+      return 'Nāgabharanam';
+    case JanyaRaaga.Gambheeravani:
+      return 'Gambheeravani';
+    case JanyaRaaga.Lalithagaandharva:
+      return 'Lalithagāndharva';
+    case JanyaRaaga.Saamanta:
+      return 'Sāmanta';
+
+    // From Yāgapriyā
+    case JanyaRaaga.Kalaavathi:
+      return 'Kalāvathi';
+    case JanyaRaaga.Damarugapriya:
+      return 'Damarugapriya';
+    case JanyaRaaga.Desharanjani:
+      return 'Desharanjani';
+    case JanyaRaaga.Deshyathodi:
+      return 'Deshyathodi';
+    case JanyaRaaga.Kalaahamsa:
+      return 'Kalāhamsa';
+    case JanyaRaaga.Niranjani:
+      return 'Niranjani';
+    case JanyaRaaga.Prathaapahamsi:
+      return 'Prathāpahamsi';
+
+    // From Rāgavardhani
+    case JanyaRaaga.Raagachoodaamani:
+      return 'Rāgachoodāmani';
+    case JanyaRaaga.Amudagaandhaari:
+      return 'Amudagāndhāri';
+    case JanyaRaaga.Dhowmya:
+      return 'Dhowmya';
+    case JanyaRaaga.Hindoladarbaar:
+      return 'Hindoladarbār';
+    case JanyaRaaga.Ramyaa:
+      return 'Ramyā';
+    case JanyaRaaga.Saamantajingala:
+      return 'Sāmantajingala';
+
+    // From Gangeyabhushani
+    case JanyaRaaga.Gangaatarangini:
+      return 'Gangātarangini';
   }
 }
